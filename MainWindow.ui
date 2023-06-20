@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>907</width>
+    <height>699</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="2" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label_4">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>16</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>For SCNU</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="2">
+     <widget class="QPushButton" name="pushButton_ExitProgram">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>退出程序</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label_2">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string>选择宿舍楼:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+     <widget class="QLabel" name="label_3">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>选择水控端:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="11" column="1">
+     <widget class="QPushButton" name="pushButton_About">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>关于程序</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="2">
+     <widget class="QPushButton" name="pushButton_UploadData">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>协助开发</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="2">
+     <widget class="QComboBox" name="comboBox_SideSelect">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="pushButton_StartCheck">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>开始查询</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
+     <widget class="QComboBox" name="comboBox_BuildingSelect">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>18</pointsize>
+       </font>
+      </property>
+      <item>
+       <property name="text">
+        <string>东十九</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>西一</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>西二</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="12" column="1" colspan="2">
+     <widget class="QTextBrowser" name="textBrowser_ShowResult"/>
+    </item>
+    <item row="1" column="1" alignment="Qt::AlignHCenter">
+     <widget class="QLabel" name="label">
+      <property name="font">
+       <font>
+        <family>华文新魏</family>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>U净洗衣机状态查询器</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="icon.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>pushButton_StartCheck</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>StartCheck()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>156</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>88</x>
+     <y>220</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_ExitProgram</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>ExitProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>840</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>438</x>
+     <y>214</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_UploadData</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>UploadData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>897</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>578</x>
+     <y>222</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_About</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>AboutProgram()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>187</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>269</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_BuildingSelect</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>UpdateSideSelect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>471</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>439</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>StartCheck()</slot>
+  <slot>ExitProgram()</slot>
+  <slot>UploadData()</slot>
+  <slot>AboutProgram()</slot>
+  <slot>UpdateSideSelect()</slot>
+ </slots>
+</ui>
