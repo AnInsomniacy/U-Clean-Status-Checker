@@ -2,12 +2,14 @@ import json
 
 import requests
 
+from GlobalVar import Global_Bearer
+
 
 def getStatus(postData):
     url = "https://phoenix.ujing.online/api/v1/wechat/devices/scanWasherCode"
     headers = {
         "Accept": "application/json, text/plain, */*",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBVc2VySWQiOiJvZ3lSVDF1M0dlZU9OV2N5SGdHekZYM3RoLVVNIiwiZXhwIjoxNjk0MDg5MTk5LCJpYXQiOjE2ODYwNTM5OTksImlkIjozMDE5NDgzMiwibmFtZSI6IjE5ODc2NTc2NzY4In0.AwDgYSsaDXMZ2NWCA5o0vEs_7MWOb1Tw-q0vH10OKXs",
+        "Authorization": "Bearer " + Global_Bearer,
         "Accept-Language": "zh-CN,zh-Hans;q=0.9",
         "Accept-Encoding": "gzip, deflate, br",
         "Content-Type": "application/json; charset=utf-8",
@@ -26,6 +28,9 @@ def getStatus(postData):
     responseText = response.text
 
     response_dict = json.loads(responseText)
+    # 如果code是401，说明token过期了，需要重新登录
+    if response_dict['code'] == 401:
+        return [False, 'token过期，无法获取状态，请等待作者更新']
     canCreate = response_dict['data']['result']['createOrderEnabled']
     reason = response_dict['data']['result']['reason']
     return [canCreate, reason]

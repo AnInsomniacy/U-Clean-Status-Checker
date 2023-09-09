@@ -13,11 +13,8 @@ from PyQt6.QtCore import QThread, pyqtSignal, QSettings
 
 from StatusFetcher import returnStatus
 from MachineURL import *
+from GlobalVar import global_result
 import icon_rc
-
-# 设定全局变量global_result
-global_result = ""
-
 
 class getStatusThread(QThread):
     finished = pyqtSignal()
