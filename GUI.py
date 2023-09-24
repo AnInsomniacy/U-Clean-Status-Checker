@@ -178,7 +178,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle("U Clean Status Checker")
         self.textBrowser_ShowResult.clear()
         self.textBrowser_ShowResult.setText(
-            '本项目GitHub地址:  https://github.com/HIDAYAT-Lee/U-Clean-Status-Checker\n\n如需支持更多宿舍楼的洗衣机，请点击"协助开发"按钮，帮助作者获得必要信息\n\n本程序仅供学习交流使用,请勿用于非法用途')
+            '本项目GitHub地址:  https://github.com/CarlWkr/U-Clean-Status-Checker\n\n如需支持更多宿舍楼的洗衣机，请点击"协助开发"按钮，帮助作者获得必要信息\n\n本程序仅供学习交流使用,请勿用于非法用途')
 
         # 加载上一次选择的值BuildingSelect
         settings = QSettings("HIDAYAT-Lee", "U Clean Status Checker")
@@ -221,7 +221,7 @@ class Ui_MainWindow(object):
         # 输出文字到文本框，先清空
         self.textBrowser_ShowResult.clear()
         self.textBrowser_ShowResult.setText(
-            '本项目GitHub地址:  https://github.com/HIDAYAT-Lee/U-Clean-Status-Checker\n\n如需支持更多宿舍楼的洗衣机，请点击"协助开发"按钮，帮助作者获得必要信息\n\n本程序仅供学习交流使用,请勿用于非法用途\n\n代码已开源，欢迎各位前来指点')
+            '本项目GitHub地址:  https://github.com/CarlWkr/U-Clean-Status-Checker\n\n如需支持更多宿舍楼的洗衣机，请点击"协助开发"按钮，帮助作者获得必要信息\n\n本程序仅供学习交流使用,请勿用于非法用途\n\n代码已开源，欢迎各位前来指点')
 
     def UpdateSideSelect(self):
         # 清空下拉框
