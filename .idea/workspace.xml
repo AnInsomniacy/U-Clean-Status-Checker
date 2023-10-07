@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="204c31c1-2173-4487-abf0-7ab22a0da898" name="变更" comment="更新令牌，优化架构">
-      <change afterPath="$PROJECT_DIR$/dist/main.zip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/bdist.macosx-13.5-arm64/python3.11-standalone/app/python311.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/bdist.macosx-13.5-arm64/python3.11-standalone/app/python311.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.app/Contents/MacOS/main" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.app/Contents/MacOS/main" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.app/Contents/Resources/lib/python311.zip" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.app/Contents/Resources/lib/python311.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/main.app/Contents/_CodeSignature/CodeResources" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.app/Contents/_CodeSignature/CodeResources" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +156,7 @@
       <workItem from="1694914640930" duration="3636000" />
       <workItem from="1694956114474" duration="47000" />
       <workItem from="1695205550887" duration="102000" />
+      <workItem from="1695526153834" duration="652000" />
     </task>
     <task id="LOCAL-00001" summary="更新架构&#10;从PyQt5更新到PyQt6">
       <option name="closed" value="true" />
@@ -210,7 +206,23 @@
       <option name="project" value="LOCAL" />
       <updated>1694274710118</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="更新令牌，优化架构">
+      <option name="closed" value="true" />
+      <created>1695526228588</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1695526228588</updated>
+    </task>
+    <task id="LOCAL-00008" summary="更新令牌，优化架构">
+      <option name="closed" value="true" />
+      <created>1695526297967</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1695526297967</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +271,7 @@
     <SUITE FILE_PATH="coverage/U_Clean_Status$StatusFetcher.coverage" NAME="StatusFetcher 覆盖结果" MODIFIED="1687262493093" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/U_Clean_Status$GUI.coverage" NAME="GUI 覆盖结果" MODIFIED="1677899762972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/U_Clean_Status$MachineCode.coverage" NAME="MachineCode 覆盖结果" MODIFIED="1677768013829" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/U_Clean_Status_Checker$main.coverage" NAME="main 覆盖结果" MODIFIED="1694956143243" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/U_Clean_Status_Checker$main.coverage" NAME="main 覆盖结果" MODIFIED="1695526208321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/U_Clean_Status$main.coverage" NAME="main 覆盖结果" MODIFIED="1687263129588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
