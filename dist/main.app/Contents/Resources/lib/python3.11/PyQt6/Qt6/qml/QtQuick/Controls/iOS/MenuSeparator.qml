@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.MenuSeparator {
     id: control
@@ -15,11 +15,11 @@ T.MenuSeparator {
                              implicitContentHeight + topPadding + bottomPadding)
 
     contentItem: NinePatchImage {
-        source: control.IOS.url + "menuseparator-separator"
+        source: IOS.url + "menuseparator-separator"
         NinePatchImageSelector on source {
             states: [
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark}
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark}
             ]
         }
     }

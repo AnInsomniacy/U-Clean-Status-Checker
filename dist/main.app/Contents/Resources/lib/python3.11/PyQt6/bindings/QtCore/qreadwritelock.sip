@@ -36,10 +36,20 @@ public:
     explicit QReadWriteLock(QReadWriteLock::RecursionMode recursionMode = QReadWriteLock::NonRecursive);
     ~QReadWriteLock();
     void lockForRead() /ReleaseGIL/;
+%If (Qt_6_6_0 -)
+    bool tryLockForRead(QDeadlineTimer timeout = {}) /ReleaseGIL/;
+%End
+%If (- Qt_6_6_0)
     bool tryLockForRead();
+%End
     bool tryLockForRead(int timeout) /ReleaseGIL/;
     void lockForWrite() /ReleaseGIL/;
+%If (Qt_6_6_0 -)
+    bool tryLockForWrite(QDeadlineTimer timeout = {}) /ReleaseGIL/;
+%End
+%If (- Qt_6_6_0)
     bool tryLockForWrite();
+%End
     bool tryLockForWrite(int timeout) /ReleaseGIL/;
     void unlock();
 

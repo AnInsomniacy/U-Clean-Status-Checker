@@ -46,6 +46,7 @@ T.Dialog {
         elide: Label.ElideRight
         font.bold: true
         padding: 6
+
         background: Rectangle {
             x: 1
             y: 1

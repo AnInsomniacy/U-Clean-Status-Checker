@@ -50,7 +50,23 @@ Module {
             index: 0
             isFinal: true
         }
-        Property { name: "color"; type: "QColor"; read: "color"; write: "setColor"; index: 1; isFinal: true }
+        Property {
+            name: "startAngle"
+            type: "double"
+            read: "startAngle"
+            write: "setStartAngle"
+            index: 1
+            isFinal: true
+        }
+        Property {
+            name: "endAngle"
+            type: "double"
+            read: "endAngle"
+            write: "setEndAngle"
+            index: 2
+            isFinal: true
+        }
+        Property { name: "color"; type: "QColor"; read: "color"; write: "setColor"; index: 3; isFinal: true }
     }
     Component {
         file: "qquickbasicprogressbar_p.h"

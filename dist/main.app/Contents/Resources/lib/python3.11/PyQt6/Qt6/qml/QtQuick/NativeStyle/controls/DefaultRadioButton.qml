@@ -11,6 +11,7 @@ T.RadioButton {
     id: control
 
     readonly property bool nativeIndicator: indicator instanceof NativeStyle.StyleItem
+    readonly property bool __notCustomizable: true
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
@@ -26,11 +27,8 @@ T.RadioButton {
         contentWidth: contentItem.implicitWidth
         contentHeight: contentItem.implicitHeight
         useNinePatchImage: false
-//        Component.onCompleted: {
-//            var f = indicator.font(control)
-//            control.font.pixelSize = f.pixelSize
-//            print(f)
-//        }
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 
     contentItem: CheckLabel {
@@ -57,5 +55,7 @@ T.RadioButton {
             else
                 indicator && mirrored ? indicator.width + spacing : 0
         }
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 }

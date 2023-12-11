@@ -7,18 +7,13 @@ import QtQuick.tooling 1.2
 
 Module {
     Component {
-        file: "qabstractitemmodel.h"
-        name: "QAbstractListModel"
-        accessSemantics: "reference"
-        prototype: "QAbstractItemModel"
-    }
-    Component {
         file: "qpdfbookmarkmodel.h"
         name: "QPdfBookmarkModel"
         accessSemantics: "reference"
         prototype: "QAbstractItemModel"
         Enum {
             name: "Role"
+            type: "int"
             values: ["Title", "Level", "Page", "Location", "Zoom", "NRoles"]
         }
         Property {
@@ -135,6 +130,11 @@ Module {
             Parameter { name: "page"; type: "int" }
         }
         Method {
+            name: "pageIndexForLabel"
+            type: "int"
+            Parameter { name: "label"; type: "QString" }
+        }
+        Method {
             name: "getSelection"
             type: "QPdfSelection"
             Parameter { name: "page"; type: "int" }
@@ -187,10 +187,10 @@ Module {
             name: "copyToClipboard"
             Parameter { name: "mode"; type: "QClipboard::Mode" }
         }
-        Method { name: "copyToClipboard" }
+        Method { name: "copyToClipboard"; isCloned: true }
     }
     Component {
-        file: "private/qpdflinkmodel_p.h"
+        file: "qpdflinkmodel.h"
         name: "QPdfLinkModel"
         accessSemantics: "reference"
         prototype: "QAbstractListModel"
@@ -323,6 +323,7 @@ Module {
         }
         Method {
             name: "jump"
+            isCloned: true
             Parameter { name: "page"; type: "int" }
             Parameter { name: "location"; type: "QPointF" }
         }
@@ -342,6 +343,7 @@ Module {
         prototype: "QAbstractListModel"
         Enum {
             name: "Role"
+            type: "int"
             values: [
                 "Page",
                 "IndexOnPage",

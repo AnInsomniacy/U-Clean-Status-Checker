@@ -169,6 +169,9 @@ public:
     bool isValid() const;
     bool isScoped() const;
     const char *enumName() const;
+%If (Qt_6_6_0 -)
+    QMetaType metaType() const;
+%End
 };
 
 class QMetaProperty
@@ -197,6 +200,44 @@ public:
 %End
 
     bool write(QObject *obj, const QVariant &value) const;
+%MethodCode
+        // If it looks like we are trying to write an int to an enum then we are
+        // probably trying to write to an unregistered enum.  Converting the int to the
+        // name of the corresponding key should work (although this isn't a documented
+        // feature).
+        
+        QMetaEnum me = sipCpp->enumerator();
+        if (me.isValid() && a1->typeId() == QMetaType::Int)
+        {
+            QString key;
+        
+            if (me.isFlag())
+            {
+                key = QString(me.valueToKeys(a1->toInt()));
+            }
+            else
+            {
+                const char *key_s = me.valueToKey(a1->toInt());
+                
+                if (key_s)
+                {
+                    key = QString(key_s);
+                }
+                else
+                {
+                    PyErr_Format(PyExc_ValueError, "%S is not a valid enum member", a1);
+                    sipIsErr = 1;
+                }
+            }
+            
+            if (!sipIsErr)
+                *const_cast<QVariant *>(a1) = QVariant(key);
+        }
+        
+        if (!sipIsErr)
+            sipRes = sipCpp->write(a0, *a1);
+%End
+
     bool reset(QObject *obj) const;
     bool hasStdCppSet() const;
     bool isValid() const;

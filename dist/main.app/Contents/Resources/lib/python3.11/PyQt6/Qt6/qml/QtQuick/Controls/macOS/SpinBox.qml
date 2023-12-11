@@ -8,12 +8,17 @@ import QtQuick.NativeStyle as NativeStyle
 T.SpinBox {
     id: control
 
-    implicitWidth: Math.max(implicitContentWidth + leftInset + rightInset)
-    implicitHeight: Math.max(implicitContentHeight, up.implicitIndicatorHeight + down.implicitIndicatorHeight)
-                    + topInset + bottomInset
+    // Note: the width of the indicators are calculated into the padding
+    implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
+                            contentItem.implicitWidth + leftPadding + rightPadding)
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             implicitContentHeight + topPadding + bottomPadding,
+                             up.implicitIndicatorHeight, down.implicitIndicatorHeight)
 
     spacing: 2
     rightPadding: up.implicitIndicatorWidth + spacing
+
+    readonly property bool __notCustomizable: true
 
     validator: IntValidator {
         locale: control.locale.name
@@ -29,7 +34,7 @@ T.SpinBox {
         selectedTextColor: control.palette.highlightedText
         horizontalAlignment: Qt.AlignLeft
         verticalAlignment: Qt.AlignVCenter
-        implicitWidth: 100 // From IB XCode
+        implicitWidth: Math.max(100 /* from IB XCode */, contentWidth + leftPadding + rightPadding)
 
         topPadding: 2
         bottomPadding: 2
@@ -39,6 +44,8 @@ T.SpinBox {
         readOnly: !control.editable
         validator: control.validator
         inputMethodHints: control.inputMethodHints
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 
     NativeStyle.SpinBox {
@@ -55,6 +62,8 @@ T.SpinBox {
         y: (parent.height / 2) - height
         implicitWidth: upAndDown.width
         implicitHeight: upAndDown.height / 2
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 
     down.indicator: Item {
@@ -62,5 +71,7 @@ T.SpinBox {
         y: up.indicator.y + upAndDown.height / 2
         implicitWidth: upAndDown.width
         implicitHeight: upAndDown.height / 2
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 }

@@ -34,8 +34,13 @@ class QPdfDocument : QObject
     } graph[] = {
         {sipName_QPdfBookmarkModel, &sipType_QPdfBookmarkModel, -1, 1},
         {sipName_QPdfDocument, &sipType_QPdfDocument, -1, 2},
-        {sipName_QPdfPageNavigator, &sipType_QPdfPageNavigator, -1, 3},
-        {sipName_QPdfPageRenderer, &sipType_QPdfPageRenderer, -1, 4},
+    #if QT_VERSION >= 0x060600
+        {sipName_QPdfLinkModel, &sipType_QPdfLinkModel, -1, 3},
+    #else
+        {0, 0, -1, 3},
+    #endif
+        {sipName_QPdfPageNavigator, &sipType_QPdfPageNavigator, -1, 4},
+        {sipName_QPdfPageRenderer, &sipType_QPdfPageRenderer, -1, 5},
         {sipName_QPdfSearchModel, &sipType_QPdfSearchModel, -1, -1},
     };
     
@@ -115,6 +120,9 @@ public:
     QPdfSelection getSelection(int page, QPointF start, QPointF end);
     QPdfSelection getSelectionAtIndex(int page, int startIndex, int maxLength);
     QPdfSelection getAllText(int page);
+%If (Qt_6_6_0 -)
+    int pageIndexForLabel(const QString &label);
+%End
 
 signals:
     void passwordChanged();

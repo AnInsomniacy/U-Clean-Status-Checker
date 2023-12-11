@@ -71,14 +71,18 @@ Module {
         name: "HeightFieldGeometry"
         accessSemantics: "reference"
         prototype: "QQuick3DGeometry"
-        exports: ["QtQuick3D.Helpers/HeightFieldGeometry 6.0"]
-        exportMetaObjectRevisions: [1536]
+        exports: [
+            "QtQuick3D.Helpers/HeightFieldGeometry 6.0",
+            "QtQuick3D.Helpers/HeightFieldGeometry 6.5"
+        ]
+        exportMetaObjectRevisions: [1536, 1541]
         Property {
-            name: "heightMap"
+            name: "source"
+            revision: 1541
             type: "QUrl"
-            read: "heightMap"
-            write: "setHeightMap"
-            notify: "heightMapChanged"
+            read: "source"
+            write: "setSource"
+            notify: "sourceChanged"
             index: 0
         }
         Property {
@@ -97,7 +101,15 @@ Module {
             notify: "extentsChanged"
             index: 2
         }
-        Signal { name: "heightMapChanged" }
+        Property {
+            name: "heightMap"
+            type: "QUrl"
+            read: "source"
+            write: "setSource"
+            notify: "sourceChanged"
+            index: 3
+        }
+        Signal { name: "sourceChanged" }
         Signal { name: "smoothShadingChanged" }
         Signal { name: "extentsChanged" }
     }
@@ -161,6 +173,199 @@ Module {
             Parameter { name: "node"; type: "QQuick3DNode"; isPointer: true }
         }
         Method { name: "updateLookAt" }
+    }
+    Component {
+        file: "private/proceduralmesh_p.h"
+        name: "ProceduralMesh"
+        accessSemantics: "reference"
+        prototype: "QQuick3DGeometry"
+        exports: ["QtQuick3D.Helpers/ProceduralMesh 6.6"]
+        exportMetaObjectRevisions: [1542]
+        Enum {
+            name: "PrimitiveMode"
+            values: [
+                "Points",
+                "LineStrip",
+                "Lines",
+                "TriangleStrip",
+                "TriangleFan",
+                "Triangles"
+            ]
+        }
+        Property {
+            name: "positions"
+            type: "QVector3D"
+            isList: true
+            read: "positions"
+            write: "setPositions"
+            notify: "positionsChanged"
+            index: 0
+            isFinal: true
+        }
+        Property {
+            name: "normals"
+            type: "QVector3D"
+            isList: true
+            read: "normals"
+            write: "setNormals"
+            notify: "normalsChanged"
+            index: 1
+            isFinal: true
+        }
+        Property {
+            name: "tangents"
+            type: "QVector3D"
+            isList: true
+            read: "tangents"
+            write: "setTangents"
+            notify: "tangentsChanged"
+            index: 2
+            isFinal: true
+        }
+        Property {
+            name: "binormals"
+            type: "QVector3D"
+            isList: true
+            read: "binormals"
+            write: "setBinormals"
+            notify: "binormalsChanged"
+            index: 3
+            isFinal: true
+        }
+        Property {
+            name: "uv0s"
+            type: "QVector2D"
+            isList: true
+            read: "uv0s"
+            write: "setUv0s"
+            notify: "uv0sChanged"
+            index: 4
+            isFinal: true
+        }
+        Property {
+            name: "uv1s"
+            type: "QVector2D"
+            isList: true
+            read: "uv1s"
+            write: "setUv1s"
+            notify: "uv1sChanged"
+            index: 5
+            isFinal: true
+        }
+        Property {
+            name: "colors"
+            type: "QVector4D"
+            isList: true
+            read: "colors"
+            write: "setColors"
+            notify: "colorsChanged"
+            index: 6
+            isFinal: true
+        }
+        Property {
+            name: "joints"
+            type: "QVector4D"
+            isList: true
+            read: "joints"
+            write: "setJoints"
+            notify: "jointsChanged"
+            index: 7
+            isFinal: true
+        }
+        Property {
+            name: "weights"
+            type: "QVector4D"
+            isList: true
+            read: "weights"
+            write: "setWeights"
+            notify: "weightsChanged"
+            index: 8
+            isFinal: true
+        }
+        Property {
+            name: "indexes"
+            type: "uint"
+            isList: true
+            read: "indexes"
+            write: "setIndexes"
+            notify: "indexesChanged"
+            index: 9
+            isFinal: true
+        }
+        Property {
+            name: "subsets"
+            type: "ProceduralMeshSubset"
+            isList: true
+            read: "subsets"
+            index: 10
+            isReadonly: true
+            isFinal: true
+        }
+        Property {
+            name: "primitiveMode"
+            type: "PrimitiveMode"
+            read: "primitiveMode"
+            write: "setPrimitiveMode"
+            notify: "primitiveModeChanged"
+            index: 11
+            isFinal: true
+        }
+        Signal { name: "positionsChanged" }
+        Signal { name: "primitiveModeChanged" }
+        Signal { name: "indexesChanged" }
+        Signal { name: "normalsChanged" }
+        Signal { name: "tangentsChanged" }
+        Signal { name: "binormalsChanged" }
+        Signal { name: "uv0sChanged" }
+        Signal { name: "uv1sChanged" }
+        Signal { name: "colorsChanged" }
+        Signal { name: "jointsChanged" }
+        Signal { name: "weightsChanged" }
+        Method { name: "requestUpdate" }
+        Method { name: "updateGeometry" }
+        Method {
+            name: "subsetDestroyed"
+            Parameter { name: "subset"; type: "QObject"; isPointer: true }
+        }
+    }
+    Component {
+        file: "private/proceduralmesh_p.h"
+        name: "ProceduralMeshSubset"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick3D.Helpers/ProceduralMeshSubset 6.6"]
+        exportMetaObjectRevisions: [1542]
+        Property {
+            name: "offset"
+            type: "uint"
+            read: "offset"
+            write: "setOffset"
+            notify: "offsetChanged"
+            index: 0
+            isFinal: true
+        }
+        Property {
+            name: "count"
+            type: "uint"
+            read: "count"
+            write: "setCount"
+            notify: "countChanged"
+            index: 1
+            isFinal: true
+        }
+        Property {
+            name: "name"
+            type: "QString"
+            read: "name"
+            write: "setName"
+            notify: "nameChanged"
+            index: 2
+            isFinal: true
+        }
+        Signal { name: "offsetChanged" }
+        Signal { name: "countChanged" }
+        Signal { name: "nameChanged" }
+        Signal { name: "isDirty" }
     }
     Component {
         file: "private/proceduralskytexturedata_p.h"
@@ -437,10 +642,40 @@ Module {
         Method { name: "generateRGBA16FTexture" }
     }
     Component {
-        file: "qabstractitemmodel.h"
-        name: "QAbstractListModel"
+        file: "private/infinitegrid_p.h"
+        name: "QQuick3DInfiniteGrid"
         accessSemantics: "reference"
-        prototype: "QAbstractItemModel"
+        prototype: "QObject"
+        interfaces: ["QQmlParserStatus"]
+        exports: ["QtQuick3D.Helpers/InfiniteGrid 6.0"]
+        exportMetaObjectRevisions: [1536]
+        Property {
+            name: "visible"
+            type: "bool"
+            read: "visible"
+            write: "setVisible"
+            notify: "visibleChanged"
+            index: 0
+        }
+        Property {
+            name: "gridInterval"
+            type: "float"
+            read: "gridInterval"
+            write: "setGridInterval"
+            notify: "gridIntervalChanged"
+            index: 1
+        }
+        Property {
+            name: "gridAxes"
+            type: "bool"
+            read: "gridAxes"
+            write: "setGridAxes"
+            notify: "gridAxesChanged"
+            index: 2
+        }
+        Signal { name: "visibleChanged" }
+        Signal { name: "gridIntervalChanged" }
+        Signal { name: "gridAxesChanged" }
     }
     Component {
         file: "private/randominstancing_p.h"
@@ -608,5 +843,67 @@ Module {
             Parameter { name: "colorModel"; type: "ColorModel" }
         }
         Method { name: "handleChange" }
+    }
+    Component {
+        file: "private/qquick3dtexturedatafrontend_p.h"
+        name: "QQuick3DTextureDataFrontend"
+        accessSemantics: "reference"
+        prototype: "QQuick3DTextureData"
+        exports: ["QtQuick3D.Helpers/ProceduralTextureData 6.6"]
+        exportMetaObjectRevisions: [1542]
+        Property {
+            name: "format"
+            type: "QQuick3DTextureData::Format"
+            read: "format"
+            write: "setFormat"
+            notify: "formatChanged"
+            index: 0
+        }
+        Property {
+            name: "width"
+            type: "int"
+            read: "width"
+            write: "setWidth"
+            notify: "widthChanged"
+            index: 1
+        }
+        Property {
+            name: "height"
+            type: "int"
+            read: "height"
+            write: "setHeight"
+            notify: "heightChanged"
+            index: 2
+        }
+        Property {
+            name: "depth"
+            type: "int"
+            read: "depth"
+            write: "setDepth"
+            notify: "depthChanged"
+            index: 3
+        }
+        Property {
+            name: "hasTransparency"
+            type: "bool"
+            read: "hasTransparency"
+            write: "setHasTransparency"
+            notify: "hasTransparencyChanged"
+            index: 4
+        }
+        Property {
+            name: "textureData"
+            type: "QByteArray"
+            read: "textureData"
+            write: "setTextureData"
+            notify: "textureDataChanged"
+            index: 5
+        }
+        Signal { name: "formatChanged" }
+        Signal { name: "depthChanged" }
+        Signal { name: "hasTransparencyChanged" }
+        Signal { name: "textureDataChanged" }
+        Signal { name: "widthChanged" }
+        Signal { name: "heightChanged" }
     }
 }

@@ -69,6 +69,7 @@ public:
         Show,
         Hide,
         Close,
+        Quit,
         ParentChange,
         ParentAboutToChange,
         ThreadChange,
@@ -180,6 +181,7 @@ public:
         TouchBegin,
         TouchUpdate,
         TouchEnd,
+        NativeGesture,
         RequestSoftwareInputPanel,
         CloseSoftwareInputPanel,
         WinIdChange,
@@ -198,6 +200,11 @@ public:
         PlatformSurface,
         TabletTrackingChange,
         GraphicsSceneLeave,
+        EnterEditFocus,
+        LeaveEditFocus,
+%If (Qt_6_6_0 -)
+        DevicePixelRatioChange,
+%End
         User,
         MaxUser,
     };

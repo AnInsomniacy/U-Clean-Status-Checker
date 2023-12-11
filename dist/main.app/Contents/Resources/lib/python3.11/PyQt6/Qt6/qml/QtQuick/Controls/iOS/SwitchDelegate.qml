@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.SwitchDelegate {
     id: control
@@ -21,7 +21,7 @@ T.SwitchDelegate {
 
     icon.width: 29
     icon.height: 29
-    icon.color: control.enabled ? control.palette.text : control.palette.mid
+    icon.color: control.palette.text
 
     indicator: Image {
         x: control.text ? (control.mirrored ? control.leftPadding : control.width - width - control.rightPadding) : control.leftPadding + (control.availableWidth - width) / 2
@@ -30,11 +30,11 @@ T.SwitchDelegate {
         height: Math.max(implicitHeight, handle.implicitHeight)
         opacity: control.enabled ? 1 : 0.5
 
-        source: control.IOS.url + "switch-indicator"
+        source: IOS.url + "switch-indicator"
         ImageSelector on source {
             states: [
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark},
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                 {"checked": control.checked}
             ]
         }
@@ -51,11 +51,11 @@ T.SwitchDelegate {
             y: (parent.height - height) / 2 - topInset + margin
             width: control.pressed ? implicitWidth + 4 : implicitWidth
 
-            source: control.IOS.url + "switch-handle"
+            source: IOS.url + "switch-handle"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"disabled": !control.enabled}
                 ]
             }
@@ -79,22 +79,22 @@ T.SwitchDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.enabled ? control.palette.text : control.palette.mid
+        color: control.palette.text
     }
 
     background: Rectangle {
         implicitHeight: 44
-        color: control.IOS.theme === IOS.Dark ? control.palette.light : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.light : control.palette.base
         NinePatchImage {
             property real offset: control.icon.source.toString() !== "" ? control.icon.width + control.spacing : 0
             x: control.leftPadding + offset
             height: control.height
             width: control.availableWidth + control.rightPadding - offset
-            source: control.IOS.url + "itemdelegate-background"
+            source: IOS.url + "itemdelegate-background"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                 ]
             }
         }

@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls.iOS
 
 T.TabBar {
     id: control
@@ -33,7 +32,7 @@ T.TabBar {
 
     background: Rectangle {
         implicitHeight: 49
-        color: control.IOS.theme === IOS.Dark ? control.palette.light : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.light : control.palette.base
         Rectangle {
             height: 1
             width: parent.width

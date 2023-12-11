@@ -38,20 +38,16 @@ QtCore.PYQT_VERSION?7
 QtCore.PYQT_VERSION_STR?7
 QtCore.QT_VERSION?7
 QtCore.QT_VERSION_STR?7
-QtCore.qAbs?4(float) -> float
-QtCore.qRound?4(float) -> int
-QtCore.qRound64?4(float) -> int
-QtCore.qVersion?4() -> str
 QtCore.qRegisterResourceData?4(int, bytes, bytes, bytes) -> bool
 QtCore.qUnregisterResourceData?4(int, bytes, bytes, bytes) -> bool
-QtCore.qFuzzyCompare?4(float, float) -> bool
 QtCore.pyqtSetPickleProtocol?4(Any)
 QtCore.pyqtPickleProtocol?4() -> Any
+QtCore.qEnvironmentVariable?4(str, QString) -> QString
+QtCore.qEnvironmentVariable?4(str) -> QString
 QtCore.qEnvironmentVariableIsEmpty?4(str) -> bool
 QtCore.qEnvironmentVariableIsSet?4(str) -> bool
-QtCore.qEnvironmentVariable?4(str) -> QString
-QtCore.qEnvironmentVariable?4(str, QString) -> QString
 QtCore.qEnvironmentVariableIntValue?4(str) -> (int, bool)
+QtCore.qVersion?4() -> str
 QtCore.qCompress?4(bytes, int compressionLevel=-1) -> QByteArray
 QtCore.qCompress?4(QByteArray, int compressionLevel=-1) -> QByteArray
 QtCore.qUncompress?4(bytes) -> QByteArray
@@ -67,7 +63,7 @@ QtCore.qDebug?4(str)
 QtCore.qFatal?4(str)
 QtCore.qInfo?4(str)
 QtCore.qWarning?4(str)
-QtCore.qInstallMessageHandler?4(Callable[..., None]) -> (Callable[..., None])
+QtCore.qInstallMessageHandler?4(Callable[..., None]) -> Callable[..., None]
 QtCore.qSetMessagePattern?4(QString)
 QtCore.qFormatLogMessage?4(QtMsgType, QMessageLogContext, QString) -> QString
 QtCore.qIsInf?4(float) -> bool
@@ -77,9 +73,14 @@ QtCore.qInf?4() -> float
 QtCore.qSNaN?4() -> float
 QtCore.qQNaN?4() -> float
 QtCore.qFloatDistance?4(float, float) -> int
+QtCore.qAbs?4(float) -> float
+QtCore.qRound?4(float) -> int
+QtCore.qRound64?4(float) -> int
+QtCore.qFuzzyCompare?4(float, float) -> bool
+QtCore.qFuzzyIsNull?4(float) -> bool
 QtCore.pyqtClassInfo?4(str, str) -> Any
 QtCore.pyqtEnum?4(enum.Enum=None) -> Any
-QtCore.pyqtSlot?4(*, str name=None, str result=None) -> Any
+QtCore.pyqtSlot?4(Any, str name=None, str result=None) -> Any
 QtCore.QT_TR_NOOP?4(Any) -> Any
 QtCore.QT_TRANSLATE_NOOP?4(Any, Any) -> Any
 QtCore.Q_ARG?4(Any, Any) -> Any
@@ -87,6 +88,14 @@ QtCore.Q_RETURN_ARG?4(Any) -> Any
 QtCore.qSetFieldWidth?4(int) -> QTextStreamManipulator
 QtCore.qSetPadChar?4(QChar) -> QTextStreamManipulator
 QtCore.qSetRealNumberPrecision?4(int) -> QTextStreamManipulator
+QtCore.Qt.PermissionStatus?10
+QtCore.Qt.PermissionStatus.Undetermined?10
+QtCore.Qt.PermissionStatus.Granted?10
+QtCore.Qt.PermissionStatus.Denied?10
+QtCore.Qt.ColorScheme?10
+QtCore.Qt.ColorScheme.Unknown?10
+QtCore.Qt.ColorScheme.Light?10
+QtCore.Qt.ColorScheme.Dark?10
 QtCore.Qt.HighDpiScaleFactorRoundingPolicy?10
 QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Round?10
 QtCore.Qt.HighDpiScaleFactorRoundingPolicy.Ceil?10
@@ -1442,7 +1451,7 @@ QtCore.QAbstractEventDispatcher.closingDown?4()
 QtCore.QAbstractEventDispatcher.remainingTime?4(int) -> int
 QtCore.QAbstractEventDispatcher.installNativeEventFilter?4(QAbstractNativeEventFilter)
 QtCore.QAbstractEventDispatcher.removeNativeEventFilter?4(QAbstractNativeEventFilter)
-QtCore.QAbstractEventDispatcher.filterNativeEvent?4(QByteArray, voidptr) -> (bool, qintptr)
+QtCore.QAbstractEventDispatcher.filterNativeEvent?4(QByteArray, PyQt6.sip.voidptr) -> (bool, qintptr)
 QtCore.QAbstractEventDispatcher.aboutToBlock?4()
 QtCore.QAbstractEventDispatcher.awake?4()
 QtCore.QAbstractEventDispatcher.TimerInfo.interval?7
@@ -1579,6 +1588,7 @@ QtCore.QAbstractItemModel.moveRow?4(QModelIndex, int, QModelIndex, int) -> bool
 QtCore.QAbstractItemModel.moveColumn?4(QModelIndex, int, QModelIndex, int) -> bool
 QtCore.QAbstractItemModel.checkIndex?4(QModelIndex, unknown-type options=QAbstractItemModel.CheckIndexOption.NoOption) -> bool
 QtCore.QAbstractItemModel.clearItemData?4(QModelIndex) -> bool
+QtCore.QAbstractItemModel.multiData?4(QModelIndex, QModelRoleDataSpan)
 QtCore.QAbstractTableModel?1(QObject parent=None)
 QtCore.QAbstractTableModel.__init__?1(self, QObject parent=None)
 QtCore.QAbstractTableModel.index?4(int, int, QModelIndex parent=QModelIndex()) -> QModelIndex
@@ -1601,9 +1611,23 @@ QtCore.QModelRoleData.role?4() -> int
 QtCore.QModelRoleData.data?4() -> QVariant
 QtCore.QModelRoleData.setData?4(QVariant)
 QtCore.QModelRoleData.clearData?4()
+QtCore.QModelRoleDataSpan?1()
+QtCore.QModelRoleDataSpan.__init__?1(self)
+QtCore.QModelRoleDataSpan?1(QModelRoleData)
+QtCore.QModelRoleDataSpan.__init__?1(self, QModelRoleData)
+QtCore.QModelRoleDataSpan?1(unknown-type)
+QtCore.QModelRoleDataSpan.__init__?1(self, unknown-type)
+QtCore.QModelRoleDataSpan?1(QModelRoleDataSpan)
+QtCore.QModelRoleDataSpan.__init__?1(self, QModelRoleDataSpan)
+QtCore.QModelRoleDataSpan.size?4() -> int
+QtCore.QModelRoleDataSpan.length?4() -> int
+QtCore.QModelRoleDataSpan.data?4() -> QModelRoleData
+QtCore.QModelRoleDataSpan.begin?4() -> QModelRoleData
+QtCore.QModelRoleDataSpan.end?4() -> QModelRoleData
+QtCore.QModelRoleDataSpan.dataForRole?4(int) -> QVariant
 QtCore.QAbstractNativeEventFilter?1()
 QtCore.QAbstractNativeEventFilter.__init__?1(self)
-QtCore.QAbstractNativeEventFilter.nativeEventFilter?4(QByteArray, voidptr) -> (bool, qintptr)
+QtCore.QAbstractNativeEventFilter.nativeEventFilter?4(QByteArray, PyQt6.sip.voidptr) -> (bool, qintptr)
 QtCore.QAbstractProxyModel?1(QObject parent=None)
 QtCore.QAbstractProxyModel.__init__?1(self, QObject parent=None)
 QtCore.QAbstractProxyModel.setSourceModel?4(QAbstractItemModel)
@@ -1867,6 +1891,10 @@ QtCore.QByteArray.sliced?4(int) -> QByteArray
 QtCore.QByteArray.sliced?4(int, int) -> QByteArray
 QtCore.QByteArray.isValidUtf8?4() -> bool
 QtCore.QByteArray.percentDecoded?4(str percent='%') -> QByteArray
+QtCore.QByteArray.removeAt?4(int) -> QByteArray
+QtCore.QByteArray.removeFirst?4() -> QByteArray
+QtCore.QByteArray.removeLast?4() -> QByteArray
+QtCore.QByteArray.assign?4(QByteArrayView) -> QByteArray
 QtCore.QByteArray.FromBase64Result.decoded?7
 QtCore.QByteArray.FromBase64Result.decodingStatus?7
 QtCore.QByteArray.FromBase64Result?1()
@@ -2201,6 +2229,8 @@ QtCore.QCoreApplication.setSetuidAllowed?4(bool)
 QtCore.QCoreApplication.isSetuidAllowed?4() -> bool
 QtCore.QCoreApplication.__enter__?4() -> Any
 QtCore.QCoreApplication.__exit__?4(Any, Any, Any)
+QtCore.QCoreApplication.checkPermission?4(QPermission) -> Qt.PermissionStatus
+QtCore.QCoreApplication.requestPermission?4(QPermission, Callable[..., None])
 QtCore.QEvent.Type?10
 QtCore.QEvent.Type.None_?10
 QtCore.QEvent.Type.Timer?10
@@ -2220,6 +2250,7 @@ QtCore.QEvent.Type.Resize?10
 QtCore.QEvent.Type.Show?10
 QtCore.QEvent.Type.Hide?10
 QtCore.QEvent.Type.Close?10
+QtCore.QEvent.Type.Quit?10
 QtCore.QEvent.Type.ParentChange?10
 QtCore.QEvent.Type.ParentAboutToChange?10
 QtCore.QEvent.Type.ThreadChange?10
@@ -2331,6 +2362,7 @@ QtCore.QEvent.Type.StateMachineWrapped?10
 QtCore.QEvent.Type.TouchBegin?10
 QtCore.QEvent.Type.TouchUpdate?10
 QtCore.QEvent.Type.TouchEnd?10
+QtCore.QEvent.Type.NativeGesture?10
 QtCore.QEvent.Type.RequestSoftwareInputPanel?10
 QtCore.QEvent.Type.CloseSoftwareInputPanel?10
 QtCore.QEvent.Type.WinIdChange?10
@@ -2349,6 +2381,9 @@ QtCore.QEvent.Type.ReadOnlyChange?10
 QtCore.QEvent.Type.PlatformSurface?10
 QtCore.QEvent.Type.TabletTrackingChange?10
 QtCore.QEvent.Type.GraphicsSceneLeave?10
+QtCore.QEvent.Type.EnterEditFocus?10
+QtCore.QEvent.Type.LeaveEditFocus?10
+QtCore.QEvent.Type.DevicePixelRatioChange?10
 QtCore.QEvent.Type.User?10
 QtCore.QEvent.Type.MaxUser?10
 QtCore.QEvent?1(QEvent.Type)
@@ -2417,6 +2452,9 @@ QtCore.QCryptographicHash.result?4() -> QByteArray
 QtCore.QCryptographicHash.resultView?4() -> QByteArrayView
 QtCore.QCryptographicHash.hash?4(QByteArrayView, QCryptographicHash.Algorithm) -> QByteArray
 QtCore.QCryptographicHash.hashLength?4(QCryptographicHash.Algorithm) -> int
+QtCore.QCryptographicHash.swap?4(QCryptographicHash)
+QtCore.QCryptographicHash.algorithm?4() -> QCryptographicHash.Algorithm
+QtCore.QCryptographicHash.supportsAlgorithm?4(QCryptographicHash.Algorithm) -> bool
 QtCore.QDataStream.FloatingPointPrecision?10
 QtCore.QDataStream.FloatingPointPrecision.SinglePrecision?10
 QtCore.QDataStream.FloatingPointPrecision.DoublePrecision?10
@@ -2466,6 +2504,8 @@ QtCore.QDataStream.Version.Qt_6_1?10
 QtCore.QDataStream.Version.Qt_6_2?10
 QtCore.QDataStream.Version.Qt_6_3?10
 QtCore.QDataStream.Version.Qt_6_4?10
+QtCore.QDataStream.Version.Qt_6_5?10
+QtCore.QDataStream.Version.Qt_6_6?10
 QtCore.QDataStream?1()
 QtCore.QDataStream.__init__?1(self)
 QtCore.QDataStream?1(QIODevice)
@@ -2574,8 +2614,8 @@ QtCore.QDate.toJulianDay?4() -> int
 QtCore.QDate.setDate?4(int, int, int) -> bool
 QtCore.QDate.getDate?4() -> (int, int, int)
 QtCore.QDate.startOfDay?4(Qt.TimeSpec spec=Qt.LocalTime, int offsetSeconds=0) -> QDateTime
-QtCore.QDate.endOfDay?4(Qt.TimeSpec spec=Qt.LocalTime, int offsetSeconds=0) -> QDateTime
 QtCore.QDate.startOfDay?4(QTimeZone) -> QDateTime
+QtCore.QDate.endOfDay?4(Qt.TimeSpec spec=Qt.LocalTime, int offsetSeconds=0) -> QDateTime
 QtCore.QDate.endOfDay?4(QTimeZone) -> QDateTime
 QtCore.QDate.setDate?4(int, int, int, QCalendar) -> bool
 QtCore.QDate.toString?4(QString, QCalendar cal=QCalendar()) -> QString
@@ -2639,6 +2679,7 @@ QtCore.QDateTime.toUTC?4() -> QDateTime
 QtCore.QDateTime.daysTo?4(QDateTime) -> int
 QtCore.QDateTime.secsTo?4(QDateTime) -> int
 QtCore.QDateTime.currentDateTime?4() -> QDateTime
+QtCore.QDateTime.currentDateTime?4(QTimeZone) -> QDateTime
 QtCore.QDateTime.fromString?4(QString, Qt.DateFormat format=Qt.TextDate) -> QDateTime
 QtCore.QDateTime.toMSecsSinceEpoch?4() -> int
 QtCore.QDateTime.setMSecsSinceEpoch?4(int)
@@ -2665,6 +2706,7 @@ QtCore.QDateTime.setDate?4(QDate)
 QtCore.QDateTime.setTime?4(QTime)
 QtCore.QDateTime.toString?4(QString, QCalendar cal=QCalendar()) -> QString
 QtCore.QDateTime.fromString?4(QString, QString, QCalendar cal=QCalendar()) -> QDateTime
+QtCore.QDateTime.timeRepresentation?4() -> QTimeZone
 QtCore.QDeadlineTimer.ForeverConstant?10
 QtCore.QDeadlineTimer.ForeverConstant.Forever?10
 QtCore.QDeadlineTimer?1(Qt.TimerType type=Qt.CoarseTimer)
@@ -2873,7 +2915,7 @@ QtCore.QEasingCurve.setOvershoot?4(float)
 QtCore.QEasingCurve.type?4() -> QEasingCurve.Type
 QtCore.QEasingCurve.setType?4(QEasingCurve.Type)
 QtCore.QEasingCurve.setCustomType?4(Callable[..., None])
-QtCore.QEasingCurve.customType?4() -> (Callable[..., None])
+QtCore.QEasingCurve.customType?4() -> Callable[..., None]
 QtCore.QEasingCurve.valueForProgress?4(float) -> float
 QtCore.QEasingCurve.swap?4(QEasingCurve)
 QtCore.QEasingCurve.addCubicBezierSegment?4(QPointF, QPointF, QPointF)
@@ -2976,8 +3018,8 @@ QtCore.QFileDevice.size?4() -> int
 QtCore.QFileDevice.resize?4(int) -> bool
 QtCore.QFileDevice.permissions?4() -> unknown-type
 QtCore.QFileDevice.setPermissions?4(unknown-type) -> bool
-QtCore.QFileDevice.map?4(int, int, unknown-type flags=QFileDevice.NoOptions) -> voidptr
-QtCore.QFileDevice.unmap?4(voidptr) -> bool
+QtCore.QFileDevice.map?4(int, int, unknown-type flags=QFileDevice.NoOptions) -> PyQt6.sip.voidptr
+QtCore.QFileDevice.unmap?4(PyQt6.sip.voidptr) -> bool
 QtCore.QFileDevice.readData?4(int) -> Any
 QtCore.QFileDevice.readLineData?4(int) -> Any
 QtCore.QFileDevice.writeData?4(Union[bytes, bytearray, memoryview, PyQt6.sip.array, PyQt6.sip.voidptr]) -> int
@@ -3068,7 +3110,9 @@ QtCore.QFileInfo.permission?4(unknown-type) -> bool
 QtCore.QFileInfo.permissions?4() -> unknown-type
 QtCore.QFileInfo.size?4() -> int
 QtCore.QFileInfo.lastModified?4() -> QDateTime
+QtCore.QFileInfo.lastModified?4(QTimeZone) -> QDateTime
 QtCore.QFileInfo.lastRead?4() -> QDateTime
+QtCore.QFileInfo.lastRead?4(QTimeZone) -> QDateTime
 QtCore.QFileInfo.caching?4() -> bool
 QtCore.QFileInfo.setCaching?4(bool)
 QtCore.QFileInfo.symLinkTarget?4() -> QString
@@ -3078,14 +3122,18 @@ QtCore.QFileInfo.isNativePath?4() -> bool
 QtCore.QFileInfo.swap?4(QFileInfo)
 QtCore.QFileInfo.exists?4(QString) -> bool
 QtCore.QFileInfo.birthTime?4() -> QDateTime
+QtCore.QFileInfo.birthTime?4(QTimeZone) -> QDateTime
 QtCore.QFileInfo.metadataChangeTime?4() -> QDateTime
+QtCore.QFileInfo.metadataChangeTime?4(QTimeZone) -> QDateTime
 QtCore.QFileInfo.fileTime?4(QFileDevice.FileTime) -> QDateTime
+QtCore.QFileInfo.fileTime?4(QFileDevice.FileTime, QTimeZone) -> QDateTime
 QtCore.QFileInfo.isSymbolicLink?4() -> bool
 QtCore.QFileInfo.isShortcut?4() -> bool
 QtCore.QFileInfo.isJunction?4() -> bool
 QtCore.QFileInfo.stat?4()
 QtCore.QFileInfo.junctionTarget?4() -> QString
 QtCore.QFileInfo.isAlias?4() -> bool
+QtCore.QFileInfo.readSymLink?4() -> QString
 QtCore.QFileSelector?1(QObject parent=None)
 QtCore.QFileSelector.__init__?1(self, QObject parent=None)
 QtCore.QFileSelector.select?4(QString) -> QString
@@ -3322,10 +3370,10 @@ QtCore.QLibrary.fileName?4() -> QString
 QtCore.QLibrary.isLoaded?4() -> bool
 QtCore.QLibrary.load?4() -> bool
 QtCore.QLibrary.loadHints?4() -> unknown-type
-QtCore.QLibrary.resolve?4(str) -> voidptr
-QtCore.QLibrary.resolve?4(QString, str) -> voidptr
-QtCore.QLibrary.resolve?4(QString, int, str) -> voidptr
-QtCore.QLibrary.resolve?4(QString, QString, str) -> voidptr
+QtCore.QLibrary.resolve?4(str) -> PyQt6.sip.voidptr
+QtCore.QLibrary.resolve?4(QString, str) -> PyQt6.sip.voidptr
+QtCore.QLibrary.resolve?4(QString, int, str) -> PyQt6.sip.voidptr
+QtCore.QLibrary.resolve?4(QString, QString, str) -> PyQt6.sip.voidptr
 QtCore.QLibrary.unload?4() -> bool
 QtCore.QLibrary.isLibrary?4(QString) -> bool
 QtCore.QLibrary.setFileName?4(QString)
@@ -3351,6 +3399,7 @@ QtCore.QLibraryInfo.LibraryPath.QmlImportsPath?10
 QtCore.QLibraryInfo?1(QLibraryInfo)
 QtCore.QLibraryInfo.__init__?1(self, QLibraryInfo)
 QtCore.QLibraryInfo.isDebugBuild?4() -> bool
+QtCore.QLibraryInfo.isSharedBuild?4() -> bool
 QtCore.QLibraryInfo.path?4(QLibraryInfo.LibraryPath) -> QString
 QtCore.QLibraryInfo.version?4() -> QVersionNumber
 QtCore.QLine?1()
@@ -3595,6 +3644,7 @@ QtCore.QLocale.Script.JamoScript?10
 QtCore.QLocale.Script.BanglaScript?10
 QtCore.QLocale.Script.MendeScript?10
 QtCore.QLocale.Script.OdiaScript?10
+QtCore.QLocale.Script.HanifiScript?10
 QtCore.QLocale.MeasurementSystem?10
 QtCore.QLocale.MeasurementSystem.MetricSystem?10
 QtCore.QLocale.MeasurementSystem.ImperialSystem?10
@@ -4251,6 +4301,17 @@ QtCore.QLocale.Language.Uyghur?10
 QtCore.QLocale.Language.Wolaytta?10
 QtCore.QLocale.Language.Kaingang?10
 QtCore.QLocale.Language.Nheengatu?10
+QtCore.QLocale.Language.Haryanvi?10
+QtCore.QLocale.Language.NorthernFrisian?10
+QtCore.QLocale.Language.Rajasthani?10
+QtCore.QLocale.Language.Moksha?10
+QtCore.QLocale.Language.TokiPona?10
+QtCore.QLocale.Language.Pijin?10
+QtCore.QLocale.Language.Obolo?10
+QtCore.QLocale.Language.Baluchi?10
+QtCore.QLocale.Language.Ligurian?10
+QtCore.QLocale.Language.Rohingya?10
+QtCore.QLocale.Language.Torwali?10
 QtCore.QLocale?1()
 QtCore.QLocale.__init__?1(self)
 QtCore.QLocale?1(QString)
@@ -4379,10 +4440,15 @@ QtCore.QMessageLogger.__init__?1(self, str, int, str)
 QtCore.QMessageLogger?1(str, int, str, str)
 QtCore.QMessageLogger.__init__?1(self, str, int, str, str)
 QtCore.QMessageLogger.debug?4(str)
-QtCore.QMessageLogger.warning?4(str)
-QtCore.QMessageLogger.critical?4(str)
-QtCore.QMessageLogger.fatal?4(str)
+QtCore.QMessageLogger.debug?4(QLoggingCategory, str)
 QtCore.QMessageLogger.info?4(str)
+QtCore.QMessageLogger.info?4(QLoggingCategory, str)
+QtCore.QMessageLogger.warning?4(str)
+QtCore.QMessageLogger.warning?4(QLoggingCategory, str)
+QtCore.QMessageLogger.critical?4(str)
+QtCore.QMessageLogger.critical?4(QLoggingCategory, str)
+QtCore.QMessageLogger.fatal?4(str)
+QtCore.QMessageLogger.fatal?4(QLoggingCategory, str)
 QtCore.QLoggingCategory?1(str, QtMsgType severityLevel=QtDebugMsg)
 QtCore.QLoggingCategory.__init__?1(self, str, QtMsgType severityLevel=QtDebugMsg)
 QtCore.QLoggingCategory.isEnabled?4(QtMsgType) -> bool
@@ -4428,14 +4494,15 @@ QtCore.QMarginsF.setTop?4(float)
 QtCore.QMarginsF.setRight?4(float)
 QtCore.QMarginsF.setBottom?4(float)
 QtCore.QMarginsF.toMargins?4() -> QMargins
-QtCore.QMessageAuthenticationCode?1(QCryptographicHash.Algorithm, QByteArray key=QByteArray())
-QtCore.QMessageAuthenticationCode.__init__?1(self, QCryptographicHash.Algorithm, QByteArray key=QByteArray())
+QtCore.QMessageAuthenticationCode?1(QCryptographicHash.Algorithm, QByteArrayView key={})
+QtCore.QMessageAuthenticationCode.__init__?1(self, QCryptographicHash.Algorithm, QByteArrayView key={})
 QtCore.QMessageAuthenticationCode.reset?4()
-QtCore.QMessageAuthenticationCode.setKey?4(QByteArray)
-QtCore.QMessageAuthenticationCode.addData?4(Union[bytes, bytearray, memoryview, PyQt6.sip.array, PyQt6.sip.voidptr])
+QtCore.QMessageAuthenticationCode.setKey?4(QByteArrayView)
+QtCore.QMessageAuthenticationCode.addData?4(QByteArrayView)
 QtCore.QMessageAuthenticationCode.addData?4(QIODevice) -> bool
 QtCore.QMessageAuthenticationCode.result?4() -> QByteArray
-QtCore.QMessageAuthenticationCode.hash?4(QByteArray, QByteArray, QCryptographicHash.Algorithm) -> QByteArray
+QtCore.QMessageAuthenticationCode.hash?4(QByteArrayView, QByteArrayView, QCryptographicHash.Algorithm) -> QByteArray
+QtCore.QMessageAuthenticationCode.swap?4(QMessageAuthenticationCode)
 QtCore.QMetaMethod.MethodType?10
 QtCore.QMetaMethod.MethodType.Method?10
 QtCore.QMetaMethod.MethodType.Signal?10
@@ -4488,6 +4555,7 @@ QtCore.QMetaEnum.valueToKeys?4(int) -> QByteArray
 QtCore.QMetaEnum.isValid?4() -> bool
 QtCore.QMetaEnum.isScoped?4() -> bool
 QtCore.QMetaEnum.enumName?4() -> str
+QtCore.QMetaEnum.metaType?4() -> QMetaType
 QtCore.QMetaProperty?1()
 QtCore.QMetaProperty.__init__?1(self)
 QtCore.QMetaProperty?1(QMetaProperty)
@@ -4537,6 +4605,8 @@ QtCore.QMetaType.TypeFlag.IsPointer?10
 QtCore.QMetaType.TypeFlag.RelocatableType?10
 QtCore.QMetaType.TypeFlag.IsQmlList?10
 QtCore.QMetaType.TypeFlag.IsConst?10
+QtCore.QMetaType.TypeFlag.NeedsCopyConstruction?10
+QtCore.QMetaType.TypeFlag.NeedsMoveConstruction?10
 QtCore.QMetaType.Type?10
 QtCore.QMetaType.Type.UnknownType?10
 QtCore.QMetaType.Type.Void?10
@@ -4596,6 +4666,7 @@ QtCore.QMetaType.Type.ULong?10
 QtCore.QMetaType.Type.UShort?10
 QtCore.QMetaType.Type.UChar?10
 QtCore.QMetaType.Type.Float?10
+QtCore.QMetaType.Type.Float16?10
 QtCore.QMetaType.Type.QObjectStar?10
 QtCore.QMetaType.Type.QMatrix4x4?10
 QtCore.QMetaType.Type.QVector2D?10
@@ -4641,6 +4712,12 @@ QtCore.QMetaType.isOrdered?4() -> bool
 QtCore.QMetaType.fromName?4(QByteArrayView) -> QMetaType
 QtCore.QMetaType.canConvert?4(QMetaType, QMetaType) -> bool
 QtCore.QMetaType.canView?4(QMetaType, QMetaType) -> bool
+QtCore.QMetaType.registerType?4()
+QtCore.QMetaType.isDefaultConstructible?4() -> bool
+QtCore.QMetaType.isCopyConstructible?4() -> bool
+QtCore.QMetaType.isMoveConstructible?4() -> bool
+QtCore.QMetaType.isDestructible?4() -> bool
+QtCore.QMetaType.underlyingType?4() -> QMetaType
 QtCore.QMimeData?1()
 QtCore.QMimeData.__init__?1(self)
 QtCore.QMimeData.urls?4() -> unknown-type
@@ -4706,10 +4783,12 @@ QtCore.QMutex.__init__?1(self)
 QtCore.QMutex.lock?4()
 QtCore.QMutex.tryLock?4() -> bool
 QtCore.QMutex.unlock?4()
+QtCore.QMutex.tryLock?4(QDeadlineTimer) -> bool
 QtCore.QMutex.tryLock?4(int) -> bool
 QtCore.QRecursiveMutex?1()
 QtCore.QRecursiveMutex.__init__?1(self)
 QtCore.QRecursiveMutex.lock?4()
+QtCore.QRecursiveMutex.tryLock?4(QDeadlineTimer) -> bool
 QtCore.QRecursiveMutex.tryLock?4(int timeout=0) -> bool
 QtCore.QRecursiveMutex.unlock?4()
 QtCore.QSignalBlocker?1(QObject)
@@ -4758,6 +4837,7 @@ QtCore.QMetaObject.invokeMethod?4(QObject, str, Qt.ConnectionType, QGenericRetur
 QtCore.QMetaObject.invokeMethod?4(QObject, str, QGenericReturnArgument, QGenericArgument value0=QGenericArgument(nullptr), QGenericArgument value1=QGenericArgument(), QGenericArgument value2=QGenericArgument(), QGenericArgument value3=QGenericArgument(), QGenericArgument value4=QGenericArgument(), QGenericArgument value5=QGenericArgument(), QGenericArgument value6=QGenericArgument(), QGenericArgument value7=QGenericArgument(), QGenericArgument value8=QGenericArgument(), QGenericArgument value9=QGenericArgument()) -> Any
 QtCore.QMetaObject.invokeMethod?4(QObject, str, Qt.ConnectionType, QGenericArgument value0=QGenericArgument(nullptr), QGenericArgument value1=QGenericArgument(), QGenericArgument value2=QGenericArgument(), QGenericArgument value3=QGenericArgument(), QGenericArgument value4=QGenericArgument(), QGenericArgument value5=QGenericArgument(), QGenericArgument value6=QGenericArgument(), QGenericArgument value7=QGenericArgument(), QGenericArgument value8=QGenericArgument(), QGenericArgument value9=QGenericArgument()) -> Any
 QtCore.QMetaObject.invokeMethod?4(QObject, str, QGenericArgument value0=QGenericArgument(nullptr), QGenericArgument value1=QGenericArgument(), QGenericArgument value2=QGenericArgument(), QGenericArgument value3=QGenericArgument(), QGenericArgument value4=QGenericArgument(), QGenericArgument value5=QGenericArgument(), QGenericArgument value6=QGenericArgument(), QGenericArgument value7=QGenericArgument(), QGenericArgument value8=QGenericArgument(), QGenericArgument value9=QGenericArgument()) -> Any
+QtCore.QMetaObject.newInstance?4(QGenericArgument, QGenericArgument value1=QGenericArgument(), QGenericArgument value2=QGenericArgument(), QGenericArgument value3=QGenericArgument(), QGenericArgument value4=QGenericArgument(), QGenericArgument value5=QGenericArgument(), QGenericArgument value6=QGenericArgument(), QGenericArgument value7=QGenericArgument(), QGenericArgument value8=QGenericArgument(), QGenericArgument value9=QGenericArgument()) -> QObject
 QtCore.QMetaObject.constructorCount?4() -> int
 QtCore.QMetaObject.indexOfConstructor?4(str) -> int
 QtCore.QMetaObject.constructor?4(int) -> QMetaMethod
@@ -4782,6 +4862,9 @@ QtCore.QOperatingSystemVersion.OSType.WatchOS?10
 QtCore.QOperatingSystemVersion.OSType.Android?10
 QtCore.QOperatingSystemVersion.Android10?7
 QtCore.QOperatingSystemVersion.Android11?7
+QtCore.QOperatingSystemVersion.Android12?7
+QtCore.QOperatingSystemVersion.Android12L?7
+QtCore.QOperatingSystemVersion.Android13?7
 QtCore.QOperatingSystemVersion.AndroidJellyBean?7
 QtCore.QOperatingSystemVersion.AndroidJellyBean_MR1?7
 QtCore.QOperatingSystemVersion.AndroidJellyBean_MR2?7
@@ -4800,6 +4883,8 @@ QtCore.QOperatingSystemVersion.MacOSHighSierra?7
 QtCore.QOperatingSystemVersion.MacOSMojave?7
 QtCore.QOperatingSystemVersion.MacOSMonterey?7
 QtCore.QOperatingSystemVersion.MacOSSierra?7
+QtCore.QOperatingSystemVersion.MacOSSonoma?7
+QtCore.QOperatingSystemVersion.MacOSVentura?7
 QtCore.QOperatingSystemVersion.OSXElCapitan?7
 QtCore.QOperatingSystemVersion.OSXMavericks?7
 QtCore.QOperatingSystemVersion.OSXYosemite?7
@@ -4811,6 +4896,7 @@ QtCore.QOperatingSystemVersion.Windows10_2004?7
 QtCore.QOperatingSystemVersion.Windows10_20H2?7
 QtCore.QOperatingSystemVersion.Windows10_21H1?7
 QtCore.QOperatingSystemVersion.Windows10_21H2?7
+QtCore.QOperatingSystemVersion.Windows10_22H2?7
 QtCore.QOperatingSystemVersion.Windows11?7
 QtCore.QOperatingSystemVersion.Windows11_21H2?7
 QtCore.QOperatingSystemVersion.Windows11_22H2?7
@@ -4845,6 +4931,63 @@ QtCore.QPauseAnimation.duration?4() -> int
 QtCore.QPauseAnimation.setDuration?4(int)
 QtCore.QPauseAnimation.event?4(QEvent) -> bool
 QtCore.QPauseAnimation.updateCurrentTime?4(int)
+QtCore.QPermission?1()
+QtCore.QPermission.__init__?1(self)
+QtCore.QPermission?1(QPermission)
+QtCore.QPermission.__init__?1(self, QPermission)
+QtCore.QPermission.status?4() -> Qt.PermissionStatus
+QtCore.QPermission.type?4() -> QMetaType
+QtCore.QPermission.value?4() -> Any
+QtCore.QLocationPermission.Availability?10
+QtCore.QLocationPermission.Availability.WhenInUse?10
+QtCore.QLocationPermission.Availability.Always?10
+QtCore.QLocationPermission.Accuracy?10
+QtCore.QLocationPermission.Accuracy.Approximate?10
+QtCore.QLocationPermission.Accuracy.Precise?10
+QtCore.QLocationPermission?1()
+QtCore.QLocationPermission.__init__?1(self)
+QtCore.QLocationPermission?1(QLocationPermission)
+QtCore.QLocationPermission.__init__?1(self, QLocationPermission)
+QtCore.QLocationPermission.setAccuracy?4(QLocationPermission.Accuracy)
+QtCore.QLocationPermission.accuracy?4() -> QLocationPermission.Accuracy
+QtCore.QLocationPermission.setAvailability?4(QLocationPermission.Availability)
+QtCore.QLocationPermission.availability?4() -> QLocationPermission.Availability
+QtCore.QCalendarPermission.AccessMode?10
+QtCore.QCalendarPermission.AccessMode.ReadOnly?10
+QtCore.QCalendarPermission.AccessMode.ReadWrite?10
+QtCore.QCalendarPermission?1()
+QtCore.QCalendarPermission.__init__?1(self)
+QtCore.QCalendarPermission?1(QCalendarPermission)
+QtCore.QCalendarPermission.__init__?1(self, QCalendarPermission)
+QtCore.QCalendarPermission.setAccessMode?4(QCalendarPermission.AccessMode)
+QtCore.QCalendarPermission.accessMode?4() -> QCalendarPermission.AccessMode
+QtCore.QContactsPermission.AccessMode?10
+QtCore.QContactsPermission.AccessMode.ReadOnly?10
+QtCore.QContactsPermission.AccessMode.ReadWrite?10
+QtCore.QContactsPermission?1()
+QtCore.QContactsPermission.__init__?1(self)
+QtCore.QContactsPermission?1(QContactsPermission)
+QtCore.QContactsPermission.__init__?1(self, QContactsPermission)
+QtCore.QContactsPermission.setAccessMode?4(QContactsPermission.AccessMode)
+QtCore.QContactsPermission.accessMode?4() -> QContactsPermission.AccessMode
+QtCore.QCameraPermission?1()
+QtCore.QCameraPermission.__init__?1(self)
+QtCore.QCameraPermission?1(QCameraPermission)
+QtCore.QCameraPermission.__init__?1(self, QCameraPermission)
+QtCore.QMicrophonePermission?1()
+QtCore.QMicrophonePermission.__init__?1(self)
+QtCore.QMicrophonePermission?1(QMicrophonePermission)
+QtCore.QMicrophonePermission.__init__?1(self, QMicrophonePermission)
+QtCore.QBluetoothPermission.CommunicationMode?10
+QtCore.QBluetoothPermission.CommunicationMode.Access?10
+QtCore.QBluetoothPermission.CommunicationMode.Advertise?10
+QtCore.QBluetoothPermission.CommunicationMode.Default?10
+QtCore.QBluetoothPermission?1()
+QtCore.QBluetoothPermission.__init__?1(self)
+QtCore.QBluetoothPermission?1(QBluetoothPermission)
+QtCore.QBluetoothPermission.__init__?1(self, QBluetoothPermission)
+QtCore.QBluetoothPermission.setCommunicationModes?4(unknown-type)
+QtCore.QBluetoothPermission.communicationModes?4() -> unknown-type
 QtCore.QVariantAnimation?1(QObject parent=None)
 QtCore.QVariantAnimation.__init__?1(self, QObject parent=None)
 QtCore.QVariantAnimation.startValue?4() -> QVariant
@@ -4923,6 +5066,11 @@ QtCore.QPointF.toPoint?4() -> QPoint
 QtCore.QPointF.manhattanLength?4() -> float
 QtCore.QPointF.dotProduct?4(QPointF, QPointF) -> float
 QtCore.QPointF.transposed?4() -> QPointF
+QtCore.QProcess.UnixProcessFlag?10
+QtCore.QProcess.UnixProcessFlag.ResetSignalHandlers?10
+QtCore.QProcess.UnixProcessFlag.IgnoreSigPipe?10
+QtCore.QProcess.UnixProcessFlag.CloseFileDescriptors?10
+QtCore.QProcess.UnixProcessFlag.UseVFork?10
 QtCore.QProcess.InputChannelMode?10
 QtCore.QProcess.InputChannelMode.ManagedInputChannel?10
 QtCore.QProcess.InputChannelMode.ForwardedInputChannel?10
@@ -5005,6 +5153,15 @@ QtCore.QProcess.inputChannelMode?4() -> QProcess.InputChannelMode
 QtCore.QProcess.setInputChannelMode?4(QProcess.InputChannelMode)
 QtCore.QProcess.nullDevice?4() -> QString
 QtCore.QProcess.processId?4() -> int
+QtCore.QProcess.unixProcessParameters?4() -> QProcess.UnixProcessParameters
+QtCore.QProcess.setUnixProcessParameters?4(unknown-type)
+QtCore.QProcess.setUnixProcessParameters?4(QProcess.UnixProcessParameters)
+QtCore.QProcess.UnixProcessParameters.flags?7
+QtCore.QProcess.UnixProcessParameters.lowestFileDescriptorToClose?7
+QtCore.QProcess.UnixProcessParameters?1()
+QtCore.QProcess.UnixProcessParameters.__init__?1(self)
+QtCore.QProcess.UnixProcessParameters?1(QProcess.UnixProcessParameters)
+QtCore.QProcess.UnixProcessParameters.__init__?1(self, QProcess.UnixProcessParameters)
 QtCore.QProcessEnvironment.Initialization?10
 QtCore.QProcessEnvironment.Initialization.InheritFromParent?10
 QtCore.QProcessEnvironment?1(QProcessEnvironment.Initialization)
@@ -5048,10 +5205,10 @@ QtCore.QReadWriteLock.RecursionMode.Recursive?10
 QtCore.QReadWriteLock?1(QReadWriteLock.RecursionMode recursionMode=QReadWriteLock.NonRecursive)
 QtCore.QReadWriteLock.__init__?1(self, QReadWriteLock.RecursionMode recursionMode=QReadWriteLock.NonRecursive)
 QtCore.QReadWriteLock.lockForRead?4()
-QtCore.QReadWriteLock.tryLockForRead?4() -> bool
+QtCore.QReadWriteLock.tryLockForRead?4(QDeadlineTimer timeout={}) -> bool
 QtCore.QReadWriteLock.tryLockForRead?4(int) -> bool
 QtCore.QReadWriteLock.lockForWrite?4()
-QtCore.QReadWriteLock.tryLockForWrite?4() -> bool
+QtCore.QReadWriteLock.tryLockForWrite?4(QDeadlineTimer timeout={}) -> bool
 QtCore.QReadWriteLock.tryLockForWrite?4(int) -> bool
 QtCore.QReadWriteLock.unlock?4()
 QtCore.QReadLocker?1(QReadWriteLock)
@@ -5220,6 +5377,7 @@ QtCore.QRectF.transposed?4() -> QRectF
 QtCore.QRegularExpression.WildcardConversionOption?10
 QtCore.QRegularExpression.WildcardConversionOption.DefaultWildcardConversion?10
 QtCore.QRegularExpression.WildcardConversionOption.UnanchoredWildcardConversion?10
+QtCore.QRegularExpression.WildcardConversionOption.NonPathWildcardConversion?10
 QtCore.QRegularExpression.MatchOption?10
 QtCore.QRegularExpression.MatchOption.NoMatchOption?10
 QtCore.QRegularExpression.MatchOption.AnchorAtOffsetMatchOption?10
@@ -5253,8 +5411,10 @@ QtCore.QRegularExpression.isValid?4() -> bool
 QtCore.QRegularExpression.patternErrorOffset?4() -> int
 QtCore.QRegularExpression.errorString?4() -> QString
 QtCore.QRegularExpression.captureCount?4() -> int
-QtCore.QRegularExpression.match?4(QStringView, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatch
-QtCore.QRegularExpression.globalMatch?4(QStringView, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatchIterator
+QtCore.QRegularExpression.match?4(QString, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatch
+QtCore.QRegularExpression.matchView?4(QStringView, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatch
+QtCore.QRegularExpression.globalMatch?4(QString, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatchIterator
+QtCore.QRegularExpression.globalMatchView?4(QStringView, int offset=0, QRegularExpression.MatchType matchType=QRegularExpression.NormalMatch, unknown-type matchOptions=QRegularExpression.NoMatchOption) -> QRegularExpressionMatchIterator
 QtCore.QRegularExpression.escape?4(QString) -> QString
 QtCore.QRegularExpression.namedCaptureGroups?4() -> QStringList
 QtCore.QRegularExpression.optimize?4()
@@ -5345,6 +5505,7 @@ QtCore.QSemaphore?1(int n=0)
 QtCore.QSemaphore.__init__?1(self, int n=0)
 QtCore.QSemaphore.acquire?4(int n=1)
 QtCore.QSemaphore.tryAcquire?4(int n=1) -> bool
+QtCore.QSemaphore.tryAcquire?4(int, QDeadlineTimer) -> bool
 QtCore.QSemaphore.tryAcquire?4(int, int) -> bool
 QtCore.QSemaphore.release?4(int n=1)
 QtCore.QSemaphore.available?4() -> int
@@ -5435,6 +5596,8 @@ QtCore.QSharedMemory.AccessMode.ReadOnly?10
 QtCore.QSharedMemory.AccessMode.ReadWrite?10
 QtCore.QSharedMemory?1(QObject parent=None)
 QtCore.QSharedMemory.__init__?1(self, QObject parent=None)
+QtCore.QSharedMemory?1(QNativeIpcKey, QObject parent=None)
+QtCore.QSharedMemory.__init__?1(self, QNativeIpcKey, QObject parent=None)
 QtCore.QSharedMemory?1(QString, QObject parent=None)
 QtCore.QSharedMemory.__init__?1(self, QString, QObject parent=None)
 QtCore.QSharedMemory.setKey?4(QString)
@@ -5450,8 +5613,13 @@ QtCore.QSharedMemory.lock?4() -> bool
 QtCore.QSharedMemory.unlock?4() -> bool
 QtCore.QSharedMemory.error?4() -> QSharedMemory.SharedMemoryError
 QtCore.QSharedMemory.errorString?4() -> QString
-QtCore.QSharedMemory.setNativeKey?4(QString)
+QtCore.QSharedMemory.setNativeKey?4(QNativeIpcKey)
+QtCore.QSharedMemory.setNativeKey?4(QString, QNativeIpcKey.Type type=QNativeIpcKey.legacyDefaultTypeForOs())
 QtCore.QSharedMemory.nativeKey?4() -> QString
+QtCore.QSharedMemory.nativeIpcKey?4() -> QNativeIpcKey
+QtCore.QSharedMemory.isKeyTypeSupported?4(QNativeIpcKey.Type) -> bool
+QtCore.QSharedMemory.platformSafeKey?4(QString, QNativeIpcKey.Type type=QNativeIpcKey.DefaultTypeForOs) -> QNativeIpcKey
+QtCore.QSharedMemory.legacyNativeKey?4(QString, QNativeIpcKey.Type type=QNativeIpcKey.legacyDefaultTypeForOs()) -> QNativeIpcKey
 QtCore.QSignalMapper?1(QObject parent=None)
 QtCore.QSignalMapper.__init__?1(self, QObject parent=None)
 QtCore.QSignalMapper.setMapping?4(QObject, int)
@@ -5764,6 +5932,8 @@ QtCore.QSystemSemaphore.SystemSemaphoreError.UnknownError?10
 QtCore.QSystemSemaphore.AccessMode?10
 QtCore.QSystemSemaphore.AccessMode.Open?10
 QtCore.QSystemSemaphore.AccessMode.Create?10
+QtCore.QSystemSemaphore?1(QNativeIpcKey, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
+QtCore.QSystemSemaphore.__init__?1(self, QNativeIpcKey, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
 QtCore.QSystemSemaphore?1(QString, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
 QtCore.QSystemSemaphore.__init__?1(self, QString, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
 QtCore.QSystemSemaphore.setKey?4(QString, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
@@ -5772,6 +5942,12 @@ QtCore.QSystemSemaphore.acquire?4() -> bool
 QtCore.QSystemSemaphore.release?4(int n=1) -> bool
 QtCore.QSystemSemaphore.error?4() -> QSystemSemaphore.SystemSemaphoreError
 QtCore.QSystemSemaphore.errorString?4() -> QString
+QtCore.QSystemSemaphore.setNativeKey?4(QNativeIpcKey, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open)
+QtCore.QSystemSemaphore.setNativeKey?4(QString, int initialValue=0, QSystemSemaphore.AccessMode mode=QSystemSemaphore.Open, QNativeIpcKey.Type type=QNativeIpcKey.legacyDefaultTypeForOs())
+QtCore.QSystemSemaphore.nativeIpcKey?4() -> QNativeIpcKey
+QtCore.QSystemSemaphore.isKeyTypeSupported?4(QNativeIpcKey.Type) -> bool
+QtCore.QSystemSemaphore.platformSafeKey?4(QString, QNativeIpcKey.Type type=QNativeIpcKey.DefaultTypeForOs) -> QNativeIpcKey
+QtCore.QSystemSemaphore.legacyNativeKey?4(QString, QNativeIpcKey.Type type=QNativeIpcKey.legacyDefaultTypeForOs()) -> QNativeIpcKey
 QtCore.QTemporaryDir?1()
 QtCore.QTemporaryDir.__init__?1(self)
 QtCore.QTemporaryDir?1(QString)
@@ -5905,7 +6081,7 @@ QtCore.QThread.Priority.InheritPriority?10
 QtCore.QThread?1(QObject parent=None)
 QtCore.QThread.__init__?1(self, QObject parent=None)
 QtCore.QThread.currentThread?4() -> QThread
-QtCore.QThread.currentThreadId?4() -> voidptr
+QtCore.QThread.currentThreadId?4() -> PyQt6.sip.voidptr
 QtCore.QThread.idealThreadCount?4() -> int
 QtCore.QThread.yieldCurrentThread?4()
 QtCore.QThread.isFinished?4() -> bool
@@ -6017,6 +6193,9 @@ QtCore.QTimer.timerEvent?4(QTimerEvent)
 QtCore.QTimer.setTimerType?4(Qt.TimerType)
 QtCore.QTimer.timerType?4() -> Qt.TimerType
 QtCore.QTimer.remainingTime?4() -> int
+QtCore.QTimeZone.Initialization?10
+QtCore.QTimeZone.Initialization.LocalTime?10
+QtCore.QTimeZone.Initialization.UTC?10
 QtCore.QTimeZone.NameType?10
 QtCore.QTimeZone.NameType.DefaultName?10
 QtCore.QTimeZone.NameType.LongName?10
@@ -6026,6 +6205,10 @@ QtCore.QTimeZone.TimeType?10
 QtCore.QTimeZone.TimeType.StandardTime?10
 QtCore.QTimeZone.TimeType.DaylightTime?10
 QtCore.QTimeZone.TimeType.GenericTime?10
+QtCore.QTimeZone.MaxUtcOffsetSecs?7
+QtCore.QTimeZone.MinUtcOffsetSecs?7
+QtCore.QTimeZone?1(QTimeZone.Initialization)
+QtCore.QTimeZone.__init__?1(self, QTimeZone.Initialization)
 QtCore.QTimeZone?1(QByteArray, int, QString, QString, QLocale.Country territory=QLocale.AnyTerritory, QString comment='')
 QtCore.QTimeZone.__init__?1(self, QByteArray, int, QString, QString, QLocale.Country territory=QLocale.AnyTerritory, QString comment='')
 QtCore.QTimeZone?1(QByteArray)
@@ -6067,6 +6250,12 @@ QtCore.QTimeZone.windowsIdToIanaIds?4(QByteArray) -> unknown-type
 QtCore.QTimeZone.windowsIdToIanaIds?4(QByteArray, QLocale.Country) -> unknown-type
 QtCore.QTimeZone.systemTimeZone?4() -> QTimeZone
 QtCore.QTimeZone.utc?4() -> QTimeZone
+QtCore.QTimeZone.fromSecondsAheadOfUtc?4(int) -> QTimeZone
+QtCore.QTimeZone.timeSpec?4() -> Qt.TimeSpec
+QtCore.QTimeZone.fixedSecondsAheadOfUtc?4() -> int
+QtCore.QTimeZone.isUtcOrFixedOffset?4() -> bool
+QtCore.QTimeZone.isUtcOrFixedOffset?4(Qt.TimeSpec) -> bool
+QtCore.QTimeZone.asBackendZone?4() -> QTimeZone
 QtCore.QTimeZone.OffsetData.abbreviation?7
 QtCore.QTimeZone.OffsetData.atUtc?7
 QtCore.QTimeZone.OffsetData.daylightTimeOffset?7
@@ -6076,6 +6265,29 @@ QtCore.QTimeZone.OffsetData?1()
 QtCore.QTimeZone.OffsetData.__init__?1(self)
 QtCore.QTimeZone.OffsetData?1(QTimeZone.OffsetData)
 QtCore.QTimeZone.OffsetData.__init__?1(self, QTimeZone.OffsetData)
+QtCore.QNativeIpcKey.Type?10
+QtCore.QNativeIpcKey.Type.SystemV?10
+QtCore.QNativeIpcKey.Type.PosixRealtime?10
+QtCore.QNativeIpcKey.Type.Windows?10
+QtCore.QNativeIpcKey.DefaultTypeForOs?7
+QtCore.QNativeIpcKey?1()
+QtCore.QNativeIpcKey.__init__?1(self)
+QtCore.QNativeIpcKey?1(QNativeIpcKey.Type)
+QtCore.QNativeIpcKey.__init__?1(self, QNativeIpcKey.Type)
+QtCore.QNativeIpcKey?1(QString, QNativeIpcKey.Type type=QNativeIpcKey.DefaultTypeForOs)
+QtCore.QNativeIpcKey.__init__?1(self, QString, QNativeIpcKey.Type type=QNativeIpcKey.DefaultTypeForOs)
+QtCore.QNativeIpcKey?1(QNativeIpcKey)
+QtCore.QNativeIpcKey.__init__?1(self, QNativeIpcKey)
+QtCore.QNativeIpcKey.legacyDefaultTypeForOs?4() -> QNativeIpcKey.Type
+QtCore.QNativeIpcKey.swap?4(QNativeIpcKey)
+QtCore.QNativeIpcKey.isEmpty?4() -> bool
+QtCore.QNativeIpcKey.isValid?4() -> bool
+QtCore.QNativeIpcKey.type?4() -> QNativeIpcKey.Type
+QtCore.QNativeIpcKey.setType?4(QNativeIpcKey.Type)
+QtCore.QNativeIpcKey.nativeKey?4() -> QString
+QtCore.QNativeIpcKey.setNativeKey?4(QString)
+QtCore.QNativeIpcKey.toString?4() -> QString
+QtCore.QNativeIpcKey.fromString?4(QString) -> QNativeIpcKey
 QtCore.QTranslator?1(QObject parent=None)
 QtCore.QTranslator.__init__?1(self, QObject parent=None)
 QtCore.QTranslator.translate?4(str, str, str disambiguation=None, int n=-1) -> QString
@@ -6250,6 +6462,8 @@ QtCore.QUuid.Variant.Microsoft?10
 QtCore.QUuid.Variant.Reserved?10
 QtCore.QUuid?1()
 QtCore.QUuid.__init__?1(self)
+QtCore.QUuid?1(QUuid.Id128Bytes, QSysInfo.Endian order=QSysInfo.BigEndian)
+QtCore.QUuid.__init__?1(self, QUuid.Id128Bytes, QSysInfo.Endian order=QSysInfo.BigEndian)
 QtCore.QUuid?1(int, int, int, int, int, int, int, int, int, int, int)
 QtCore.QUuid.__init__?1(self, int, int, int, int, int, int, int, int, int, int, int)
 QtCore.QUuid?1(QAnyStringView)
@@ -6269,6 +6483,10 @@ QtCore.QUuid.toByteArray?4(QUuid.StringFormat mode=QUuid.WithBraces) -> QByteArr
 QtCore.QUuid.toRfc4122?4() -> QByteArray
 QtCore.QUuid.fromRfc4122?4(QByteArrayView) -> QUuid
 QtCore.QUuid.fromString?4(QAnyStringView) -> QUuid
+QtCore.QUuid.Id128Bytes?1()
+QtCore.QUuid.Id128Bytes.__init__?1(self)
+QtCore.QUuid.Id128Bytes?1(QUuid.Id128Bytes)
+QtCore.QUuid.Id128Bytes.__init__?1(self, QUuid.Id128Bytes)
 QtCore.QVariant?1()
 QtCore.QVariant.__init__?1(self)
 QtCore.QVariant?1(Any)
@@ -6403,14 +6621,11 @@ QtCore.QXmlStreamReader?1()
 QtCore.QXmlStreamReader.__init__?1(self)
 QtCore.QXmlStreamReader?1(QIODevice)
 QtCore.QXmlStreamReader.__init__?1(self, QIODevice)
-QtCore.QXmlStreamReader?1(QByteArray)
-QtCore.QXmlStreamReader.__init__?1(self, QByteArray)
-QtCore.QXmlStreamReader?1(QString)
-QtCore.QXmlStreamReader.__init__?1(self, QString)
+QtCore.QXmlStreamReader?1(QAnyStringView)
+QtCore.QXmlStreamReader.__init__?1(self, QAnyStringView)
 QtCore.QXmlStreamReader.setDevice?4(QIODevice)
 QtCore.QXmlStreamReader.device?4() -> QIODevice
-QtCore.QXmlStreamReader.addData?4(QByteArray)
-QtCore.QXmlStreamReader.addData?4(QString)
+QtCore.QXmlStreamReader.addData?4(QAnyStringView)
 QtCore.QXmlStreamReader.clear?4()
 QtCore.QXmlStreamReader.atEnd?4() -> bool
 QtCore.QXmlStreamReader.readNext?4() -> QXmlStreamReader.TokenType
@@ -6462,6 +6677,7 @@ QtCore.QXmlStreamReader.readNextStartElement?4() -> bool
 QtCore.QXmlStreamReader.skipCurrentElement?4()
 QtCore.QXmlStreamReader.entityExpansionLimit?4() -> int
 QtCore.QXmlStreamReader.setEntityExpansionLimit?4(int)
+QtCore.QXmlStreamReader.hasStandaloneDeclaration?4() -> bool
 QtCore.QXmlStreamWriter?1()
 QtCore.QXmlStreamWriter.__init__?1(self)
 QtCore.QXmlStreamWriter?1(QIODevice)
@@ -6474,48 +6690,48 @@ QtCore.QXmlStreamWriter.setAutoFormatting?4(bool)
 QtCore.QXmlStreamWriter.autoFormatting?4() -> bool
 QtCore.QXmlStreamWriter.setAutoFormattingIndent?4(int)
 QtCore.QXmlStreamWriter.autoFormattingIndent?4() -> int
-QtCore.QXmlStreamWriter.writeAttribute?4(QString, QString)
-QtCore.QXmlStreamWriter.writeAttribute?4(QString, QString, QString)
+QtCore.QXmlStreamWriter.writeAttribute?4(QAnyStringView, QAnyStringView, QAnyStringView)
+QtCore.QXmlStreamWriter.writeAttribute?4(QAnyStringView, QAnyStringView)
 QtCore.QXmlStreamWriter.writeAttribute?4(QXmlStreamAttribute)
 QtCore.QXmlStreamWriter.writeAttributes?4(QXmlStreamAttributes)
-QtCore.QXmlStreamWriter.writeCDATA?4(QString)
-QtCore.QXmlStreamWriter.writeCharacters?4(QString)
-QtCore.QXmlStreamWriter.writeComment?4(QString)
-QtCore.QXmlStreamWriter.writeDTD?4(QString)
-QtCore.QXmlStreamWriter.writeEmptyElement?4(QString)
-QtCore.QXmlStreamWriter.writeEmptyElement?4(QString, QString)
-QtCore.QXmlStreamWriter.writeTextElement?4(QString, QString)
-QtCore.QXmlStreamWriter.writeTextElement?4(QString, QString, QString)
+QtCore.QXmlStreamWriter.writeCDATA?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeCharacters?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeComment?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeDTD?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeEmptyElement?4(QAnyStringView, QAnyStringView)
+QtCore.QXmlStreamWriter.writeEmptyElement?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeTextElement?4(QAnyStringView, QAnyStringView, QAnyStringView)
+QtCore.QXmlStreamWriter.writeTextElement?4(QAnyStringView, QAnyStringView)
 QtCore.QXmlStreamWriter.writeEndDocument?4()
 QtCore.QXmlStreamWriter.writeEndElement?4()
-QtCore.QXmlStreamWriter.writeEntityReference?4(QString)
-QtCore.QXmlStreamWriter.writeNamespace?4(QString, QString prefix='')
-QtCore.QXmlStreamWriter.writeDefaultNamespace?4(QString)
-QtCore.QXmlStreamWriter.writeProcessingInstruction?4(QString, QString data='')
+QtCore.QXmlStreamWriter.writeEntityReference?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeNamespace?4(QAnyStringView, QAnyStringView prefix='')
+QtCore.QXmlStreamWriter.writeDefaultNamespace?4(QAnyStringView)
+QtCore.QXmlStreamWriter.writeProcessingInstruction?4(QAnyStringView, QAnyStringView data='')
+QtCore.QXmlStreamWriter.writeStartDocument?4(QAnyStringView, bool)
+QtCore.QXmlStreamWriter.writeStartDocument?4(QAnyStringView)
 QtCore.QXmlStreamWriter.writeStartDocument?4()
-QtCore.QXmlStreamWriter.writeStartDocument?4(QString)
-QtCore.QXmlStreamWriter.writeStartDocument?4(QString, bool)
-QtCore.QXmlStreamWriter.writeStartElement?4(QString)
-QtCore.QXmlStreamWriter.writeStartElement?4(QString, QString)
+QtCore.QXmlStreamWriter.writeStartElement?4(QAnyStringView, QAnyStringView)
+QtCore.QXmlStreamWriter.writeStartElement?4(QAnyStringView)
 QtCore.QXmlStreamWriter.writeCurrentToken?4(QXmlStreamReader)
 QtCore.QXmlStreamWriter.hasError?4() -> bool
 QtCore.QXmlStreamAttributes?1()
 QtCore.QXmlStreamAttributes.__init__?1(self)
 QtCore.QXmlStreamAttributes?1(QXmlStreamAttributes)
 QtCore.QXmlStreamAttributes.__init__?1(self, QXmlStreamAttributes)
-QtCore.QXmlStreamAttributes.value?4(QString, QString) -> QStringView
-QtCore.QXmlStreamAttributes.value?4(QString) -> QStringView
+QtCore.QXmlStreamAttributes.value?4(QAnyStringView, QAnyStringView) -> QStringView
+QtCore.QXmlStreamAttributes.value?4(QAnyStringView) -> QStringView
 QtCore.QXmlStreamAttributes.append?4(QString, QString, QString)
 QtCore.QXmlStreamAttributes.append?4(QString, QString)
-QtCore.QXmlStreamAttributes.hasAttribute?4(QString, QString) -> bool
-QtCore.QXmlStreamAttributes.hasAttribute?4(QString) -> bool
+QtCore.QXmlStreamAttributes.hasAttribute?4(QAnyStringView, QAnyStringView) -> bool
+QtCore.QXmlStreamAttributes.hasAttribute?4(QAnyStringView) -> bool
 QtCore.QXmlStreamAttributes.append?4(QXmlStreamAttribute)
 QtCore.QXmlStreamAttributes.at?4(int) -> QXmlStreamAttribute
 QtCore.QXmlStreamAttributes.clear?4()
 QtCore.QXmlStreamAttributes.contains?4(QXmlStreamAttribute) -> bool
 QtCore.QXmlStreamAttributes.count?4(QXmlStreamAttribute) -> int
 QtCore.QXmlStreamAttributes.count?4() -> int
-QtCore.QXmlStreamAttributes.data?4() -> voidptr
+QtCore.QXmlStreamAttributes.data?4() -> PyQt6.sip.voidptr
 QtCore.QXmlStreamAttributes.fill?4(QXmlStreamAttribute, int size=-1)
 QtCore.QXmlStreamAttributes.first?4() -> QXmlStreamAttribute
 QtCore.QXmlStreamAttributes.indexOf?4(QXmlStreamAttribute, int from=0) -> int
@@ -6772,12 +6988,15 @@ QtNetwork.QDnsLookup.Error.InvalidReplyError?10
 QtNetwork.QDnsLookup.Error.ServerFailureError?10
 QtNetwork.QDnsLookup.Error.ServerRefusedError?10
 QtNetwork.QDnsLookup.Error.NotFoundError?10
+QtNetwork.QDnsLookup.Error.TimeoutError?10
 QtNetwork.QDnsLookup?1(QObject parent=None)
 QtNetwork.QDnsLookup.__init__?1(self, QObject parent=None)
 QtNetwork.QDnsLookup?1(QDnsLookup.Type, QString, QObject parent=None)
 QtNetwork.QDnsLookup.__init__?1(self, QDnsLookup.Type, QString, QObject parent=None)
 QtNetwork.QDnsLookup?1(QDnsLookup.Type, QString, QHostAddress, QObject parent=None)
 QtNetwork.QDnsLookup.__init__?1(self, QDnsLookup.Type, QString, QHostAddress, QObject parent=None)
+QtNetwork.QDnsLookup?1(QDnsLookup.Type, QString, QHostAddress, int, QObject parent=None)
+QtNetwork.QDnsLookup.__init__?1(self, QDnsLookup.Type, QString, QHostAddress, int, QObject parent=None)
 QtNetwork.QDnsLookup.error?4() -> QDnsLookup.Error
 QtNetwork.QDnsLookup.errorString?4() -> QString
 QtNetwork.QDnsLookup.isFinished?4() -> bool
@@ -6799,7 +7018,11 @@ QtNetwork.QDnsLookup.nameChanged?4(QString)
 QtNetwork.QDnsLookup.typeChanged?4(QDnsLookup.Type)
 QtNetwork.QDnsLookup.nameserver?4() -> QHostAddress
 QtNetwork.QDnsLookup.setNameserver?4(QHostAddress)
+QtNetwork.QDnsLookup.setNameserver?4(QHostAddress, int)
 QtNetwork.QDnsLookup.nameserverChanged?4(QHostAddress)
+QtNetwork.QDnsLookup.nameserverPort?4() -> int
+QtNetwork.QDnsLookup.setNameserverPort?4(int)
+QtNetwork.QDnsLookup.nameserverPortChanged?4(int)
 QtNetwork.QHostAddress.ConversionModeFlag?10
 QtNetwork.QHostAddress.ConversionModeFlag.ConvertV4MappedToIPv4?10
 QtNetwork.QHostAddress.ConversionModeFlag.ConvertV4CompatToIPv4?10
@@ -6851,6 +7074,7 @@ QtNetwork.QHostAddress.isLinkLocal?4() -> bool
 QtNetwork.QHostAddress.isSiteLocal?4() -> bool
 QtNetwork.QHostAddress.isUniqueLocalUnicast?4() -> bool
 QtNetwork.QHostAddress.isBroadcast?4() -> bool
+QtNetwork.QHostAddress.isPrivateUse?4() -> bool
 QtNetwork.QHostInfo.HostInfoError?10
 QtNetwork.QHostInfo.HostInfoError.NoError?10
 QtNetwork.QHostInfo.HostInfoError.HostNotFound?10
@@ -6891,6 +7115,13 @@ QtNetwork.QHstsPolicy.expiry?4() -> QDateTime
 QtNetwork.QHstsPolicy.setIncludesSubDomains?4(bool)
 QtNetwork.QHstsPolicy.includesSubDomains?4() -> bool
 QtNetwork.QHstsPolicy.isExpired?4() -> bool
+QtNetwork.QHttp1Configuration?1()
+QtNetwork.QHttp1Configuration.__init__?1(self)
+QtNetwork.QHttp1Configuration?1(QHttp1Configuration)
+QtNetwork.QHttp1Configuration.__init__?1(self, QHttp1Configuration)
+QtNetwork.QHttp1Configuration.setNumberOfConnectionsPerHost?4(int)
+QtNetwork.QHttp1Configuration.numberOfConnectionsPerHost?4() -> int
+QtNetwork.QHttp1Configuration.swap?4(QHttp1Configuration)
 QtNetwork.QHttp2Configuration?1()
 QtNetwork.QHttp2Configuration.__init__?1(self)
 QtNetwork.QHttp2Configuration?1(QHttp2Configuration)
@@ -7467,6 +7698,7 @@ QtNetwork.QNetworkRequest.Attribute.Http2DirectAttribute?10
 QtNetwork.QNetworkRequest.Attribute.AutoDeleteReplyOnFinishAttribute?10
 QtNetwork.QNetworkRequest.Attribute.ConnectionCacheExpiryTimeoutSecondsAttribute?10
 QtNetwork.QNetworkRequest.Attribute.Http2CleartextAllowedAttribute?10
+QtNetwork.QNetworkRequest.Attribute.UseCredentialsAttribute?10
 QtNetwork.QNetworkRequest.Attribute.User?10
 QtNetwork.QNetworkRequest.Attribute.UserMax?10
 QtNetwork.QNetworkRequest.KnownHeaders?10
@@ -7510,7 +7742,9 @@ QtNetwork.QNetworkRequest.maximumRedirectsAllowed?4() -> int
 QtNetwork.QNetworkRequest.setMaximumRedirectsAllowed?4(int)
 QtNetwork.QNetworkRequest.peerVerifyName?4() -> QString
 QtNetwork.QNetworkRequest.setPeerVerifyName?4(QString)
+QtNetwork.QNetworkRequest.http1Configuration?4() -> QHttp1Configuration
 QtNetwork.QNetworkRequest.http2Configuration?4() -> QHttp2Configuration
+QtNetwork.QNetworkRequest.setHttp1Configuration?4(QHttp1Configuration)
 QtNetwork.QNetworkRequest.setHttp2Configuration?4(QHttp2Configuration)
 QtNetwork.QNetworkRequest.transferTimeout?4() -> int
 QtNetwork.QNetworkRequest.setTransferTimeout?4(int timeout=QNetworkRequest.DefaultTransferTimeoutConstant)
@@ -7661,7 +7895,7 @@ QtNetwork.QSslCertificate.toDer?4() -> QByteArray
 QtNetwork.QSslCertificate.fromPath?4(QString, QSsl.EncodingFormat format=QSsl.Pem, QSslCertificate.PatternSyntax syntax=QSslCertificate.PatternSyntax.FixedString) -> unknown-type
 QtNetwork.QSslCertificate.fromDevice?4(QIODevice, QSsl.EncodingFormat format=QSsl.Pem) -> unknown-type
 QtNetwork.QSslCertificate.fromData?4(QByteArray, QSsl.EncodingFormat format=QSsl.Pem) -> unknown-type
-QtNetwork.QSslCertificate.handle?4() -> voidptr
+QtNetwork.QSslCertificate.handle?4() -> PyQt6.sip.voidptr
 QtNetwork.QSslCertificate.swap?4(QSslCertificate)
 QtNetwork.QSslCertificate.isBlacklisted?4() -> bool
 QtNetwork.QSslCertificate.subjectInfoAttributes?4() -> unknown-type
@@ -7853,8 +8087,8 @@ QtNetwork.QSslKey?1(QByteArray, QSsl.KeyAlgorithm, QSsl.EncodingFormat encoding=
 QtNetwork.QSslKey.__init__?1(self, QByteArray, QSsl.KeyAlgorithm, QSsl.EncodingFormat encoding=QSsl.Pem, QSsl.KeyType type=QSsl.PrivateKey, QByteArray passPhrase=QByteArray())
 QtNetwork.QSslKey?1(QIODevice, QSsl.KeyAlgorithm, QSsl.EncodingFormat encoding=QSsl.Pem, QSsl.KeyType type=QSsl.PrivateKey, QByteArray passPhrase=QByteArray())
 QtNetwork.QSslKey.__init__?1(self, QIODevice, QSsl.KeyAlgorithm, QSsl.EncodingFormat encoding=QSsl.Pem, QSsl.KeyType type=QSsl.PrivateKey, QByteArray passPhrase=QByteArray())
-QtNetwork.QSslKey?1(voidptr, QSsl.KeyType type=QSsl.PrivateKey)
-QtNetwork.QSslKey.__init__?1(self, voidptr, QSsl.KeyType type=QSsl.PrivateKey)
+QtNetwork.QSslKey?1(PyQt6.sip.voidptr, QSsl.KeyType type=QSsl.PrivateKey)
+QtNetwork.QSslKey.__init__?1(self, PyQt6.sip.voidptr, QSsl.KeyType type=QSsl.PrivateKey)
 QtNetwork.QSslKey?1(QSslKey)
 QtNetwork.QSslKey.__init__?1(self, QSslKey)
 QtNetwork.QSslKey.isNull?4() -> bool
@@ -7864,7 +8098,7 @@ QtNetwork.QSslKey.type?4() -> QSsl.KeyType
 QtNetwork.QSslKey.algorithm?4() -> QSsl.KeyAlgorithm
 QtNetwork.QSslKey.toPem?4(QByteArray passPhrase=QByteArray()) -> QByteArray
 QtNetwork.QSslKey.toDer?4(QByteArray passPhrase=QByteArray()) -> QByteArray
-QtNetwork.QSslKey.handle?4() -> voidptr
+QtNetwork.QSslKey.handle?4() -> PyQt6.sip.voidptr
 QtNetwork.QSslKey.swap?4(QSslKey)
 QtNetwork.QSslPreSharedKeyAuthenticator?1()
 QtNetwork.QSslPreSharedKeyAuthenticator.__init__?1(self)
@@ -8090,7 +8324,7 @@ QtGui.QAbstractTextDocumentLayout.document?4() -> QTextDocument
 QtGui.QAbstractTextDocumentLayout.registerHandler?4(int, QObject)
 QtGui.QAbstractTextDocumentLayout.unregisterHandler?4(int, QObject component=None)
 QtGui.QAbstractTextDocumentLayout.handlerForObject?4(int) -> QTextObjectInterface
-QtGui.QAbstractTextDocumentLayout.update?4(QRectF rect=QRectF(0, 0, 1000000000.0, 1000000000.0))
+QtGui.QAbstractTextDocumentLayout.update?4(QRectF rect=QRectF(0, 0, 1e+09, 1e+09))
 QtGui.QAbstractTextDocumentLayout.documentSizeChanged?4(QSizeF)
 QtGui.QAbstractTextDocumentLayout.pageCountChanged?4(int)
 QtGui.QAbstractTextDocumentLayout.updateBlock?4(QTextBlock)
@@ -8959,14 +9193,14 @@ QtGui.QColorSpace?1()
 QtGui.QColorSpace.__init__?1(self)
 QtGui.QColorSpace?1(QColorSpace.NamedColorSpace)
 QtGui.QColorSpace.__init__?1(self, QColorSpace.NamedColorSpace)
-QtGui.QColorSpace?1(QColorSpace.Primaries, QColorSpace.TransferFunction, float gamma=0.0)
-QtGui.QColorSpace.__init__?1(self, QColorSpace.Primaries, QColorSpace.TransferFunction, float gamma=0.0)
+QtGui.QColorSpace?1(QColorSpace.Primaries, QColorSpace.TransferFunction, float gamma=0)
+QtGui.QColorSpace.__init__?1(self, QColorSpace.Primaries, QColorSpace.TransferFunction, float gamma=0)
 QtGui.QColorSpace?1(QColorSpace.Primaries, float)
 QtGui.QColorSpace.__init__?1(self, QColorSpace.Primaries, float)
 QtGui.QColorSpace?1(QColorSpace.Primaries, unknown-type)
 QtGui.QColorSpace.__init__?1(self, QColorSpace.Primaries, unknown-type)
-QtGui.QColorSpace?1(QPointF, QPointF, QPointF, QPointF, QColorSpace.TransferFunction, float gamma=0.0)
-QtGui.QColorSpace.__init__?1(self, QPointF, QPointF, QPointF, QPointF, QColorSpace.TransferFunction, float gamma=0.0)
+QtGui.QColorSpace?1(QPointF, QPointF, QPointF, QPointF, QColorSpace.TransferFunction, float gamma=0)
+QtGui.QColorSpace.__init__?1(self, QPointF, QPointF, QPointF, QPointF, QColorSpace.TransferFunction, float gamma=0)
 QtGui.QColorSpace?1(QPointF, QPointF, QPointF, QPointF, unknown-type, unknown-type, unknown-type)
 QtGui.QColorSpace.__init__?1(self, QPointF, QPointF, QPointF, QPointF, unknown-type, unknown-type, unknown-type)
 QtGui.QColorSpace?1(QPointF, QPointF, QPointF, QPointF, unknown-type)
@@ -8977,11 +9211,11 @@ QtGui.QColorSpace.swap?4(QColorSpace)
 QtGui.QColorSpace.primaries?4() -> QColorSpace.Primaries
 QtGui.QColorSpace.transferFunction?4() -> QColorSpace.TransferFunction
 QtGui.QColorSpace.gamma?4() -> float
-QtGui.QColorSpace.setTransferFunction?4(QColorSpace.TransferFunction, float gamma=0.0)
+QtGui.QColorSpace.setTransferFunction?4(QColorSpace.TransferFunction, float gamma=0)
 QtGui.QColorSpace.setTransferFunction?4(unknown-type)
 QtGui.QColorSpace.setTransferFunctions?4(unknown-type, unknown-type, unknown-type)
 QtGui.QColorSpace.withTransferFunction?4(unknown-type) -> QColorSpace
-QtGui.QColorSpace.withTransferFunction?4(QColorSpace.TransferFunction, float gamma=0.0) -> QColorSpace
+QtGui.QColorSpace.withTransferFunction?4(QColorSpace.TransferFunction, float gamma=0) -> QColorSpace
 QtGui.QColorSpace.withTransferFunctions?4(unknown-type, unknown-type, unknown-type) -> QColorSpace
 QtGui.QColorSpace.setPrimaries?4(QColorSpace.Primaries)
 QtGui.QColorSpace.setPrimaries?4(QPointF, QPointF, QPointF, QPointF)
@@ -9208,6 +9442,8 @@ QtGui.QFileOpenEvent.openFile?4(QFile, unknown-type) -> bool
 QtGui.QFileOpenEvent.clone?4() -> QFileOpenEvent
 QtGui.QShortcutEvent?1(QKeySequence, int, bool ambiguous=False)
 QtGui.QShortcutEvent.__init__?1(self, QKeySequence, int, bool ambiguous=False)
+QtGui.QShortcutEvent?1(QKeySequence, QShortcut shortcut=None, bool ambiguous=False)
+QtGui.QShortcutEvent.__init__?1(self, QKeySequence, QShortcut shortcut=None, bool ambiguous=False)
 QtGui.QShortcutEvent.isAmbiguous?4() -> bool
 QtGui.QShortcutEvent.key?4() -> QKeySequence
 QtGui.QShortcutEvent.shortcutId?4() -> int
@@ -9410,6 +9646,7 @@ QtGui.QFileSystemModel.isDir?4(QModelIndex) -> bool
 QtGui.QFileSystemModel.size?4(QModelIndex) -> int
 QtGui.QFileSystemModel.type?4(QModelIndex) -> QString
 QtGui.QFileSystemModel.lastModified?4(QModelIndex) -> QDateTime
+QtGui.QFileSystemModel.lastModified?4(QModelIndex, QTimeZone) -> QDateTime
 QtGui.QFileSystemModel.mkdir?4(QModelIndex, QString) -> QModelIndex
 QtGui.QFileSystemModel.permissions?4(QModelIndex) -> unknown-type
 QtGui.QFileSystemModel.rmdir?4(QModelIndex) -> bool
@@ -9566,6 +9803,16 @@ QtGui.QFont.hintingPreference?4() -> QFont.HintingPreference
 QtGui.QFont.swap?4(QFont)
 QtGui.QFont.families?4() -> QStringList
 QtGui.QFont.setFamilies?4(QStringList)
+QtGui.QFont.setFeature?4(int, int)
+QtGui.QFont.setFeature?4(bytes, int)
+QtGui.QFont.unsetFeature?4(bytes)
+QtGui.QFont.unsetFeature?4(int)
+QtGui.QFont.featureValue?4(int) -> int
+QtGui.QFont.isFeatureSet?4(int) -> bool
+QtGui.QFont.featureTags?4() -> unknown-type
+QtGui.QFont.clearFeatures?4()
+QtGui.QFont.tagToString?4(int) -> QByteArray
+QtGui.QFont.stringToTag?4(bytes) -> int
 QtGui.QFontDatabase.SystemFont?10
 QtGui.QFontDatabase.SystemFont.GeneralFont?10
 QtGui.QFontDatabase.SystemFont.FixedFont?10
@@ -9857,6 +10104,10 @@ QtGui.QGlyphRun.setBoundingRect?4(QRectF)
 QtGui.QGlyphRun.boundingRect?4() -> QRectF
 QtGui.QGlyphRun.isEmpty?4() -> bool
 QtGui.QGlyphRun.swap?4(QGlyphRun)
+QtGui.QGlyphRun.stringIndexes?4() -> unknown-type
+QtGui.QGlyphRun.setStringIndexes?4(unknown-type)
+QtGui.QGlyphRun.setSourceString?4(QString)
+QtGui.QGlyphRun.sourceString?4() -> QString
 QtGui.QGuiApplication?1(List)
 QtGui.QGuiApplication.__init__?1(self, List)
 QtGui.QGuiApplication.allWindows?4() -> unknown-type
@@ -9920,6 +10171,7 @@ QtGui.QGuiApplication.desktopFileName?4() -> QString
 QtGui.QGuiApplication.screenAt?4(QPoint) -> QScreen
 QtGui.QGuiApplication.setHighDpiScaleFactorRoundingPolicy?4(Qt.HighDpiScaleFactorRoundingPolicy)
 QtGui.QGuiApplication.highDpiScaleFactorRoundingPolicy?4() -> Qt.HighDpiScaleFactorRoundingPolicy
+QtGui.QGuiApplication.setBadgeNumber?4(int)
 QtGui.QGuiApplication.event?4(QEvent) -> bool
 QtGui.QIcon.State?10
 QtGui.QIcon.State.On?10
@@ -10048,10 +10300,10 @@ QtGui.QImage?1(bytes, int, int, QImage.Format, Callable[..., None] cleanupFuncti
 QtGui.QImage.__init__?1(self, bytes, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
 QtGui.QImage?1(bytes, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
 QtGui.QImage.__init__?1(self, bytes, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
-QtGui.QImage?1(voidptr, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
-QtGui.QImage.__init__?1(self, voidptr, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
-QtGui.QImage?1(voidptr, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
-QtGui.QImage.__init__?1(self, voidptr, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
+QtGui.QImage?1(PyQt6.sip.voidptr, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
+QtGui.QImage.__init__?1(self, PyQt6.sip.voidptr, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
+QtGui.QImage?1(PyQt6.sip.voidptr, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
+QtGui.QImage.__init__?1(self, PyQt6.sip.voidptr, int, int, int, QImage.Format, Callable[..., None] cleanupFunction=None, Any cleanupInfo=None)
 QtGui.QImage?1(List)
 QtGui.QImage.__init__?1(self, List)
 QtGui.QImage?1(QString, str format=None)
@@ -10075,10 +10327,10 @@ QtGui.QImage.color?4(int) -> int
 QtGui.QImage.setColor?4(int, int)
 QtGui.QImage.allGray?4() -> bool
 QtGui.QImage.isGrayscale?4() -> bool
-QtGui.QImage.bits?4() -> voidptr
-QtGui.QImage.constBits?4() -> voidptr
-QtGui.QImage.scanLine?4(int) -> voidptr
-QtGui.QImage.constScanLine?4(int) -> voidptr
+QtGui.QImage.bits?4() -> PyQt6.sip.voidptr
+QtGui.QImage.constBits?4() -> PyQt6.sip.voidptr
+QtGui.QImage.scanLine?4(int) -> PyQt6.sip.voidptr
+QtGui.QImage.constScanLine?4(int) -> PyQt6.sip.voidptr
 QtGui.QImage.bytesPerLine?4() -> int
 QtGui.QImage.valid?4(QPoint) -> bool
 QtGui.QImage.valid?4(int, int) -> bool
@@ -10499,7 +10751,7 @@ QtGui.QMatrix4x4.translate?4(QVector3D)
 QtGui.QMatrix4x4.translate?4(float, float)
 QtGui.QMatrix4x4.translate?4(float, float, float)
 QtGui.QMatrix4x4.rotate?4(float, QVector3D)
-QtGui.QMatrix4x4.rotate?4(float, float, float, float z=0.0)
+QtGui.QMatrix4x4.rotate?4(float, float, float, float z=0)
 QtGui.QMatrix4x4.rotate?4(QQuaternion)
 QtGui.QMatrix4x4.ortho?4(QRect)
 QtGui.QMatrix4x4.ortho?4(QRectF)
@@ -10526,7 +10778,7 @@ QtGui.QMatrix4x4.map?4(QPointF) -> QPointF
 QtGui.QMatrix4x4.map?4(QVector3D) -> QVector3D
 QtGui.QMatrix4x4.mapVector?4(QVector3D) -> QVector3D
 QtGui.QMatrix4x4.map?4(QVector4D) -> QVector4D
-QtGui.QMatrix4x4.viewport?4(float, float, float, float, float nearPlane=0.0, float farPlane=1.0)
+QtGui.QMatrix4x4.viewport?4(float, float, float, float, float nearPlane=0, float farPlane=1)
 QtGui.QMatrix4x4.viewport?4(QRectF)
 QtGui.QMatrix4x4.isAffine?4() -> bool
 QtGui.QMovie.CacheMode?10
@@ -10633,7 +10885,7 @@ QtGui.QOpenGLContext.defaultFramebufferObject?4() -> int
 QtGui.QOpenGLContext.makeCurrent?4(QSurface) -> bool
 QtGui.QOpenGLContext.doneCurrent?4()
 QtGui.QOpenGLContext.swapBuffers?4(QSurface)
-QtGui.QOpenGLContext.getProcAddress?4(QByteArray) -> voidptr
+QtGui.QOpenGLContext.getProcAddress?4(QByteArray) -> PyQt6.sip.voidptr
 QtGui.QOpenGLContext.surface?4() -> QSurface
 QtGui.QOpenGLContext.currentContext?4() -> QOpenGLContext
 QtGui.QOpenGLContext.areSharing?4(QOpenGLContext, QOpenGLContext) -> bool
@@ -11060,7 +11312,7 @@ QtGui.QWindow.startSystemResize?4(unknown-type) -> bool
 QtGui.QWindow.startSystemMove?4() -> bool
 QtGui.QWindow.paintEvent?4(QPaintEvent)
 QtGui.QWindow.closeEvent?4(QCloseEvent)
-QtGui.QWindow.nativeEvent?4(QByteArray, voidptr) -> (bool, qintptr)
+QtGui.QWindow.nativeEvent?4(QByteArray, PyQt6.sip.voidptr) -> (bool, qintptr)
 QtGui.QPaintDeviceWindow.update?4(QRect)
 QtGui.QPaintDeviceWindow.update?4(QRegion)
 QtGui.QPaintDeviceWindow.update?4()
@@ -11295,41 +11547,41 @@ QtGui.QPainter.drawPath?4(QPainterPath)
 QtGui.QPainter.drawPoints?4(QPolygonF)
 QtGui.QPainter.drawPoints?4(QPolygon)
 QtGui.QPainter.drawPoints?4(QPointF)
-QtGui.QPainter.drawPoints?4(QPointF, *)
+QtGui.QPainter.drawPoints?4(QPointF, Any)
 QtGui.QPainter.drawPoints?4(QPoint)
-QtGui.QPainter.drawPoints?4(QPoint, *)
+QtGui.QPainter.drawPoints?4(QPoint, Any)
 QtGui.QPainter.drawLines?4(QLineF)
-QtGui.QPainter.drawLines?4(QLineF, *)
+QtGui.QPainter.drawLines?4(QLineF, Any)
 QtGui.QPainter.drawLines?4(QPointF)
-QtGui.QPainter.drawLines?4(QPointF, *)
+QtGui.QPainter.drawLines?4(QPointF, Any)
 QtGui.QPainter.drawLines?4(QLine)
-QtGui.QPainter.drawLines?4(QLine, *)
+QtGui.QPainter.drawLines?4(QLine, Any)
 QtGui.QPainter.drawLines?4(QPoint)
-QtGui.QPainter.drawLines?4(QPoint, *)
+QtGui.QPainter.drawLines?4(QPoint, Any)
 QtGui.QPainter.drawRects?4(QRectF)
-QtGui.QPainter.drawRects?4(QRectF, *)
+QtGui.QPainter.drawRects?4(QRectF, Any)
 QtGui.QPainter.drawRects?4(QRect)
-QtGui.QPainter.drawRects?4(QRect, *)
+QtGui.QPainter.drawRects?4(QRect, Any)
 QtGui.QPainter.drawEllipse?4(QRectF)
 QtGui.QPainter.drawEllipse?4(QRect)
 QtGui.QPainter.drawPolyline?4(QPolygonF)
 QtGui.QPainter.drawPolyline?4(QPolygon)
 QtGui.QPainter.drawPolyline?4(QPointF)
-QtGui.QPainter.drawPolyline?4(QPointF, *)
+QtGui.QPainter.drawPolyline?4(QPointF, Any)
 QtGui.QPainter.drawPolyline?4(QPoint)
-QtGui.QPainter.drawPolyline?4(QPoint, *)
+QtGui.QPainter.drawPolyline?4(QPoint, Any)
 QtGui.QPainter.drawPolygon?4(QPolygonF, Qt.FillRule fillRule=Qt.OddEvenFill)
 QtGui.QPainter.drawPolygon?4(QPolygon, Qt.FillRule fillRule=Qt.OddEvenFill)
 QtGui.QPainter.drawPolygon?4(QPointF, Qt.FillRule fillRule=Qt.OddEvenFill)
-QtGui.QPainter.drawPolygon?4(QPointF, *)
+QtGui.QPainter.drawPolygon?4(QPointF, Any)
 QtGui.QPainter.drawPolygon?4(QPoint, Qt.FillRule fillRule=Qt.OddEvenFill)
-QtGui.QPainter.drawPolygon?4(QPoint, *)
+QtGui.QPainter.drawPolygon?4(QPoint, Any)
 QtGui.QPainter.drawConvexPolygon?4(QPolygonF)
 QtGui.QPainter.drawConvexPolygon?4(QPolygon)
 QtGui.QPainter.drawConvexPolygon?4(QPointF)
-QtGui.QPainter.drawConvexPolygon?4(QPointF, *)
+QtGui.QPainter.drawConvexPolygon?4(QPointF, Any)
 QtGui.QPainter.drawConvexPolygon?4(QPoint)
-QtGui.QPainter.drawConvexPolygon?4(QPoint, *)
+QtGui.QPainter.drawConvexPolygon?4(QPoint, Any)
 QtGui.QPainter.drawArc?4(QRectF, int, int)
 QtGui.QPainter.drawPie?4(QRectF, int, int)
 QtGui.QPainter.drawChord?4(QRectF, int, int)
@@ -11583,6 +11835,7 @@ QtGui.QPalette.ColorRole.AlternateBase?10
 QtGui.QPalette.ColorRole.ToolTipBase?10
 QtGui.QPalette.ColorRole.ToolTipText?10
 QtGui.QPalette.ColorRole.PlaceholderText?10
+QtGui.QPalette.ColorRole.Accent?10
 QtGui.QPalette.ColorRole.NoRole?10
 QtGui.QPalette.ColorRole.NColorRoles?10
 QtGui.QPalette.ColorGroup?10
@@ -11644,6 +11897,7 @@ QtGui.QPalette.setBrush?4(QPalette.ColorRole, QBrush)
 QtGui.QPalette.isBrushSet?4(QPalette.ColorGroup, QPalette.ColorRole) -> bool
 QtGui.QPalette.cacheKey?4() -> int
 QtGui.QPalette.swap?4(QPalette)
+QtGui.QPalette.accent?4() -> QBrush
 QtGui.QPdfWriter?1(QString)
 QtGui.QPdfWriter.__init__?1(self, QString)
 QtGui.QPdfWriter?1(QIODevice)
@@ -11853,8 +12107,8 @@ QtGui.QPolygon.boundingRect?4() -> QRect
 QtGui.QPolygon.point?4(int) -> QPoint
 QtGui.QPolygon.setPoint?4(int, int, int)
 QtGui.QPolygon.setPoint?4(int, QPoint)
-QtGui.QPolygon.setPoints?4(int, int, *)
-QtGui.QPolygon.putPoints?4(int, int, int, *)
+QtGui.QPolygon.setPoints?4(int, int, Any)
+QtGui.QPolygon.putPoints?4(int, int, int, Any)
 QtGui.QPolygon.putPoints?4(int, int, QPolygon, int from=0)
 QtGui.QPolygon.containsPoint?4(QPoint, Qt.FillRule) -> bool
 QtGui.QPolygon.united?4(QPolygon) -> QPolygon
@@ -11867,7 +12121,7 @@ QtGui.QPolygon.clear?4()
 QtGui.QPolygon.contains?4(QPoint) -> bool
 QtGui.QPolygon.count?4(QPoint) -> int
 QtGui.QPolygon.count?4() -> int
-QtGui.QPolygon.data?4() -> voidptr
+QtGui.QPolygon.data?4() -> PyQt6.sip.voidptr
 QtGui.QPolygon.fill?4(QPoint, int size=-1)
 QtGui.QPolygon.first?4() -> QPoint
 QtGui.QPolygon.indexOf?4(QPoint, int from=0) -> int
@@ -11916,7 +12170,7 @@ QtGui.QPolygonF.clear?4()
 QtGui.QPolygonF.contains?4(QPointF) -> bool
 QtGui.QPolygonF.count?4(QPointF) -> int
 QtGui.QPolygonF.count?4() -> int
-QtGui.QPolygonF.data?4() -> voidptr
+QtGui.QPolygonF.data?4() -> PyQt6.sip.voidptr
 QtGui.QPolygonF.fill?4(QPointF, int size=-1)
 QtGui.QPolygonF.first?4() -> QPointF
 QtGui.QPolygonF.indexOf?4(QPointF, int from=0) -> int
@@ -12395,6 +12649,9 @@ QtGui.QStyleHints.setShowShortcutsInContextMenus?4(bool)
 QtGui.QStyleHints.showShortcutsInContextMenusChanged?4(bool)
 QtGui.QStyleHints.mouseDoubleClickDistance?4() -> int
 QtGui.QStyleHints.touchDoubleTapDistance?4() -> int
+QtGui.QStyleHints.keyboardAutoRepeatRateF?4() -> float
+QtGui.QStyleHints.colorScheme?4() -> Qt.ColorScheme
+QtGui.QStyleHints.colorSchemeChanged?4(Qt.ColorScheme)
 QtGui.QSurfaceFormat.OpenGLContextProfile?10
 QtGui.QSurfaceFormat.OpenGLContextProfile.NoProfile?10
 QtGui.QSurfaceFormat.OpenGLContextProfile.CoreProfile?10
@@ -12716,9 +12973,9 @@ QtGui.QTextDocument.setSubScriptBaseline?4(float)
 QtGui.QTextDocument.subScriptBaseline?4() -> float
 QtGui.QTextDocument.setBaselineOffset?4(float)
 QtGui.QTextDocument.baselineOffset?4() -> float
-QtGui.QTextDocument.resourceProvider?4() -> (Callable[..., None])
+QtGui.QTextDocument.resourceProvider?4() -> Callable[..., None]
 QtGui.QTextDocument.setResourceProvider?4(Callable[..., None])
-QtGui.QTextDocument.defaultResourceProvider?4() -> (Callable[..., None])
+QtGui.QTextDocument.defaultResourceProvider?4() -> Callable[..., None]
 QtGui.QTextDocument.setDefaultResourceProvider?4(Callable[..., None])
 QtGui.QTextDocument.setLayoutEnabled?4(bool)
 QtGui.QTextDocument.isLayoutEnabled?4() -> bool
@@ -12879,6 +13136,7 @@ QtGui.QTextFormat.Property.OldFontLetterSpacingType?10
 QtGui.QTextFormat.Property.OldFontStretch?10
 QtGui.QTextFormat.Property.OldTextUnderlineColor?10
 QtGui.QTextFormat.Property.OldFontFamily?10
+QtGui.QTextFormat.Property.ListStart?10
 QtGui.QTextFormat.Property.UserProperty?10
 QtGui.QTextFormat.PageBreakFlag?10
 QtGui.QTextFormat.PageBreakFlag.PageBreak_Auto?10
@@ -13108,6 +13366,8 @@ QtGui.QTextListFormat.numberPrefix?4() -> QString
 QtGui.QTextListFormat.numberSuffix?4() -> QString
 QtGui.QTextListFormat.setNumberPrefix?4(QString)
 QtGui.QTextListFormat.setNumberSuffix?4(QString)
+QtGui.QTextListFormat.setStart?4(int)
+QtGui.QTextListFormat.start?4() -> int
 QtGui.QTextImageFormat?1()
 QtGui.QTextImageFormat.__init__?1(self)
 QtGui.QTextImageFormat?1(QTextImageFormat)
@@ -13248,6 +13508,12 @@ QtGui.QTextInlineObject.setDescent?4(float)
 QtGui.QTextInlineObject.textPosition?4() -> int
 QtGui.QTextInlineObject.formatIndex?4() -> int
 QtGui.QTextInlineObject.format?4() -> QTextFormat
+QtGui.QTextLayout.GlyphRunRetrievalFlag?10
+QtGui.QTextLayout.GlyphRunRetrievalFlag.RetrieveGlyphIndexes?10
+QtGui.QTextLayout.GlyphRunRetrievalFlag.RetrieveGlyphPositions?10
+QtGui.QTextLayout.GlyphRunRetrievalFlag.RetrieveStringIndexes?10
+QtGui.QTextLayout.GlyphRunRetrievalFlag.RetrieveString?10
+QtGui.QTextLayout.GlyphRunRetrievalFlag.RetrieveAll?10
 QtGui.QTextLayout.CursorMode?10
 QtGui.QTextLayout.CursorMode.SkipCharacters?10
 QtGui.QTextLayout.CursorMode.SkipWords?10
@@ -13293,6 +13559,7 @@ QtGui.QTextLayout.cursorMoveStyle?4() -> Qt.CursorMoveStyle
 QtGui.QTextLayout.leftCursorPosition?4(int) -> int
 QtGui.QTextLayout.rightCursorPosition?4(int) -> int
 QtGui.QTextLayout.glyphRuns?4(int from=-1, int length=-1) -> unknown-type
+QtGui.QTextLayout.glyphRuns?4(int, int, unknown-type) -> unknown-type
 QtGui.QTextLayout.setFormats?4(unknown-type)
 QtGui.QTextLayout.formats?4() -> unknown-type
 QtGui.QTextLayout.clearFormats?4()
@@ -13339,6 +13606,7 @@ QtGui.QTextLine.setLeadingIncluded?4(bool)
 QtGui.QTextLine.leadingIncluded?4() -> bool
 QtGui.QTextLine.horizontalAdvance?4() -> float
 QtGui.QTextLine.glyphRuns?4(int from=-1, int length=-1) -> unknown-type
+QtGui.QTextLine.glyphRuns?4(int, int, unknown-type) -> unknown-type
 QtGui.QTextObject?1(QTextDocument)
 QtGui.QTextObject.__init__?1(self, QTextDocument)
 QtGui.QTextObject.setFormat?4(QTextFormat)
@@ -13548,7 +13816,9 @@ QtGui.QTransform.translate?4(float, float) -> QTransform
 QtGui.QTransform.scale?4(float, float) -> QTransform
 QtGui.QTransform.shear?4(float, float) -> QTransform
 QtGui.QTransform.rotate?4(float, Qt.Axis axis=Qt.ZAxis) -> QTransform
+QtGui.QTransform.rotate?4(float, Qt.Axis, float) -> QTransform
 QtGui.QTransform.rotateRadians?4(float, Qt.Axis axis=Qt.ZAxis) -> QTransform
+QtGui.QTransform.rotateRadians?4(float, Qt.Axis, float) -> QTransform
 QtGui.QTransform.squareToQuad?4(QPolygonF, QTransform) -> bool
 QtGui.QTransform.quadToSquare?4(QPolygonF, QTransform) -> bool
 QtGui.QTransform.quadToQuad?4(QPolygonF, QPolygonF, QTransform) -> bool
@@ -13657,6 +13927,14 @@ QtGui.QUndoStack.undoTextChanged?4(QString)
 QtGui.QUndoStack.setUndoLimit?4(int)
 QtGui.QUndoStack.undoLimit?4() -> int
 QtGui.QUndoStack.command?4(int) -> QUndoCommand
+QtGui.QUtiMimeConverter?1()
+QtGui.QUtiMimeConverter.__init__?1(self)
+QtGui.QUtiMimeConverter.canConvert?4(QString, QString) -> bool
+QtGui.QUtiMimeConverter.convertFromMime?4(QString, QVariant, QString) -> unknown-type
+QtGui.QUtiMimeConverter.utiForMime?4(QString) -> QString
+QtGui.QUtiMimeConverter.mimeForUti?4(QString) -> QString
+QtGui.QUtiMimeConverter.convertToMime?4(QString, unknown-type, QString) -> QVariant
+QtGui.QUtiMimeConverter.count?4(QMimeData) -> int
 QtGui.QValidator.State?10
 QtGui.QValidator.State.Invalid?10
 QtGui.QValidator.State.Intermediate?10
@@ -13867,6 +14145,9 @@ QtQml.QJSEngine.catchError?4() -> QJSValue
 QtQml.QJSEngine.uiLanguageChanged?4()
 QtQml.QJSEngine.registerModule?4(QString, QJSValue) -> bool
 QtQml.QJSEngine.newSymbol?4(QString) -> QJSValue
+QtQml.QJSEngine.toScriptValue?4(QVariant) -> QJSValue
+QtQml.QJSEngine.toManagedValue?4(QVariant) -> QJSManagedValue
+QtQml.QJSEngine.toPrimitiveValue?4(QVariant) -> QJSPrimitiveValue
 QtQml.QJSManagedValue.Type?10
 QtQml.QJSManagedValue.Type.Undefined?10
 QtQml.QJSManagedValue.Type.Boolean?10
@@ -13971,6 +14252,8 @@ QtQml.QJSPrimitiveValue.toDouble?4() -> float
 QtQml.QJSPrimitiveValue.toString?4() -> QString
 QtQml.QJSPrimitiveValue.strictlyEquals?4(QJSPrimitiveValue) -> bool
 QtQml.QJSPrimitiveValue.equals?4(QJSPrimitiveValue) -> bool
+QtQml.QJSPrimitiveValue.metaType?4() -> QMetaType
+QtQml.QJSPrimitiveValue.data?4() -> PyQt6.sip.voidptr
 QtQml.QJSValue.ErrorType?10
 QtQml.QJSValue.ErrorType.GenericError?10
 QtQml.QJSValue.ErrorType.EvalError?10
@@ -14079,23 +14362,29 @@ QtQml.QQmlEngine.warnings?4(unknown-type)
 QtQml.QQmlEngine.exit?4(int)
 QtQml.QQmlEngine.offlineStorageDatabaseFilePath?4(QString) -> QString
 QtQml.QQmlEngine.singletonInstance?4(int) -> Any
+QtQml.QQmlEngine.singletonInstance?4(QAnyStringView, QAnyStringView) -> Any
 QtQml.QQmlEngine.addUrlInterceptor?4(QQmlAbstractUrlInterceptor)
 QtQml.QQmlEngine.removeUrlInterceptor?4(QQmlAbstractUrlInterceptor)
 QtQml.QQmlEngine.interceptUrl?4(QUrl, QQmlAbstractUrlInterceptor.DataType) -> QUrl
 QtQml.QQmlEngine.urlInterceptors?4() -> unknown-type
 QtQml.QQmlEngine.clearSingletons?4()
+QtQml.QQmlEngine.offlineStoragePathChanged?4()
+QtQml.QQmlEngine.markCurrentFunctionAsTranslationBinding?4()
 QtQml.QQmlApplicationEngine?1(QObject parent=None)
 QtQml.QQmlApplicationEngine.__init__?1(self, QObject parent=None)
 QtQml.QQmlApplicationEngine?1(QUrl, QObject parent=None)
 QtQml.QQmlApplicationEngine.__init__?1(self, QUrl, QObject parent=None)
 QtQml.QQmlApplicationEngine?1(QString, QObject parent=None)
 QtQml.QQmlApplicationEngine.__init__?1(self, QString, QObject parent=None)
+QtQml.QQmlApplicationEngine?1(QAnyStringView, QAnyStringView, QObject parent=None)
+QtQml.QQmlApplicationEngine.__init__?1(self, QAnyStringView, QAnyStringView, QObject parent=None)
 QtQml.QQmlApplicationEngine.rootObjects?4() -> unknown-type
 QtQml.QQmlApplicationEngine.load?4(QUrl)
 QtQml.QQmlApplicationEngine.load?4(QString)
 QtQml.QQmlApplicationEngine.loadData?4(QByteArray, QUrl url=QUrl())
 QtQml.QQmlApplicationEngine.setExtraFileSelectors?4(QStringList)
 QtQml.QQmlApplicationEngine.setInitialProperties?4(unknown-type)
+QtQml.QQmlApplicationEngine.loadFromModule?4(QAnyStringView, QAnyStringView)
 QtQml.QQmlApplicationEngine.objectCreated?4(QObject, QUrl)
 QtQml.QQmlApplicationEngine.objectCreationFailed?4(QUrl)
 QtQml.QQmlComponent.Status?10
@@ -14116,9 +14405,14 @@ QtQml.QQmlComponent?1(QQmlEngine, QUrl, QObject parent=None)
 QtQml.QQmlComponent.__init__?1(self, QQmlEngine, QUrl, QObject parent=None)
 QtQml.QQmlComponent?1(QQmlEngine, QUrl, QQmlComponent.CompilationMode, QObject parent=None)
 QtQml.QQmlComponent.__init__?1(self, QQmlEngine, QUrl, QQmlComponent.CompilationMode, QObject parent=None)
+QtQml.QQmlComponent?1(QQmlEngine, QAnyStringView, QAnyStringView, QObject parent=None)
+QtQml.QQmlComponent.__init__?1(self, QQmlEngine, QAnyStringView, QAnyStringView, QObject parent=None)
+QtQml.QQmlComponent?1(QQmlEngine, QAnyStringView, QAnyStringView, QQmlComponent.CompilationMode, QObject parent=None)
+QtQml.QQmlComponent.__init__?1(self, QQmlEngine, QAnyStringView, QAnyStringView, QQmlComponent.CompilationMode, QObject parent=None)
 QtQml.QQmlComponent?1(QObject parent=None)
 QtQml.QQmlComponent.__init__?1(self, QObject parent=None)
 QtQml.QQmlComponent.status?4() -> QQmlComponent.Status
+QtQml.QQmlComponent.isBound?4() -> bool
 QtQml.QQmlComponent.isNull?4() -> bool
 QtQml.QQmlComponent.isReady?4() -> bool
 QtQml.QQmlComponent.isError?4() -> bool
@@ -14135,6 +14429,7 @@ QtQml.QQmlComponent.creationContext?4() -> QQmlContext
 QtQml.QQmlComponent.loadUrl?4(QUrl)
 QtQml.QQmlComponent.loadUrl?4(QUrl, QQmlComponent.CompilationMode)
 QtQml.QQmlComponent.setData?4(QByteArray, QUrl)
+QtQml.QQmlComponent.loadFromModule?4(QAnyStringView, QAnyStringView, QQmlComponent.CompilationMode mode=QQmlComponent.PreferSynchronous)
 QtQml.QQmlComponent.statusChanged?4(QQmlComponent.Status)
 QtQml.QQmlComponent.progressChanged?4(float)
 QtQml.QQmlComponent.engine?4() -> QQmlEngine
@@ -14680,7 +14975,7 @@ QtWidgets.QWidget.hasHeightForWidth?4() -> bool
 QtWidgets.QWidget.grab?4(QRect rectangle=QRect(QPoint(0, 0), QSize(-1, -1))) -> QPixmap
 QtWidgets.QWidget.createWindowContainer?4(QWindow, QWidget parent=None, unknown-type flags=Qt.WindowFlags()) -> Any
 QtWidgets.QWidget.windowHandle?4() -> QWindow
-QtWidgets.QWidget.nativeEvent?4(QByteArray, voidptr) -> (bool, qintptr)
+QtWidgets.QWidget.nativeEvent?4(QByteArray, PyQt6.sip.voidptr) -> (bool, qintptr)
 QtWidgets.QWidget.sharedPainter?4() -> QPainter
 QtWidgets.QWidget.initPainter?4(QPainter)
 QtWidgets.QWidget.setToolTipDuration?4(int)
@@ -15422,6 +15717,8 @@ QtWidgets.QCalendarWidget.setDateEditAcceptDelay?4(int)
 QtWidgets.QCalendarWidget.setNavigationBarVisible?4(bool)
 QtWidgets.QCalendarWidget.calendar?4() -> QCalendar
 QtWidgets.QCalendarWidget.setCalendar?4(QCalendar)
+QtWidgets.QCalendarWidget.clearMinimumDate?4()
+QtWidgets.QCalendarWidget.clearMaximumDate?4()
 QtWidgets.QCheckBox?1(QWidget parent=None)
 QtWidgets.QCheckBox.__init__?1(self, QWidget parent=None)
 QtWidgets.QCheckBox?1(QString, QWidget parent=None)
@@ -15547,8 +15844,8 @@ QtWidgets.QComboBox.duplicatesEnabled?4() -> bool
 QtWidgets.QComboBox.setDuplicatesEnabled?4(bool)
 QtWidgets.QComboBox.setFrame?4(bool)
 QtWidgets.QComboBox.hasFrame?4() -> bool
-QtWidgets.QComboBox.findText?4(QString, unknown-type flags=unknown-type(Qt.MatchExactly|Qt.MatchCaseSensitive)) -> int
-QtWidgets.QComboBox.findData?4(QVariant, int role=Qt.UserRole, unknown-type flags=unknown-type(Qt.MatchExactly|Qt.MatchCaseSensitive)) -> int
+QtWidgets.QComboBox.findText?4(QString, unknown-type flags=Qt.MatchExactly|Qt.MatchCaseSensitive) -> int
+QtWidgets.QComboBox.findData?4(QVariant, int role=Qt.UserRole, unknown-type flags=Qt.MatchExactly|Qt.MatchCaseSensitive) -> int
 QtWidgets.QComboBox.insertPolicy?4() -> QComboBox.InsertPolicy
 QtWidgets.QComboBox.setInsertPolicy?4(QComboBox.InsertPolicy)
 QtWidgets.QComboBox.sizeAdjustPolicy?4() -> QComboBox.SizeAdjustPolicy
@@ -18412,6 +18709,10 @@ QtWidgets.QKeySequenceEdit.timerEvent?4(QTimerEvent)
 QtWidgets.QKeySequenceEdit.focusOutEvent?4(QFocusEvent)
 QtWidgets.QKeySequenceEdit.setClearButtonEnabled?4(bool)
 QtWidgets.QKeySequenceEdit.isClearButtonEnabled?4() -> bool
+QtWidgets.QKeySequenceEdit.maximumSequenceLength?4() -> int
+QtWidgets.QKeySequenceEdit.setFinishingKeyCombinations?4(unknown-type)
+QtWidgets.QKeySequenceEdit.finishingKeyCombinations?4() -> unknown-type
+QtWidgets.QKeySequenceEdit.setMaximumSequenceLength?4(int)
 QtWidgets.QLabel?1(QWidget parent=None, unknown-type flags=Qt.WindowFlags())
 QtWidgets.QLabel.__init__?1(self, QWidget parent=None, unknown-type flags=Qt.WindowFlags())
 QtWidgets.QLabel?1(QString, QWidget parent=None, unknown-type flags=Qt.WindowFlags())
@@ -18465,7 +18766,7 @@ QtWidgets.QLabel.setSelection?4(int, int)
 QtWidgets.QLabel.hasSelectedText?4() -> bool
 QtWidgets.QLabel.selectedText?4() -> QString
 QtWidgets.QLabel.selectionStart?4() -> int
-QtWidgets.QLabel.resourceProvider?4() -> (Callable[..., None])
+QtWidgets.QLabel.resourceProvider?4() -> Callable[..., None]
 QtWidgets.QLabel.setResourceProvider?4(Callable[..., None])
 QtWidgets.QSpacerItem?1(int, int, QSizePolicy.Policy hPolicy=QSizePolicy.Minimum, QSizePolicy.Policy vPolicy=QSizePolicy.Minimum)
 QtWidgets.QSpacerItem.__init__?1(self, int, int, QSizePolicy.Policy hPolicy=QSizePolicy.Minimum, QSizePolicy.Policy vPolicy=QSizePolicy.Minimum)
@@ -19094,6 +19395,8 @@ QtWidgets.QMenuBar.event?4(QEvent) -> bool
 QtWidgets.QMenuBar.timerEvent?4(QTimerEvent)
 QtWidgets.QMenuBar.isNativeMenuBar?4() -> bool
 QtWidgets.QMenuBar.setNativeMenuBar?4(bool)
+QtWidgets.QMessageBox.Option?10
+QtWidgets.QMessageBox.Option.DontUseNativeDialog?10
 QtWidgets.QMessageBox.StandardButton?10
 QtWidgets.QMessageBox.StandardButton.NoButton?10
 QtWidgets.QMessageBox.StandardButton.Ok?10
@@ -19194,6 +19497,10 @@ QtWidgets.QMessageBox.setTextInteractionFlags?4(unknown-type)
 QtWidgets.QMessageBox.textInteractionFlags?4() -> unknown-type
 QtWidgets.QMessageBox.setCheckBox?4(QCheckBox)
 QtWidgets.QMessageBox.checkBox?4() -> QCheckBox
+QtWidgets.QMessageBox.setOption?4(QMessageBox.Option, bool on=True)
+QtWidgets.QMessageBox.testOption?4(QMessageBox.Option) -> bool
+QtWidgets.QMessageBox.setOptions?4(unknown-type)
+QtWidgets.QMessageBox.options?4() -> unknown-type
 QtWidgets.QPlainTextEdit.LineWrapMode?10
 QtWidgets.QPlainTextEdit.LineWrapMode.NoWrap?10
 QtWidgets.QPlainTextEdit.LineWrapMode.WidgetWidth?10
@@ -20030,6 +20337,7 @@ QtWidgets.QStyleOptionTab.TabPosition.Beginning?10
 QtWidgets.QStyleOptionTab.TabPosition.Middle?10
 QtWidgets.QStyleOptionTab.TabPosition.End?10
 QtWidgets.QStyleOptionTab.TabPosition.OnlyOneTab?10
+QtWidgets.QStyleOptionTab.TabPosition.Moving?10
 QtWidgets.QStyleOptionTab.StyleOptionVersion?10
 QtWidgets.QStyleOptionTab.StyleOptionVersion.Version?10
 QtWidgets.QStyleOptionTab.StyleOptionType?10
@@ -21527,12 +21835,12 @@ QtDBus.QDBusAbstractInterface.interface?4() -> QString
 QtDBus.QDBusAbstractInterface.lastError?4() -> QDBusError
 QtDBus.QDBusAbstractInterface.setTimeout?4(int)
 QtDBus.QDBusAbstractInterface.timeout?4() -> int
-QtDBus.QDBusAbstractInterface.call?4(QString, *) -> QDBusMessage
-QtDBus.QDBusAbstractInterface.call?4(QDBus.CallMode, QString, *) -> QDBusMessage
+QtDBus.QDBusAbstractInterface.call?4(QString, Any) -> QDBusMessage
+QtDBus.QDBusAbstractInterface.call?4(QDBus.CallMode, QString, Any) -> QDBusMessage
 QtDBus.QDBusAbstractInterface.callWithArgumentList?4(QDBus.CallMode, QString, unknown-type) -> QDBusMessage
 QtDBus.QDBusAbstractInterface.callWithCallback?4(QString, unknown-type, Any, Any) -> bool
 QtDBus.QDBusAbstractInterface.callWithCallback?4(QString, unknown-type, Any) -> bool
-QtDBus.QDBusAbstractInterface.asyncCall?4(QString, *) -> QDBusPendingCall
+QtDBus.QDBusAbstractInterface.asyncCall?4(QString, Any) -> QDBusPendingCall
 QtDBus.QDBusAbstractInterface.asyncCallWithArgumentList?4(QString, unknown-type) -> QDBusPendingCall
 QtDBus.QDBusAbstractInterface.connectNotify?4(QMetaMethod)
 QtDBus.QDBusAbstractInterface.disconnectNotify?4(QMetaMethod)
@@ -22321,13 +22629,14 @@ QtOpenGL.QOpenGLBuffer.release?4()
 QtOpenGL.QOpenGLBuffer.release?4(QOpenGLBuffer.Type)
 QtOpenGL.QOpenGLBuffer.bufferId?4() -> int
 QtOpenGL.QOpenGLBuffer.size?4() -> int
-QtOpenGL.QOpenGLBuffer.read?4(int, voidptr, int) -> bool
-QtOpenGL.QOpenGLBuffer.write?4(int, voidptr, int)
-QtOpenGL.QOpenGLBuffer.allocate?4(voidptr, int)
+QtOpenGL.QOpenGLBuffer.read?4(int, PyQt6.sip.voidptr, int) -> bool
+QtOpenGL.QOpenGLBuffer.write?4(int, PyQt6.sip.voidptr, int)
+QtOpenGL.QOpenGLBuffer.allocate?4(PyQt6.sip.voidptr, int)
 QtOpenGL.QOpenGLBuffer.allocate?4(int)
-QtOpenGL.QOpenGLBuffer.map?4(QOpenGLBuffer.Access) -> voidptr
+QtOpenGL.QOpenGLBuffer.map?4(QOpenGLBuffer.Access) -> PyQt6.sip.voidptr
 QtOpenGL.QOpenGLBuffer.unmap?4() -> bool
-QtOpenGL.QOpenGLBuffer.mapRange?4(int, int, unknown-type) -> voidptr
+QtOpenGL.QOpenGLBuffer.mapRange?4(int, int, unknown-type) -> PyQt6.sip.voidptr
+QtOpenGL.QOpenGLBuffer.swap?4(QOpenGLBuffer)
 QtOpenGL.QOpenGLDebugMessage.Severity?10
 QtOpenGL.QOpenGLDebugMessage.Severity.InvalidSeverity?10
 QtOpenGL.QOpenGLDebugMessage.Severity.HighSeverity?10
@@ -22917,15 +23226,15 @@ QtOpenGL.QOpenGLTexture.allocateStorage?4(QOpenGLTexture.PixelFormat, QOpenGLTex
 QtOpenGL.QOpenGLTexture.isStorageAllocated?4() -> bool
 QtOpenGL.QOpenGLTexture.createTextureView?4(QOpenGLTexture.Target, QOpenGLTexture.TextureFormat, int, int, int, int) -> QOpenGLTexture
 QtOpenGL.QOpenGLTexture.isTextureView?4() -> bool
-QtOpenGL.QOpenGLTexture.setData?4(int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
 QtOpenGL.QOpenGLTexture.setData?4(QImage, QOpenGLTexture.MipMapGeneration genMipMaps=QOpenGLTexture.GenerateMipMaps)
-QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, QOpenGLTexture.CubeMapFace, int, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, int, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setCompressedData?4(int, voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, QOpenGLTexture.CubeMapFace, int, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, int, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setCompressedData?4(int, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
 QtOpenGL.QOpenGLTexture.hasFeature?4(QOpenGLTexture.Feature) -> bool
 QtOpenGL.QOpenGLTexture.setMipBaseLevel?4(int)
 QtOpenGL.QOpenGLTexture.mipBaseLevel?4() -> int
@@ -22972,13 +23281,13 @@ QtOpenGL.QOpenGLTexture.setComparisonFunction?4(QOpenGLTexture.ComparisonFunctio
 QtOpenGL.QOpenGLTexture.comparisonFunction?4() -> QOpenGLTexture.ComparisonFunction
 QtOpenGL.QOpenGLTexture.setComparisonMode?4(QOpenGLTexture.ComparisonMode)
 QtOpenGL.QOpenGLTexture.comparisonMode?4() -> QOpenGLTexture.ComparisonMode
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, int, QOpenGLTexture.CubeMapFace, int, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
-QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.CubeMapFace, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setCompressedData?4(int, int, int, QOpenGLTexture.CubeMapFace, int, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.CubeMapFace, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
+QtOpenGL.QOpenGLTexture.setData?4(int, int, int, int, int, int, int, int, QOpenGLTexture.CubeMapFace, int, QOpenGLTexture.PixelFormat, QOpenGLTexture.PixelType, PyQt6.sip.voidptr, QOpenGLPixelTransferOptions options=None)
 QtOpenGL.QOpenGLTextureBlitter.Origin?10
 QtOpenGL.QOpenGLTextureBlitter.Origin.OriginBottomLeft?10
 QtOpenGL.QOpenGLTextureBlitter.Origin.OriginTopLeft?10
@@ -24406,6 +24715,9 @@ QtOpenGL.QOpenGLVersionProfile.setProfile?4(QSurfaceFormat.OpenGLContextProfile)
 QtOpenGL.QOpenGLVersionProfile.hasProfiles?4() -> bool
 QtOpenGL.QOpenGLVersionProfile.isLegacyVersion?4() -> bool
 QtOpenGL.QOpenGLVersionProfile.isValid?4() -> bool
+QtOpenGLWidgets.QOpenGLWidget.TargetBuffer?10
+QtOpenGLWidgets.QOpenGLWidget.TargetBuffer.LeftBuffer?10
+QtOpenGLWidgets.QOpenGLWidget.TargetBuffer.RightBuffer?10
 QtOpenGLWidgets.QOpenGLWidget.UpdateBehavior?10
 QtOpenGLWidgets.QOpenGLWidget.UpdateBehavior.NoPartialUpdate?10
 QtOpenGLWidgets.QOpenGLWidget.UpdateBehavior.PartialUpdate?10
@@ -24415,10 +24727,13 @@ QtOpenGLWidgets.QOpenGLWidget.setFormat?4(QSurfaceFormat)
 QtOpenGLWidgets.QOpenGLWidget.format?4() -> QSurfaceFormat
 QtOpenGLWidgets.QOpenGLWidget.isValid?4() -> bool
 QtOpenGLWidgets.QOpenGLWidget.makeCurrent?4()
+QtOpenGLWidgets.QOpenGLWidget.makeCurrent?4(QOpenGLWidget.TargetBuffer)
 QtOpenGLWidgets.QOpenGLWidget.doneCurrent?4()
 QtOpenGLWidgets.QOpenGLWidget.context?4() -> QOpenGLContext
 QtOpenGLWidgets.QOpenGLWidget.defaultFramebufferObject?4() -> int
+QtOpenGLWidgets.QOpenGLWidget.defaultFramebufferObject?4(QOpenGLWidget.TargetBuffer) -> int
 QtOpenGLWidgets.QOpenGLWidget.grabFramebuffer?4() -> QImage
+QtOpenGLWidgets.QOpenGLWidget.grabFramebuffer?4(QOpenGLWidget.TargetBuffer) -> QImage
 QtOpenGLWidgets.QOpenGLWidget.aboutToCompose?4()
 QtOpenGLWidgets.QOpenGLWidget.frameSwapped?4()
 QtOpenGLWidgets.QOpenGLWidget.aboutToResize?4()
@@ -24435,6 +24750,7 @@ QtOpenGLWidgets.QOpenGLWidget.setUpdateBehavior?4(QOpenGLWidget.UpdateBehavior)
 QtOpenGLWidgets.QOpenGLWidget.updateBehavior?4() -> QOpenGLWidget.UpdateBehavior
 QtOpenGLWidgets.QOpenGLWidget.textureFormat?4() -> int
 QtOpenGLWidgets.QOpenGLWidget.setTextureFormat?4(int)
+QtOpenGLWidgets.QOpenGLWidget.currentTargetBuffer?4() -> QOpenGLWidget.TargetBuffer
 QtPrintSupport.QAbstractPrintDialog.PrintDialogOption?10
 QtPrintSupport.QAbstractPrintDialog.PrintDialogOption.PrintToFile?10
 QtPrintSupport.QAbstractPrintDialog.PrintDialogOption.PrintSelection?10
@@ -24940,6 +25256,20 @@ QtQuick.QQuickGraphicsConfiguration.deviceExtensions?4() -> QByteArrayList
 QtQuick.QQuickGraphicsConfiguration.setDepthBufferFor2D?4(bool)
 QtQuick.QQuickGraphicsConfiguration.isDepthBufferEnabledFor2D?4() -> bool
 QtQuick.QQuickGraphicsConfiguration.preferredInstanceExtensions?4() -> QByteArrayList
+QtQuick.QQuickGraphicsConfiguration.setDebugLayer?4(bool)
+QtQuick.QQuickGraphicsConfiguration.isDebugLayerEnabled?4() -> bool
+QtQuick.QQuickGraphicsConfiguration.setDebugMarkers?4(bool)
+QtQuick.QQuickGraphicsConfiguration.isDebugMarkersEnabled?4() -> bool
+QtQuick.QQuickGraphicsConfiguration.setPreferSoftwareDevice?4(bool)
+QtQuick.QQuickGraphicsConfiguration.prefersSoftwareDevice?4() -> bool
+QtQuick.QQuickGraphicsConfiguration.setAutomaticPipelineCache?4(bool)
+QtQuick.QQuickGraphicsConfiguration.isAutomaticPipelineCacheEnabled?4() -> bool
+QtQuick.QQuickGraphicsConfiguration.setPipelineCacheSaveFile?4(QString)
+QtQuick.QQuickGraphicsConfiguration.pipelineCacheSaveFile?4() -> QString
+QtQuick.QQuickGraphicsConfiguration.setPipelineCacheLoadFile?4(QString)
+QtQuick.QQuickGraphicsConfiguration.pipelineCacheLoadFile?4() -> QString
+QtQuick.QQuickGraphicsConfiguration.setTimestamps?4(bool)
+QtQuick.QQuickGraphicsConfiguration.timestampsEnabled?4() -> bool
 QtQuick.QQuickGraphicsDevice?1()
 QtQuick.QQuickGraphicsDevice.__init__?1(self)
 QtQuick.QQuickGraphicsDevice?1(QQuickGraphicsDevice)
@@ -25252,10 +25582,10 @@ QtQuick.QSGGeometry.setDrawingMode?4(int)
 QtQuick.QSGGeometry.drawingMode?4() -> int
 QtQuick.QSGGeometry.allocate?4(int, int indexCount=0)
 QtQuick.QSGGeometry.vertexCount?4() -> int
-QtQuick.QSGGeometry.vertexData?4() -> voidptr
+QtQuick.QSGGeometry.vertexData?4() -> PyQt6.sip.voidptr
 QtQuick.QSGGeometry.indexType?4() -> int
 QtQuick.QSGGeometry.indexCount?4() -> int
-QtQuick.QSGGeometry.indexData?4() -> voidptr
+QtQuick.QSGGeometry.indexData?4() -> PyQt6.sip.voidptr
 QtQuick.QSGGeometry.attributeCount?4() -> int
 QtQuick.QSGGeometry.attributes?4() -> Any
 QtQuick.QSGGeometry.sizeOfVertex?4() -> int
@@ -25459,6 +25789,16 @@ QtQuick.QSGMaterialShader.GraphicsPipelineState.BlendFactor.Src1Color?10
 QtQuick.QSGMaterialShader.GraphicsPipelineState.BlendFactor.OneMinusSrc1Color?10
 QtQuick.QSGMaterialShader.GraphicsPipelineState.BlendFactor.Src1Alpha?10
 QtQuick.QSGMaterialShader.GraphicsPipelineState.BlendFactor.OneMinusSrc1Alpha?10
+QtQuick.QSGMaterialShader.GraphicsPipelineState.blendConstant?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.blendEnable?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.colorWrite?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.cullMode?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.dstAlpha?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.dstColor?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.polygonMode?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.separateBlendFactors?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.srcAlpha?7
+QtQuick.QSGMaterialShader.GraphicsPipelineState.srcColor?7
 QtQuick.QSGMaterialShader.GraphicsPipelineState?1()
 QtQuick.QSGMaterialShader.GraphicsPipelineState.__init__?1(self)
 QtQuick.QSGMaterialShader.GraphicsPipelineState?1(QSGMaterialShader.GraphicsPipelineState)
@@ -25518,6 +25858,8 @@ QtQuick.QSGRendererInterface.Resource.RhiSwapchainResource?10
 QtQuick.QSGRendererInterface.Resource.RhiRedirectCommandBuffer?10
 QtQuick.QSGRendererInterface.Resource.RhiRedirectRenderTarget?10
 QtQuick.QSGRendererInterface.Resource.RedirectPaintDevice?10
+QtQuick.QSGRendererInterface.Resource.GraphicsQueueFamilyIndexResource?10
+QtQuick.QSGRendererInterface.Resource.GraphicsQueueIndexResource?10
 QtQuick.QSGRendererInterface.GraphicsApi?10
 QtQuick.QSGRendererInterface.GraphicsApi.Unknown?10
 QtQuick.QSGRendererInterface.GraphicsApi.Software?10
@@ -25531,10 +25873,11 @@ QtQuick.QSGRendererInterface.GraphicsApi.NullRhi?10
 QtQuick.QSGRendererInterface.GraphicsApi.Direct3D11?10
 QtQuick.QSGRendererInterface.GraphicsApi.Vulkan?10
 QtQuick.QSGRendererInterface.GraphicsApi.Metal?10
+QtQuick.QSGRendererInterface.GraphicsApi.Direct3D12?10
 QtQuick.QSGRendererInterface.GraphicsApi.Null?10
 QtQuick.QSGRendererInterface.graphicsApi?4() -> QSGRendererInterface.GraphicsApi
-QtQuick.QSGRendererInterface.getResource?4(QQuickWindow, QSGRendererInterface.Resource) -> voidptr
-QtQuick.QSGRendererInterface.getResource?4(QQuickWindow, str) -> voidptr
+QtQuick.QSGRendererInterface.getResource?4(QQuickWindow, QSGRendererInterface.Resource) -> PyQt6.sip.voidptr
+QtQuick.QSGRendererInterface.getResource?4(QQuickWindow, str) -> PyQt6.sip.voidptr
 QtQuick.QSGRendererInterface.shaderType?4() -> QSGRendererInterface.ShaderType
 QtQuick.QSGRendererInterface.shaderCompilationType?4() -> unknown-type
 QtQuick.QSGRendererInterface.shaderSourceType?4() -> unknown-type
@@ -25563,13 +25906,14 @@ QtQuick.QSGRenderNode.matrix?4() -> QMatrix4x4
 QtQuick.QSGRenderNode.clipList?4() -> QSGClipNode
 QtQuick.QSGRenderNode.inheritedOpacity?4() -> float
 QtQuick.QSGRenderNode.prepare?4()
+QtQuick.QSGRenderNode.projectionMatrix?4() -> QMatrix4x4
 QtQuick.QSGRenderNode.RenderState.projectionMatrix?4() -> QMatrix4x4
 QtQuick.QSGRenderNode.RenderState.scissorRect?4() -> QRect
 QtQuick.QSGRenderNode.RenderState.scissorEnabled?4() -> bool
 QtQuick.QSGRenderNode.RenderState.stencilValue?4() -> int
 QtQuick.QSGRenderNode.RenderState.stencilEnabled?4() -> bool
 QtQuick.QSGRenderNode.RenderState.clipRegion?4() -> QRegion
-QtQuick.QSGRenderNode.RenderState.get?4(str) -> voidptr
+QtQuick.QSGRenderNode.RenderState.get?4(str) -> PyQt6.sip.voidptr
 QtQuick.QSGSimpleRectNode?1(QRectF, QColor)
 QtQuick.QSGSimpleRectNode.__init__?1(self, QRectF, QColor)
 QtQuick.QSGSimpleRectNode?1()
@@ -25715,6 +26059,13 @@ QtQuick3D.QQuick3DGeometry.subsetBoundsMax?4(int) -> QVector3D
 QtQuick3D.QQuick3DGeometry.subsetOffset?4(int) -> int
 QtQuick3D.QQuick3DGeometry.subsetName?4(int) -> QString
 QtQuick3D.QQuick3DGeometry.addSubset?4(int, int, QVector3D, QVector3D, QString name='')
+QtQuick3D.QQuick3DGeometry.targetData?4() -> QByteArray
+QtQuick3D.QQuick3DGeometry.setTargetData?4(int, QByteArray)
+QtQuick3D.QQuick3DGeometry.setTargetData?4(QByteArray)
+QtQuick3D.QQuick3DGeometry.targetAttribute?4(int) -> QQuick3DGeometry.TargetAttribute
+QtQuick3D.QQuick3DGeometry.targetAttributeCount?4() -> int
+QtQuick3D.QQuick3DGeometry.addTargetAttribute?4(QQuick3DGeometry.TargetAttribute)
+QtQuick3D.QQuick3DGeometry.addTargetAttribute?4(int, QQuick3DGeometry.Attribute.Semantic, int, int stride=0)
 QtQuick3D.QQuick3DGeometry.Attribute.ComponentType?10
 QtQuick3D.QQuick3DGeometry.Attribute.ComponentType.U16Type?10
 QtQuick3D.QQuick3DGeometry.Attribute.ComponentType.U32Type?10
@@ -25743,6 +26094,13 @@ QtQuick3D.QQuick3DGeometry.Attribute?1()
 QtQuick3D.QQuick3DGeometry.Attribute.__init__?1(self)
 QtQuick3D.QQuick3DGeometry.Attribute?1(QQuick3DGeometry.Attribute)
 QtQuick3D.QQuick3DGeometry.Attribute.__init__?1(self, QQuick3DGeometry.Attribute)
+QtQuick3D.QQuick3DGeometry.TargetAttribute.attr?7
+QtQuick3D.QQuick3DGeometry.TargetAttribute.stride?7
+QtQuick3D.QQuick3DGeometry.TargetAttribute.targetId?7
+QtQuick3D.QQuick3DGeometry.TargetAttribute?1()
+QtQuick3D.QQuick3DGeometry.TargetAttribute.__init__?1(self)
+QtQuick3D.QQuick3DGeometry.TargetAttribute?1(QQuick3DGeometry.TargetAttribute)
+QtQuick3D.QQuick3DGeometry.TargetAttribute.__init__?1(self, QQuick3DGeometry.TargetAttribute)
 QtQuick3D.QQuick3DTextureData.Format?10
 QtQuick3D.QQuick3DTextureData.Format.None_?10
 QtQuick3D.QQuick3DTextureData.Format.RGBA8?10
@@ -25791,6 +26149,8 @@ QtQuick3D.QQuick3DTextureData.format?4() -> QQuick3DTextureData.Format
 QtQuick3D.QQuick3DTextureData.setFormat?4(QQuick3DTextureData.Format)
 QtQuick3D.QQuick3DTextureData.hasTransparency?4() -> bool
 QtQuick3D.QQuick3DTextureData.setHasTransparency?4(bool)
+QtQuick3D.QQuick3DTextureData.depth?4() -> int
+QtQuick3D.QQuick3DTextureData.setDepth?4(int)
 QtQuickWidgets.QQuickWidget.Status?10
 QtQuickWidgets.QQuickWidget.Status.Null?10
 QtQuickWidgets.QQuickWidget.Status.Ready?10
@@ -25908,6 +26268,7 @@ QtSql.QSqlDriver.DbmsType.Sybase?10
 QtSql.QSqlDriver.DbmsType.SQLite?10
 QtSql.QSqlDriver.DbmsType.Interbase?10
 QtSql.QSqlDriver.DbmsType.DB2?10
+QtSql.QSqlDriver.DbmsType.MimerSQL?10
 QtSql.QSqlDriver.NotificationSource?10
 QtSql.QSqlDriver.NotificationSource.UnknownSource?10
 QtSql.QSqlDriver.NotificationSource.SelfSource?10
@@ -26021,6 +26382,7 @@ QtSql.QSqlField.setTableName?4(QString)
 QtSql.QSqlField.tableName?4() -> QString
 QtSql.QSqlField.metaType?4() -> QMetaType
 QtSql.QSqlField.setMetaType?4(QMetaType)
+QtSql.QSqlField.swap?4(QSqlField)
 QtSql.QSqlRecord?1()
 QtSql.QSqlRecord.__init__?1(self)
 QtSql.QSqlRecord?1(QSqlRecord)
@@ -26051,6 +26413,7 @@ QtSql.QSqlRecord.clear?4()
 QtSql.QSqlRecord.clearValues?4()
 QtSql.QSqlRecord.count?4() -> int
 QtSql.QSqlRecord.keyValues?4(QSqlRecord) -> QSqlRecord
+QtSql.QSqlRecord.swap?4(QSqlRecord)
 QtSql.QSqlIndex?1(QString cursorName='', QString name='')
 QtSql.QSqlIndex.__init__?1(self, QString cursorName='', QString name='')
 QtSql.QSqlIndex?1(QSqlIndex)
@@ -26063,6 +26426,7 @@ QtSql.QSqlIndex.append?4(QSqlField)
 QtSql.QSqlIndex.append?4(QSqlField, bool)
 QtSql.QSqlIndex.isDescending?4(int) -> bool
 QtSql.QSqlIndex.setDescending?4(int, bool)
+QtSql.QSqlIndex.swap?4(QSqlIndex)
 QtSql.QSqlQuery.BatchExecutionMode?10
 QtSql.QSqlQuery.BatchExecutionMode.ValuesAsRows?10
 QtSql.QSqlQuery.BatchExecutionMode.ValuesAsColumns?10
@@ -26114,6 +26478,8 @@ QtSql.QSqlQuery.numericalPrecisionPolicy?4() -> QSql.NumericalPrecisionPolicy
 QtSql.QSqlQuery.finish?4()
 QtSql.QSqlQuery.nextResult?4() -> bool
 QtSql.QSqlQuery.swap?4(QSqlQuery)
+QtSql.QSqlQuery.boundValueNames?4() -> QStringList
+QtSql.QSqlQuery.boundValueName?4(int) -> QString
 QtSql.QSqlQueryModel?1(QObject parent=None)
 QtSql.QSqlQueryModel.__init__?1(self, QObject parent=None)
 QtSql.QSqlQueryModel.rowCount?4(QModelIndex parent=QModelIndex()) -> int
@@ -26208,7 +26574,6 @@ QtSql.QSqlTableModel.deleteRowFromTable?4(int) -> bool
 QtSql.QSqlTableModel.orderByClause?4() -> QString
 QtSql.QSqlTableModel.selectStatement?4() -> QString
 QtSql.QSqlTableModel.setPrimaryKey?4(QSqlIndex)
-QtSql.QSqlTableModel.setQuery?4(QSqlQuery)
 QtSql.QSqlTableModel.indexInQuery?4(QModelIndex) -> QModelIndex
 QtSql.QSqlTableModel.primaryValues?4(int) -> QSqlRecord
 QtSql.QSqlTableModel.selectRow?4(int) -> bool
@@ -26284,6 +26649,7 @@ QtSql.QSqlResult.size?4() -> int
 QtSql.QSqlResult.numRowsAffected?4() -> int
 QtSql.QSqlResult.record?4() -> QSqlRecord
 QtSql.QSqlResult.lastInsertId?4() -> QVariant
+QtSql.QSqlResult.boundValueNames?4() -> QStringList
 QtSql.QSql.NumericalPrecisionPolicy?10
 QtSql.QSql.NumericalPrecisionPolicy.LowPrecisionInt32?10
 QtSql.QSql.NumericalPrecisionPolicy.LowPrecisionInt64?10
@@ -26302,8 +26668,13 @@ QtSql.QSql.ParamTypeFlag.Binary?10
 QtSql.QSql.Location?10
 QtSql.QSql.Location.BeforeFirstRow?10
 QtSql.QSql.Location.AfterLastRow?10
+QtSvg.QSvgGenerator.SvgVersion?10
+QtSvg.QSvgGenerator.SvgVersion.SvgTiny12?10
+QtSvg.QSvgGenerator.SvgVersion.Svg11?10
 QtSvg.QSvgGenerator?1()
 QtSvg.QSvgGenerator.__init__?1(self)
+QtSvg.QSvgGenerator?1(QSvgGenerator.SvgVersion)
+QtSvg.QSvgGenerator.__init__?1(self, QSvgGenerator.SvgVersion)
 QtSvg.QSvgGenerator.size?4() -> QSize
 QtSvg.QSvgGenerator.setSize?4(QSize)
 QtSvg.QSvgGenerator.fileName?4() -> QString
@@ -26322,6 +26693,7 @@ QtSvg.QSvgGenerator.setViewBox?4(QRect)
 QtSvg.QSvgGenerator.setViewBox?4(QRectF)
 QtSvg.QSvgGenerator.paintEngine?4() -> QPaintEngine
 QtSvg.QSvgGenerator.metric?4(QPaintDevice.PaintDeviceMetric) -> int
+QtSvg.QSvgGenerator.svgVersion?4() -> QSvgGenerator.SvgVersion
 QtSvg.QSvgRenderer?1(QObject parent=None)
 QtSvg.QSvgRenderer.__init__?1(self, QObject parent=None)
 QtSvg.QSvgRenderer?1(QString, QObject parent=None)
@@ -26555,6 +26927,10 @@ QtXml.QDomDocumentType.publicId?4() -> QString
 QtXml.QDomDocumentType.systemId?4() -> QString
 QtXml.QDomDocumentType.internalSubset?4() -> QString
 QtXml.QDomDocumentType.nodeType?4() -> QDomNode.NodeType
+QtXml.QDomDocument.ParseOption?10
+QtXml.QDomDocument.ParseOption.Default?10
+QtXml.QDomDocument.ParseOption.UseNamespaceProcessing?10
+QtXml.QDomDocument.ParseOption.PreserveSpacingOnlyNodes?10
 QtXml.QDomDocument?1()
 QtXml.QDomDocument.__init__?1(self)
 QtXml.QDomDocument?1(QString)
@@ -26581,12 +26957,12 @@ QtXml.QDomDocument.doctype?4() -> QDomDocumentType
 QtXml.QDomDocument.implementation?4() -> QDomImplementation
 QtXml.QDomDocument.documentElement?4() -> QDomElement
 QtXml.QDomDocument.nodeType?4() -> QDomNode.NodeType
+QtXml.QDomDocument.setContent?4(QXmlStreamReader, unknown-type options=QDomDocument.ParseOption.Default) -> Any
+QtXml.QDomDocument.setContent?4(QIODevice, unknown-type options=QDomDocument.ParseOption.Default) -> Any
+QtXml.QDomDocument.setContent?4(QAnyStringView, unknown-type options=QDomDocument.ParseOption.Default) -> Any
 QtXml.QDomDocument.setContent?4(QByteArray, bool) -> (bool, QString, int, int)
 QtXml.QDomDocument.setContent?4(QString, bool) -> (bool, QString, int, int)
 QtXml.QDomDocument.setContent?4(QIODevice, bool) -> (bool, QString, int, int)
-QtXml.QDomDocument.setContent?4(QByteArray) -> (bool, QString, int, int)
-QtXml.QDomDocument.setContent?4(QString) -> (bool, QString, int, int)
-QtXml.QDomDocument.setContent?4(QIODevice) -> (bool, QString, int, int)
 QtXml.QDomDocument.setContent?4(QXmlStreamReader, bool) -> (bool, QString, int, int)
 QtXml.QDomDocument.toString?4(int indent=1) -> QString
 QtXml.QDomDocument.toByteArray?4(int indent=1) -> QByteArray
@@ -26864,7 +27240,7 @@ QtMultimedia.QAudioFormat.channelOffset?4(QAudioFormat.AudioChannelPosition) -> 
 QtMultimedia.QAudioFormat.setSampleFormat?4(QAudioFormat.SampleFormat)
 QtMultimedia.QAudioFormat.sampleFormat?4() -> QAudioFormat.SampleFormat
 QtMultimedia.QAudioFormat.bytesPerSample?4() -> int
-QtMultimedia.QAudioFormat.normalizedSampleValue?4(voidptr) -> float
+QtMultimedia.QAudioFormat.normalizedSampleValue?4(PyQt6.sip.voidptr) -> float
 QtMultimedia.QAudioFormat.defaultChannelConfigForChannelCount?4(int) -> QAudioFormat.ChannelConfig
 QtMultimedia.QAudioInput?1(QAudioDevice, QObject parent=None)
 QtMultimedia.QAudioInput.__init__?1(self, QAudioDevice, QObject parent=None)
@@ -27096,6 +27472,13 @@ QtMultimedia.QCameraDevice.isDefault?4() -> bool
 QtMultimedia.QCameraDevice.position?4() -> QCameraDevice.Position
 QtMultimedia.QCameraDevice.photoResolutions?4() -> unknown-type
 QtMultimedia.QCameraDevice.videoFormats?4() -> unknown-type
+QtMultimedia.QCapturableWindow?1()
+QtMultimedia.QCapturableWindow.__init__?1(self)
+QtMultimedia.QCapturableWindow?1(QCapturableWindow)
+QtMultimedia.QCapturableWindow.__init__?1(self, QCapturableWindow)
+QtMultimedia.QCapturableWindow.swap?4(QCapturableWindow)
+QtMultimedia.QCapturableWindow.isValid?4() -> bool
+QtMultimedia.QCapturableWindow.description?4() -> QString
 QtMultimedia.QImageCapture.FileFormat?10
 QtMultimedia.QImageCapture.FileFormat.UnspecifiedFormat?10
 QtMultimedia.QImageCapture.FileFormat.JPEG?10
@@ -27170,6 +27553,12 @@ QtMultimedia.QMediaCaptureSession.imageCaptureChanged?4()
 QtMultimedia.QMediaCaptureSession.recorderChanged?4()
 QtMultimedia.QMediaCaptureSession.videoOutputChanged?4()
 QtMultimedia.QMediaCaptureSession.audioOutputChanged?4()
+QtMultimedia.QMediaCaptureSession.screenCapture?4() -> QScreenCapture
+QtMultimedia.QMediaCaptureSession.setScreenCapture?4(QScreenCapture)
+QtMultimedia.QMediaCaptureSession.screenCaptureChanged?4()
+QtMultimedia.QMediaCaptureSession.windowCapture?4() -> QWindowCapture
+QtMultimedia.QMediaCaptureSession.setWindowCapture?4(QWindowCapture)
+QtMultimedia.QMediaCaptureSession.windowCaptureChanged?4()
 QtMultimedia.QMediaDevices?1(QObject parent=None)
 QtMultimedia.QMediaDevices.__init__?1(self, QObject parent=None)
 QtMultimedia.QMediaDevices.audioInputs?4() -> unknown-type
@@ -27372,6 +27761,8 @@ QtMultimedia.QMediaPlayer.errorOccurred?4(QMediaPlayer.Error, QString)
 QtMultimedia.QMediaPlayer.loops?4() -> int
 QtMultimedia.QMediaPlayer.setLoops?4(int)
 QtMultimedia.QMediaPlayer.loopsChanged?4()
+QtMultimedia.QMediaPlayer.isPlaying?4() -> bool
+QtMultimedia.QMediaPlayer.playingChanged?4(bool)
 QtMultimedia.QMediaRecorder.Error?10
 QtMultimedia.QMediaRecorder.Error.NoError?10
 QtMultimedia.QMediaRecorder.Error.ResourceError?10
@@ -27474,6 +27865,27 @@ QtMultimedia.QMediaTimeRange.Interval.contains?4(int) -> bool
 QtMultimedia.QMediaTimeRange.Interval.isNormal?4() -> bool
 QtMultimedia.QMediaTimeRange.Interval.normalized?4() -> QMediaTimeRange.Interval
 QtMultimedia.QMediaTimeRange.Interval.translated?4(int) -> QMediaTimeRange.Interval
+QtMultimedia.QScreenCapture.Error?10
+QtMultimedia.QScreenCapture.Error.NoError?10
+QtMultimedia.QScreenCapture.Error.InternalError?10
+QtMultimedia.QScreenCapture.Error.CapturingNotSupported?10
+QtMultimedia.QScreenCapture.Error.CaptureFailed?10
+QtMultimedia.QScreenCapture.Error.NotFound?10
+QtMultimedia.QScreenCapture?1(QObject parent=None)
+QtMultimedia.QScreenCapture.__init__?1(self, QObject parent=None)
+QtMultimedia.QScreenCapture.captureSession?4() -> QMediaCaptureSession
+QtMultimedia.QScreenCapture.setScreen?4(QScreen)
+QtMultimedia.QScreenCapture.screen?4() -> QScreen
+QtMultimedia.QScreenCapture.isActive?4() -> bool
+QtMultimedia.QScreenCapture.error?4() -> QScreenCapture.Error
+QtMultimedia.QScreenCapture.errorString?4() -> QString
+QtMultimedia.QScreenCapture.setActive?4(bool)
+QtMultimedia.QScreenCapture.start?4()
+QtMultimedia.QScreenCapture.stop?4()
+QtMultimedia.QScreenCapture.activeChanged?4(bool)
+QtMultimedia.QScreenCapture.errorChanged?4()
+QtMultimedia.QScreenCapture.screenChanged?4(QScreen)
+QtMultimedia.QScreenCapture.errorOccurred?4(QScreenCapture.Error, QString)
 QtMultimedia.QSoundEffect.Status?10
 QtMultimedia.QSoundEffect.Status.Null?10
 QtMultimedia.QSoundEffect.Status.Loading?10
@@ -27543,7 +27955,7 @@ QtMultimedia.QVideoFrame.mapMode?4() -> QVideoFrame.MapMode
 QtMultimedia.QVideoFrame.map?4(QVideoFrame.MapMode) -> bool
 QtMultimedia.QVideoFrame.unmap?4()
 QtMultimedia.QVideoFrame.bytesPerLine?4(int) -> int
-QtMultimedia.QVideoFrame.bits?4(int) -> voidptr
+QtMultimedia.QVideoFrame.bits?4(int) -> PyQt6.sip.voidptr
 QtMultimedia.QVideoFrame.mappedBytes?4(int) -> int
 QtMultimedia.QVideoFrame.startTime?4() -> int
 QtMultimedia.QVideoFrame.setStartTime?4(int)
@@ -27674,6 +28086,27 @@ QtMultimedia.QVideoSink.videoFrame?4() -> QVideoFrame
 QtMultimedia.QVideoSink.videoFrameChanged?4(QVideoFrame)
 QtMultimedia.QVideoSink.subtitleTextChanged?4(QString)
 QtMultimedia.QVideoSink.videoSizeChanged?4()
+QtMultimedia.QWindowCapture.Error?10
+QtMultimedia.QWindowCapture.Error.NoError?10
+QtMultimedia.QWindowCapture.Error.InternalError?10
+QtMultimedia.QWindowCapture.Error.CapturingNotSupported?10
+QtMultimedia.QWindowCapture.Error.CaptureFailed?10
+QtMultimedia.QWindowCapture.Error.NotFound?10
+QtMultimedia.QWindowCapture?1(QObject parent=None)
+QtMultimedia.QWindowCapture.__init__?1(self, QObject parent=None)
+QtMultimedia.QWindowCapture.capturableWindows?4() -> unknown-type
+QtMultimedia.QWindowCapture.setWindow?4(QCapturableWindow)
+QtMultimedia.QWindowCapture.window?4() -> QCapturableWindow
+QtMultimedia.QWindowCapture.isActive?4() -> bool
+QtMultimedia.QWindowCapture.error?4() -> QWindowCapture.Error
+QtMultimedia.QWindowCapture.errorString?4() -> QString
+QtMultimedia.QWindowCapture.setActive?4(bool)
+QtMultimedia.QWindowCapture.start?4()
+QtMultimedia.QWindowCapture.stop?4()
+QtMultimedia.QWindowCapture.activeChanged?4(bool)
+QtMultimedia.QWindowCapture.windowChanged?4(QCapturableWindow)
+QtMultimedia.QWindowCapture.errorChanged?4()
+QtMultimedia.QWindowCapture.errorOccurred?4(QWindowCapture.Error, QString)
 QtMultimediaWidgets.QGraphicsVideoItem?1(QGraphicsItem parent=None)
 QtMultimediaWidgets.QGraphicsVideoItem.__init__?1(self, QGraphicsItem parent=None)
 QtMultimediaWidgets.QGraphicsVideoItem.videoSink?4() -> QVideoSink
@@ -28756,6 +29189,8 @@ QtWebSockets.QWebSocket.alertReceived?4(QSsl.AlertLevel, QSsl.AlertType, QString
 QtWebSockets.QWebSocket.handshakeInterruptedOnError?4(QSslError)
 QtWebSockets.QWebSocket.handshakeOptions?4() -> QWebSocketHandshakeOptions
 QtWebSockets.QWebSocket.subprotocol?4() -> QString
+QtWebSockets.QWebSocket.errorOccurred?4(QAbstractSocket.SocketError)
+QtWebSockets.QWebSocket.authenticationRequired?4(QAuthenticator)
 QtWebSockets.QWebSocketCorsAuthenticator?1(QString)
 QtWebSockets.QWebSocketCorsAuthenticator.__init__?1(self, QString)
 QtWebSockets.QWebSocketCorsAuthenticator?1(QWebSocketCorsAuthenticator)
@@ -29534,8 +29969,8 @@ QtBluetooth.QBluetoothUuid?1(QBluetoothUuid.DescriptorType)
 QtBluetooth.QBluetoothUuid.__init__?1(self, QBluetoothUuid.DescriptorType)
 QtBluetooth.QBluetoothUuid?1(int)
 QtBluetooth.QBluetoothUuid.__init__?1(self, int)
-QtBluetooth.QBluetoothUuid?1(quint128)
-QtBluetooth.QBluetoothUuid.__init__?1(self, quint128)
+QtBluetooth.QBluetoothUuid?1(quint128, QSysInfo.Endian order=QSysInfo.BigEndian)
+QtBluetooth.QBluetoothUuid.__init__?1(self, quint128, QSysInfo.Endian order=QSysInfo.BigEndian)
 QtBluetooth.QBluetoothUuid?1(QString)
 QtBluetooth.QBluetoothUuid.__init__?1(self, QString)
 QtBluetooth.QBluetoothUuid?1(QBluetoothUuid)
@@ -29687,6 +30122,7 @@ QtBluetooth.QLowEnergyController.Error.AdvertisingError?10
 QtBluetooth.QLowEnergyController.Error.RemoteHostClosedError?10
 QtBluetooth.QLowEnergyController.Error.AuthorizationError?10
 QtBluetooth.QLowEnergyController.Error.MissingPermissionsError?10
+QtBluetooth.QLowEnergyController.Error.RssiReadError?10
 QtBluetooth.QLowEnergyController.localAddress?4() -> QBluetoothAddress
 QtBluetooth.QLowEnergyController.remoteAddress?4() -> QBluetoothAddress
 QtBluetooth.QLowEnergyController.state?4() -> QLowEnergyController.ControllerState
@@ -29719,6 +30155,8 @@ QtBluetooth.QLowEnergyController.addService?4(QLowEnergyServiceData, QObject par
 QtBluetooth.QLowEnergyController.requestConnectionUpdate?4(QLowEnergyConnectionParameters)
 QtBluetooth.QLowEnergyController.role?4() -> QLowEnergyController.Role
 QtBluetooth.QLowEnergyController.remoteDeviceUuid?4() -> QBluetoothUuid
+QtBluetooth.QLowEnergyController.readRssi?4()
+QtBluetooth.QLowEnergyController.rssiRead?4(int)
 QtBluetooth.QLowEnergyDescriptor?1()
 QtBluetooth.QLowEnergyDescriptor.__init__?1(self)
 QtBluetooth.QLowEnergyDescriptor?1(QLowEnergyDescriptor)
@@ -30068,6 +30506,7 @@ QtPdf.QPdfDocument.render?4(int, QSize, QPdfDocumentRenderOptions options=QPdfDo
 QtPdf.QPdfDocument.getSelection?4(int, QPointF, QPointF) -> QPdfSelection
 QtPdf.QPdfDocument.getSelectionAtIndex?4(int, int, int) -> QPdfSelection
 QtPdf.QPdfDocument.getAllText?4(int) -> QPdfSelection
+QtPdf.QPdfDocument.pageIndexForLabel?4(QString) -> int
 QtPdf.QPdfDocument.passwordChanged?4()
 QtPdf.QPdfDocument.statusChanged?4(QPdfDocument.Status)
 QtPdf.QPdfDocument.pageCountChanged?4(int)
@@ -30113,6 +30552,25 @@ QtPdf.QPdfLink.contextAfter?4() -> QString
 QtPdf.QPdfLink.rectangles?4() -> unknown-type
 QtPdf.QPdfLink.toString?4() -> QString
 QtPdf.QPdfLink.copyToClipboard?4(QClipboard.Mode mode=QClipboard.Clipboard)
+QtPdf.QPdfLinkModel.Role?10
+QtPdf.QPdfLinkModel.Role.Link?10
+QtPdf.QPdfLinkModel.Role.Rectangle?10
+QtPdf.QPdfLinkModel.Role.Url?10
+QtPdf.QPdfLinkModel.Role.Page?10
+QtPdf.QPdfLinkModel.Role.Location?10
+QtPdf.QPdfLinkModel.Role.Zoom?10
+QtPdf.QPdfLinkModel?1(QObject parent=None)
+QtPdf.QPdfLinkModel.__init__?1(self, QObject parent=None)
+QtPdf.QPdfLinkModel.document?4() -> QPdfDocument
+QtPdf.QPdfLinkModel.roleNames?4() -> unknown-type
+QtPdf.QPdfLinkModel.rowCount?4(QModelIndex) -> int
+QtPdf.QPdfLinkModel.data?4(QModelIndex, int) -> QVariant
+QtPdf.QPdfLinkModel.page?4() -> int
+QtPdf.QPdfLinkModel.linkAt?4(QPointF) -> QPdfLink
+QtPdf.QPdfLinkModel.setDocument?4(QPdfDocument)
+QtPdf.QPdfLinkModel.setPage?4(int)
+QtPdf.QPdfLinkModel.documentChanged?4()
+QtPdf.QPdfLinkModel.pageChanged?4(int)
 QtPdf.QPdfPageNavigator?1(QObject)
 QtPdf.QPdfPageNavigator.__init__?1(self, QObject)
 QtPdf.QPdfPageNavigator.currentPage?4() -> int
@@ -30174,6 +30632,16 @@ QtPdf.QPdfSelection.boundingRectangle?4() -> QRectF
 QtPdf.QPdfSelection.startIndex?4() -> int
 QtPdf.QPdfSelection.endIndex?4() -> int
 QtPdf.QPdfSelection.copyToClipboard?4(QClipboard.Mode mode=QClipboard.Clipboard)
+QtPdfWidgets.QPdfPageSelector?1(QWidget)
+QtPdfWidgets.QPdfPageSelector.__init__?1(self, QWidget)
+QtPdfWidgets.QPdfPageSelector.setDocument?4(QPdfDocument)
+QtPdfWidgets.QPdfPageSelector.document?4() -> QPdfDocument
+QtPdfWidgets.QPdfPageSelector.currentPage?4() -> int
+QtPdfWidgets.QPdfPageSelector.currentPageLabel?4() -> QString
+QtPdfWidgets.QPdfPageSelector.setCurrentPage?4(int)
+QtPdfWidgets.QPdfPageSelector.documentChanged?4(QPdfDocument)
+QtPdfWidgets.QPdfPageSelector.currentPageChanged?4(int)
+QtPdfWidgets.QPdfPageSelector.currentPageLabelChanged?4(QString)
 QtPdfWidgets.QPdfView.ZoomMode?10
 QtPdfWidgets.QPdfView.ZoomMode.Custom?10
 QtPdfWidgets.QPdfView.ZoomMode.FitToWidth?10
@@ -30205,11 +30673,202 @@ QtPdfWidgets.QPdfView.documentMarginsChanged?4(QMargins)
 QtPdfWidgets.QPdfView.paintEvent?4(QPaintEvent)
 QtPdfWidgets.QPdfView.resizeEvent?4(QResizeEvent)
 QtPdfWidgets.QPdfView.scrollContentsBy?4(int, int)
+QtPdfWidgets.QPdfView.searchModel?4() -> QPdfSearchModel
+QtPdfWidgets.QPdfView.setSearchModel?4(QPdfSearchModel)
+QtPdfWidgets.QPdfView.currentSearchResultIndex?4() -> int
+QtPdfWidgets.QPdfView.setCurrentSearchResultIndex?4(int)
+QtPdfWidgets.QPdfView.searchModelChanged?4(QPdfSearchModel)
+QtPdfWidgets.QPdfView.currentSearchResultIndexChanged?4(int)
+QtPdfWidgets.QPdfView.mousePressEvent?4(QMouseEvent)
+QtPdfWidgets.QPdfView.mouseMoveEvent?4(QMouseEvent)
+QtPdfWidgets.QPdfView.mouseReleaseEvent?4(QMouseEvent)
+QtSpatialAudio.QAmbientSound.Loops?10
+QtSpatialAudio.QAmbientSound.Loops.Infinite?10
+QtSpatialAudio.QAmbientSound.Loops.Once?10
+QtSpatialAudio.QAmbientSound?1(QAudioEngine)
+QtSpatialAudio.QAmbientSound.__init__?1(self, QAudioEngine)
+QtSpatialAudio.QAmbientSound.setSource?4(QUrl)
+QtSpatialAudio.QAmbientSound.source?4() -> QUrl
+QtSpatialAudio.QAmbientSound.loops?4() -> int
+QtSpatialAudio.QAmbientSound.setLoops?4(int)
+QtSpatialAudio.QAmbientSound.autoPlay?4() -> bool
+QtSpatialAudio.QAmbientSound.setAutoPlay?4(bool)
+QtSpatialAudio.QAmbientSound.setVolume?4(float)
+QtSpatialAudio.QAmbientSound.volume?4() -> float
+QtSpatialAudio.QAmbientSound.engine?4() -> QAudioEngine
+QtSpatialAudio.QAmbientSound.sourceChanged?4()
+QtSpatialAudio.QAmbientSound.loopsChanged?4()
+QtSpatialAudio.QAmbientSound.autoPlayChanged?4()
+QtSpatialAudio.QAmbientSound.volumeChanged?4()
+QtSpatialAudio.QAmbientSound.play?4()
+QtSpatialAudio.QAmbientSound.pause?4()
+QtSpatialAudio.QAmbientSound.stop?4()
+QtSpatialAudio.QAudioEngine.OutputMode?10
+QtSpatialAudio.QAudioEngine.OutputMode.Surround?10
+QtSpatialAudio.QAudioEngine.OutputMode.Stereo?10
+QtSpatialAudio.QAudioEngine.OutputMode.Headphone?10
+QtSpatialAudio.QAudioEngine.DistanceScaleCentimeter?7
+QtSpatialAudio.QAudioEngine.DistanceScaleMeter?7
+QtSpatialAudio.QAudioEngine?1()
+QtSpatialAudio.QAudioEngine.__init__?1(self)
+QtSpatialAudio.QAudioEngine?1(QObject)
+QtSpatialAudio.QAudioEngine.__init__?1(self, QObject)
+QtSpatialAudio.QAudioEngine?1(int, QObject parent=None)
+QtSpatialAudio.QAudioEngine.__init__?1(self, int, QObject parent=None)
+QtSpatialAudio.QAudioEngine.setOutputMode?4(QAudioEngine.OutputMode)
+QtSpatialAudio.QAudioEngine.outputMode?4() -> QAudioEngine.OutputMode
+QtSpatialAudio.QAudioEngine.sampleRate?4() -> int
+QtSpatialAudio.QAudioEngine.setOutputDevice?4(QAudioDevice)
+QtSpatialAudio.QAudioEngine.outputDevice?4() -> QAudioDevice
+QtSpatialAudio.QAudioEngine.setMasterVolume?4(float)
+QtSpatialAudio.QAudioEngine.masterVolume?4() -> float
+QtSpatialAudio.QAudioEngine.setPaused?4(bool)
+QtSpatialAudio.QAudioEngine.paused?4() -> bool
+QtSpatialAudio.QAudioEngine.setRoomEffectsEnabled?4(bool)
+QtSpatialAudio.QAudioEngine.roomEffectsEnabled?4() -> bool
+QtSpatialAudio.QAudioEngine.setDistanceScale?4(float)
+QtSpatialAudio.QAudioEngine.distanceScale?4() -> float
+QtSpatialAudio.QAudioEngine.outputModeChanged?4()
+QtSpatialAudio.QAudioEngine.outputDeviceChanged?4()
+QtSpatialAudio.QAudioEngine.masterVolumeChanged?4()
+QtSpatialAudio.QAudioEngine.pausedChanged?4()
+QtSpatialAudio.QAudioEngine.distanceScaleChanged?4()
+QtSpatialAudio.QAudioEngine.start?4()
+QtSpatialAudio.QAudioEngine.stop?4()
+QtSpatialAudio.QAudioEngine.pause?4()
+QtSpatialAudio.QAudioEngine.resume?4()
+QtSpatialAudio.QAudioListener?1(QAudioEngine)
+QtSpatialAudio.QAudioListener.__init__?1(self, QAudioEngine)
+QtSpatialAudio.QAudioListener.setPosition?4(QVector3D)
+QtSpatialAudio.QAudioListener.position?4() -> QVector3D
+QtSpatialAudio.QAudioListener.setRotation?4(QQuaternion)
+QtSpatialAudio.QAudioListener.rotation?4() -> QQuaternion
+QtSpatialAudio.QAudioListener.engine?4() -> QAudioEngine
+QtSpatialAudio.QAudioRoom.Wall?10
+QtSpatialAudio.QAudioRoom.Wall.LeftWall?10
+QtSpatialAudio.QAudioRoom.Wall.RightWall?10
+QtSpatialAudio.QAudioRoom.Wall.Floor?10
+QtSpatialAudio.QAudioRoom.Wall.Ceiling?10
+QtSpatialAudio.QAudioRoom.Wall.FrontWall?10
+QtSpatialAudio.QAudioRoom.Wall.BackWall?10
+QtSpatialAudio.QAudioRoom.Material?10
+QtSpatialAudio.QAudioRoom.Material.Transparent?10
+QtSpatialAudio.QAudioRoom.Material.AcousticCeilingTiles?10
+QtSpatialAudio.QAudioRoom.Material.BrickBare?10
+QtSpatialAudio.QAudioRoom.Material.BrickPainted?10
+QtSpatialAudio.QAudioRoom.Material.ConcreteBlockCoarse?10
+QtSpatialAudio.QAudioRoom.Material.ConcreteBlockPainted?10
+QtSpatialAudio.QAudioRoom.Material.CurtainHeavy?10
+QtSpatialAudio.QAudioRoom.Material.FiberGlassInsulation?10
+QtSpatialAudio.QAudioRoom.Material.GlassThin?10
+QtSpatialAudio.QAudioRoom.Material.GlassThick?10
+QtSpatialAudio.QAudioRoom.Material.Grass?10
+QtSpatialAudio.QAudioRoom.Material.LinoleumOnConcrete?10
+QtSpatialAudio.QAudioRoom.Material.Marble?10
+QtSpatialAudio.QAudioRoom.Material.Metal?10
+QtSpatialAudio.QAudioRoom.Material.ParquetOnConcrete?10
+QtSpatialAudio.QAudioRoom.Material.PlasterRough?10
+QtSpatialAudio.QAudioRoom.Material.PlasterSmooth?10
+QtSpatialAudio.QAudioRoom.Material.PlywoodPanel?10
+QtSpatialAudio.QAudioRoom.Material.PolishedConcreteOrTile?10
+QtSpatialAudio.QAudioRoom.Material.Sheetrock?10
+QtSpatialAudio.QAudioRoom.Material.WaterOrIceSurface?10
+QtSpatialAudio.QAudioRoom.Material.WoodCeiling?10
+QtSpatialAudio.QAudioRoom.Material.WoodPanel?10
+QtSpatialAudio.QAudioRoom.Material.UniformMaterial?10
+QtSpatialAudio.QAudioRoom?1(QAudioEngine)
+QtSpatialAudio.QAudioRoom.__init__?1(self, QAudioEngine)
+QtSpatialAudio.QAudioRoom.setPosition?4(QVector3D)
+QtSpatialAudio.QAudioRoom.position?4() -> QVector3D
+QtSpatialAudio.QAudioRoom.setDimensions?4(QVector3D)
+QtSpatialAudio.QAudioRoom.dimensions?4() -> QVector3D
+QtSpatialAudio.QAudioRoom.setRotation?4(QQuaternion)
+QtSpatialAudio.QAudioRoom.rotation?4() -> QQuaternion
+QtSpatialAudio.QAudioRoom.setWallMaterial?4(QAudioRoom.Wall, QAudioRoom.Material)
+QtSpatialAudio.QAudioRoom.wallMaterial?4(QAudioRoom.Wall) -> QAudioRoom.Material
+QtSpatialAudio.QAudioRoom.setReflectionGain?4(float)
+QtSpatialAudio.QAudioRoom.reflectionGain?4() -> float
+QtSpatialAudio.QAudioRoom.setReverbGain?4(float)
+QtSpatialAudio.QAudioRoom.reverbGain?4() -> float
+QtSpatialAudio.QAudioRoom.setReverbTime?4(float)
+QtSpatialAudio.QAudioRoom.reverbTime?4() -> float
+QtSpatialAudio.QAudioRoom.setReverbBrightness?4(float)
+QtSpatialAudio.QAudioRoom.reverbBrightness?4() -> float
+QtSpatialAudio.QAudioRoom.positionChanged?4()
+QtSpatialAudio.QAudioRoom.dimensionsChanged?4()
+QtSpatialAudio.QAudioRoom.rotationChanged?4()
+QtSpatialAudio.QAudioRoom.wallsChanged?4()
+QtSpatialAudio.QAudioRoom.reflectionGainChanged?4()
+QtSpatialAudio.QAudioRoom.reverbGainChanged?4()
+QtSpatialAudio.QAudioRoom.reverbTimeChanged?4()
+QtSpatialAudio.QAudioRoom.reverbBrightnessChanged?4()
+QtSpatialAudio.QSpatialSound.Loops?10
+QtSpatialAudio.QSpatialSound.Loops.Infinite?10
+QtSpatialAudio.QSpatialSound.Loops.Once?10
+QtSpatialAudio.QSpatialSound.DistanceModel?10
+QtSpatialAudio.QSpatialSound.DistanceModel.Logarithmic?10
+QtSpatialAudio.QSpatialSound.DistanceModel.Linear?10
+QtSpatialAudio.QSpatialSound.DistanceModel.ManualAttenuation?10
+QtSpatialAudio.QSpatialSound?1(QAudioEngine)
+QtSpatialAudio.QSpatialSound.__init__?1(self, QAudioEngine)
+QtSpatialAudio.QSpatialSound.setSource?4(QUrl)
+QtSpatialAudio.QSpatialSound.source?4() -> QUrl
+QtSpatialAudio.QSpatialSound.loops?4() -> int
+QtSpatialAudio.QSpatialSound.setLoops?4(int)
+QtSpatialAudio.QSpatialSound.autoPlay?4() -> bool
+QtSpatialAudio.QSpatialSound.setAutoPlay?4(bool)
+QtSpatialAudio.QSpatialSound.setPosition?4(QVector3D)
+QtSpatialAudio.QSpatialSound.position?4() -> QVector3D
+QtSpatialAudio.QSpatialSound.setRotation?4(QQuaternion)
+QtSpatialAudio.QSpatialSound.rotation?4() -> QQuaternion
+QtSpatialAudio.QSpatialSound.setVolume?4(float)
+QtSpatialAudio.QSpatialSound.volume?4() -> float
+QtSpatialAudio.QSpatialSound.setDistanceModel?4(QSpatialSound.DistanceModel)
+QtSpatialAudio.QSpatialSound.distanceModel?4() -> QSpatialSound.DistanceModel
+QtSpatialAudio.QSpatialSound.setSize?4(float)
+QtSpatialAudio.QSpatialSound.size?4() -> float
+QtSpatialAudio.QSpatialSound.setDistanceCutoff?4(float)
+QtSpatialAudio.QSpatialSound.distanceCutoff?4() -> float
+QtSpatialAudio.QSpatialSound.setManualAttenuation?4(float)
+QtSpatialAudio.QSpatialSound.manualAttenuation?4() -> float
+QtSpatialAudio.QSpatialSound.setOcclusionIntensity?4(float)
+QtSpatialAudio.QSpatialSound.occlusionIntensity?4() -> float
+QtSpatialAudio.QSpatialSound.setDirectivity?4(float)
+QtSpatialAudio.QSpatialSound.directivity?4() -> float
+QtSpatialAudio.QSpatialSound.setDirectivityOrder?4(float)
+QtSpatialAudio.QSpatialSound.directivityOrder?4() -> float
+QtSpatialAudio.QSpatialSound.setNearFieldGain?4(float)
+QtSpatialAudio.QSpatialSound.nearFieldGain?4() -> float
+QtSpatialAudio.QSpatialSound.engine?4() -> QAudioEngine
+QtSpatialAudio.QSpatialSound.sourceChanged?4()
+QtSpatialAudio.QSpatialSound.loopsChanged?4()
+QtSpatialAudio.QSpatialSound.autoPlayChanged?4()
+QtSpatialAudio.QSpatialSound.positionChanged?4()
+QtSpatialAudio.QSpatialSound.rotationChanged?4()
+QtSpatialAudio.QSpatialSound.volumeChanged?4()
+QtSpatialAudio.QSpatialSound.distanceModelChanged?4()
+QtSpatialAudio.QSpatialSound.sizeChanged?4()
+QtSpatialAudio.QSpatialSound.distanceCutoffChanged?4()
+QtSpatialAudio.QSpatialSound.manualAttenuationChanged?4()
+QtSpatialAudio.QSpatialSound.occlusionIntensityChanged?4()
+QtSpatialAudio.QSpatialSound.directivityChanged?4()
+QtSpatialAudio.QSpatialSound.directivityOrderChanged?4()
+QtSpatialAudio.QSpatialSound.nearFieldGainChanged?4()
+QtSpatialAudio.QSpatialSound.play?4()
+QtSpatialAudio.QSpatialSound.pause?4()
+QtSpatialAudio.QSpatialSound.stop?4()
+QtTextToSpeech.QTextToSpeech.Capability?10
+QtTextToSpeech.QTextToSpeech.Capability.None_?10
+QtTextToSpeech.QTextToSpeech.Capability.Speak?10
+QtTextToSpeech.QTextToSpeech.Capability.PauseResume?10
+QtTextToSpeech.QTextToSpeech.Capability.WordByWordProgress?10
+QtTextToSpeech.QTextToSpeech.Capability.Synthesize?10
 QtTextToSpeech.QTextToSpeech.State?10
 QtTextToSpeech.QTextToSpeech.State.Ready?10
 QtTextToSpeech.QTextToSpeech.State.Speaking?10
 QtTextToSpeech.QTextToSpeech.State.Paused?10
 QtTextToSpeech.QTextToSpeech.State.Error?10
+QtTextToSpeech.QTextToSpeech.State.Synthesizing?10
 QtTextToSpeech.QTextToSpeech.ErrorReason?10
 QtTextToSpeech.QTextToSpeech.ErrorReason.NoError?10
 QtTextToSpeech.QTextToSpeech.ErrorReason.Initialization?10
@@ -30221,6 +30880,7 @@ QtTextToSpeech.QTextToSpeech.BoundaryHint.Default?10
 QtTextToSpeech.QTextToSpeech.BoundaryHint.Immediate?10
 QtTextToSpeech.QTextToSpeech.BoundaryHint.Word?10
 QtTextToSpeech.QTextToSpeech.BoundaryHint.Sentence?10
+QtTextToSpeech.QTextToSpeech.BoundaryHint.Utterance?10
 QtTextToSpeech.QTextToSpeech?1(QString, unknown-type, QObject parent=None)
 QtTextToSpeech.QTextToSpeech.__init__?1(self, QString, unknown-type, QObject parent=None)
 QtTextToSpeech.QTextToSpeech?1(QObject parent=None)
@@ -30257,6 +30917,10 @@ QtTextToSpeech.QTextToSpeech.volumeChanged?4(float)
 QtTextToSpeech.QTextToSpeech.voiceChanged?4(QVoice)
 QtTextToSpeech.QTextToSpeech.engineChanged?4(QString)
 QtTextToSpeech.QTextToSpeech.errorOccurred?4(QTextToSpeech.ErrorReason, QString)
+QtTextToSpeech.QTextToSpeech.engineCapabilities?4() -> unknown-type
+QtTextToSpeech.QTextToSpeech.enqueue?4(QString) -> int
+QtTextToSpeech.QTextToSpeech.sayingWord?4(QString, int, int, int)
+QtTextToSpeech.QTextToSpeech.aboutToSynthesize?4(int)
 QtTextToSpeech.QVoice.Age?10
 QtTextToSpeech.QVoice.Age.Child?10
 QtTextToSpeech.QVoice.Age.Teenager?10
@@ -30278,3 +30942,4 @@ QtTextToSpeech.QVoice.genderName?4(QVoice.Gender) -> QString
 QtTextToSpeech.QVoice.ageName?4(QVoice.Age) -> QString
 QtTextToSpeech.QVoice.swap?4(QVoice)
 QtTextToSpeech.QVoice.locale?4() -> QLocale
+QtTextToSpeech.QVoice.language?4() -> QLocale.Language

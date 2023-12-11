@@ -80,4 +80,10 @@ public:
 %If (Qt_6_2_0 -)
     void swap(QSqlQuery &other /Constrained/);
 %End
+%If (Qt_6_6_0 -)
+    QStringList boundValueNames() const;
+%End
+%If (Qt_6_6_0 -)
+    QString boundValueName(int pos) const;
+%End
 };

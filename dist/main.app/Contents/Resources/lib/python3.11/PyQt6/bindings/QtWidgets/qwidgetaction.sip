@@ -31,13 +31,13 @@ public:
     virtual ~QWidgetAction();
     void setDefaultWidget(QWidget *w /Transfer/);
     QWidget *defaultWidget() const;
-    QWidget *requestWidget(QWidget *parent /TransferThis/) /Factory/;
-    void releaseWidget(QWidget *widget /TransferBack/);
+    QWidget *requestWidget(QWidget *parent);
+    void releaseWidget(QWidget *widget);
 
 protected:
     virtual bool event(QEvent *);
     virtual bool eventFilter(QObject *, QEvent *);
-    virtual QWidget *createWidget(QWidget *parent /TransferThis/) /Factory/;
-    virtual void deleteWidget(QWidget *widget /Transfer/);
+    virtual QWidget *createWidget(QWidget *parent);
+    virtual void deleteWidget(QWidget *widget);
     QList<QWidget *> createdWidgets() const;
 };

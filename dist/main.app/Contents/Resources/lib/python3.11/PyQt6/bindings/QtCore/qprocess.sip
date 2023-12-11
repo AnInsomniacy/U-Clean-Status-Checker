@@ -198,6 +198,54 @@ public:
     void setInputChannelMode(QProcess::InputChannelMode mode);
     static QString nullDevice();
     qint64 processId() const;
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+
+    enum class UnixProcessFlag
+    {
+        ResetSignalHandlers,
+        IgnoreSigPipe,
+        CloseFileDescriptors,
+        UseVFork,
+    };
+
+%End
+%End
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+    typedef QFlags<QProcess::UnixProcessFlag> UnixProcessFlags;
+%End
+%End
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+
+    struct UnixProcessParameters
+    {
+%TypeHeaderCode
+#include <qprocess.h>
+%End
+
+        QProcess::UnixProcessFlags flags;
+        int lowestFileDescriptorToClose;
+    };
+
+%End
+%End
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+    QProcess::UnixProcessParameters unixProcessParameters() const;
+%End
+%End
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+    void setUnixProcessParameters(QProcess::UnixProcessFlags flagsOnly);
+%End
+%End
+%If (Qt_6_6_0 -)
+%If (Linux || macOS)
+    void setUnixProcessParameters(const QProcess::UnixProcessParameters &params);
+%End
+%End
 };
 
 %End

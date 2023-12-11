@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 import QtQuick.Controls.impl
 
 T.CheckDelegate {
@@ -20,20 +20,20 @@ T.CheckDelegate {
 
     icon.width: 29
     icon.height: 29
-    icon.color: control.enabled ? control.palette.text : control.palette.mid
+    icon.color: control.palette.text
 
     indicator: Image {
         x: control.mirrored ? control.leftPadding : control.width - width - control.rightPadding
         y: control.topPadding + (control.availableHeight - height) / 2
         opacity: control.enabled ? 1 : 0.5
 
-        source: control.IOS.url + (control.checkState === Qt.Unchecked ?  "radiobutton-indicator" : "checkbox-indicator")
+        source: IOS.url + (control.checkState === Qt.Unchecked ?  "radiobutton-indicator" : "checkbox-indicator")
         ImageSelector on source {
             states: [
                 {"checked": control.checkState === Qt.Checked},
                 {"partially-checked": control.checkState === Qt.PartiallyChecked},
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark}
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark}
             ]
         }
     }
@@ -50,23 +50,23 @@ T.CheckDelegate {
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.enabled ? control.palette.text : control.palette.mid
+        color: control.palette.text
     }
 
     background: Rectangle {
         implicitHeight: 44
-        color: control.IOS.theme === IOS.Dark ? control.palette.light : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.light : control.palette.base
         NinePatchImage {
             property real offset: control.icon.source.toString() !== "" ? control.icon.width + control.spacing : 0
             x: control.down ? 0 : control.leftPadding + offset
             y: control.down ? -1 : 0
             height: control.height + (control.down ? 1 : 0)
             width: control.down ? control.width : control.availableWidth + control.rightPadding - offset
-            source: control.IOS.url + "itemdelegate-background"
+            source: IOS.url + "itemdelegate-background"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"pressed": control.down}
                 ]
             }

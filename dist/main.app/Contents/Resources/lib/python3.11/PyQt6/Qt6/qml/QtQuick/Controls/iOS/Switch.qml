@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.Switch {
     id: control
@@ -29,11 +29,11 @@ T.Switch {
         height: Math.max(implicitHeight, handle.implicitHeight)
         opacity: control.enabled ? 1 : 0.5
 
-        source: control.IOS.url + "switch-indicator"
+        source: IOS.url + "switch-indicator"
         ImageSelector on source {
             states: [
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark},
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                 {"checked": control.checked}
             ]
         }
@@ -50,11 +50,11 @@ T.Switch {
             y: (parent.height - height) / 2 - topInset + margin
             width: control.pressed ? implicitWidth + 4 : implicitWidth
 
-            source: control.IOS.url + "switch-handle"
+            source: IOS.url + "switch-handle"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"disabled": !control.enabled}
                 ]
             }
@@ -72,7 +72,7 @@ T.Switch {
 
         text: control.text
         font: control.font
-        color: control.palette.windowText
+        color: control.palette.text
         elide: Text.ElideRight
         verticalAlignment: Text.AlignVCenter
     }

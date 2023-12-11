@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.ProgressBar {
     id: control
@@ -18,21 +18,36 @@ T.ProgressBar {
 
     contentItem: Item {
         parent: control.background
-        implicitWidth: progress.width
-        implicitHeight: progress.implicitHeight
+        implicitWidth: control.indeterminate ? animatedProgress.implicitWidth : progress.implicitWidth
+        implicitHeight: control.indeterminate ? animatedProgress.implicitHeight : progress.implicitHeight
         scale: control.mirrored ? -1 : 1
 
         readonly property NinePatchImage progress: NinePatchImage {
             parent: control.contentItem
-            visible: control.indeterminate || control.value
+            visible: !control.indeterminate && control.value
             y: (parent.height - height) / 2
-            width: control.indeterminate ? control.width * 0.4 : control.position * parent.width
+            width: control.position * parent.width
 
-            source: control.IOS.url + "slider-progress"
+            source: IOS.url + "slider-progress"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark}
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark}
+                ]
+            }
+        }
+
+        readonly property NinePatchImage animatedProgress: NinePatchImage {
+            parent: control.contentItem
+            visible: control.indeterminate
+            y: (parent.height - height) / 2
+            width: control.width * 0.4
+
+            source: IOS.url + "slider-progress"
+            NinePatchImageSelector on source {
+                states: [
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark}
                 ]
             }
 
@@ -43,15 +58,6 @@ T.ProgressBar {
                 duration: 900
                 easing.type: Easing.Linear
                 loops: Animation.Infinite
-                // TODO: workaround for QTBUG-38932; remove once that is fixed
-                onFromChanged: {
-                    if (control.indeterminate)
-                        restart()
-                }
-                onToChanged: {
-                    if (control.indeterminate)
-                        restart()
-                }
             }
         }
     }
@@ -61,13 +67,13 @@ T.ProgressBar {
         implicitHeight: children[0].implicitHeight
         clip: control.indeterminate
         NinePatchImage {
-            source: control.IOS.url + "slider-background"
+            source: IOS.url + "slider-background"
             y: (parent.height - height) / 2
             width: control.background.width
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark}
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark}
                 ]
             }
         }

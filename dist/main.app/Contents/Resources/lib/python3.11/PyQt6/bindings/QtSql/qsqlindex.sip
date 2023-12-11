@@ -38,4 +38,7 @@ public:
     void append(const QSqlField &field, bool desc);
     bool isDescending(int i) const;
     void setDescending(int i, bool desc);
+%If (Qt_6_6_0 -)
+    void swap(QSqlIndex &other /Constrained/);
+%End
 };

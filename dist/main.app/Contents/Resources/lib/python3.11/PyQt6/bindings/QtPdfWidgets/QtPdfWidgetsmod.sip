@@ -47,4 +47,5 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 %DefaultSupertype PyQt6.sip.simplewrapper
 
+%Include qpdfpageselector.sip
 %Include qpdfview.sip

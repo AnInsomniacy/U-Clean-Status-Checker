@@ -383,6 +383,39 @@ public:
 %If (Qt_6_3_0 -)
         Nheengatu,
 %End
+%If (Qt_6_5_0 -)
+        Haryanvi,
+%End
+%If (Qt_6_5_0 -)
+        NorthernFrisian,
+%End
+%If (Qt_6_5_0 -)
+        Rajasthani,
+%End
+%If (Qt_6_5_0 -)
+        Moksha,
+%End
+%If (Qt_6_5_0 -)
+        TokiPona,
+%End
+%If (Qt_6_5_0 -)
+        Pijin,
+%End
+%If (Qt_6_5_0 -)
+        Obolo,
+%End
+%If (Qt_6_6_0 -)
+        Baluchi,
+%End
+%If (Qt_6_6_0 -)
+        Ligurian,
+%End
+%If (Qt_6_6_0 -)
+        Rohingya,
+%End
+%If (Qt_6_6_0 -)
+        Torwali,
+%End
     };
 
     enum Country
@@ -927,6 +960,9 @@ public:
         BanglaScript,
         MendeScript,
         OdiaScript,
+%If (Qt_6_6_0 -)
+        HanifiScript,
+%End
     };
 
     enum CurrencySymbolFormat

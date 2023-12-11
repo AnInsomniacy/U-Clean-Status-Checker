@@ -120,6 +120,9 @@ public:
     bool isSiteLocal() const;
     bool isUniqueLocalUnicast() const;
     bool isBroadcast() const;
+%If (Qt_6_6_0 -)
+    bool isPrivateUse() const;
+%End
 };
 
 bool operator==(QHostAddress::SpecialAddress address1, const QHostAddress &address2);

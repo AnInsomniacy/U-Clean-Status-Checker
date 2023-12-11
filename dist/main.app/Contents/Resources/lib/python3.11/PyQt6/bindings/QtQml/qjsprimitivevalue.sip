@@ -79,6 +79,12 @@ public:
 %If (Qt_6_2_0 -)
     QJSPrimitiveValue operator-();
 %End
+%If (Qt_6_6_0 -)
+    QMetaType metaType() const;
+%End
+%If (Qt_6_6_0 -)
+    void *data();
+%End
 };
 
 %End

@@ -77,7 +77,13 @@ public:
     QFileDevice::Permissions permissions() const;
     qint64 size() const;
     QDateTime lastModified() const;
+%If (Qt_6_6_0 -)
+    QDateTime lastModified(const QTimeZone &tz) const;
+%End
     QDateTime lastRead() const;
+%If (Qt_6_6_0 -)
+    QDateTime lastRead(const QTimeZone &tz) const;
+%End
     bool caching() const;
     void setCaching(bool on);
     QString symLinkTarget() const;
@@ -87,8 +93,17 @@ public:
     void swap(QFileInfo &other /Constrained/);
     static bool exists(const QString &file);
     QDateTime birthTime() const;
+%If (Qt_6_6_0 -)
+    QDateTime birthTime(const QTimeZone &tz) const;
+%End
     QDateTime metadataChangeTime() const;
+%If (Qt_6_6_0 -)
+    QDateTime metadataChangeTime(const QTimeZone &tz) const;
+%End
     QDateTime fileTime(QFileDevice::FileTime time) const;
+%If (Qt_6_6_0 -)
+    QDateTime fileTime(QFileDevice::FileTime time, const QTimeZone &tz) const;
+%End
     bool isSymbolicLink() const;
     bool isShortcut() const;
     bool isJunction() const;
@@ -98,6 +113,9 @@ public:
 %End
 %If (Qt_6_4_0 -)
     bool isAlias() const;
+%End
+%If (Qt_6_6_0 -)
+    QString readSymLink() const;
 %End
 };
 

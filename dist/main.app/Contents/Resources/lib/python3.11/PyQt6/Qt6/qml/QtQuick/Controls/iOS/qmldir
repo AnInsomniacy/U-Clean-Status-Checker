@@ -75,4 +75,24 @@ MenuItem 6.0 MenuItem.qml
 MenuItem 2.0 MenuItem.qml
 MenuSeparator 6.0 MenuSeparator.qml
 MenuSeparator 2.0 MenuSeparator.qml
+BusyIndicator 6.0 BusyIndicator.qml
+BusyIndicator 2.0 BusyIndicator.qml
+ComboBox 6.0 ComboBox.qml
+ComboBox 2.0 ComboBox.qml
+HorizontalHeaderView 6.0 HorizontalHeaderView.qml
+HorizontalHeaderView 2.0 HorizontalHeaderView.qml
+VerticalHeaderView 6.0 VerticalHeaderView.qml
+VerticalHeaderView 2.0 VerticalHeaderView.qml
+Dialog 6.0 Dialog.qml
+Dialog 2.0 Dialog.qml
+DialogButtonBox 6.0 DialogButtonBox.qml
+DialogButtonBox 2.0 DialogButtonBox.qml
+DelayButton 6.0 DelayButton.qml
+DelayButton 2.0 DelayButton.qml
+SelectionRectangle 6.0 SelectionRectangle.qml
+SelectionRectangle 2.0 SelectionRectangle.qml
+ToolTip 6.0 ToolTip.qml
+ToolTip 2.0 ToolTip.qml
+ToolSeparator 6.0 ToolSeparator.qml
+ToolSeparator 2.0 ToolSeparator.qml
 

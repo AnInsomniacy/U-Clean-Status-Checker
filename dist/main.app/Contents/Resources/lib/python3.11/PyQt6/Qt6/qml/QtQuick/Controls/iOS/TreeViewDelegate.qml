@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.TreeViewDelegate {
     id: control
@@ -33,8 +33,8 @@ T.TreeViewDelegate {
         readonly property real __indicatorIndent: control.leftMargin + (control.depth * control.indentation)
         x: !control.mirrored ? __indicatorIndent : control.width - __indicatorIndent - width
         y: (control.height - height) / 2
-        implicitWidth: arrow.implicitWidth
-        implicitHeight: arrow.implicitHeight
+        implicitWidth: Math.max(arrow.implicitWidth, 20)
+        implicitHeight: background.height
 
         property Image arrow : Image {
             parent: control.indicator
@@ -43,11 +43,11 @@ T.TreeViewDelegate {
             rotation:  control.expanded ? 90 : (control.mirrored ? 180 : 0)
             opacity: control.enabled ? 1 : 0.5
 
-            source: control.IOS.url + "arrow-indicator"
+            source: IOS.url + "arrow-indicator"
             ImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark}
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark}
                 ]
             }
         }
@@ -55,15 +55,15 @@ T.TreeViewDelegate {
 
     background: Rectangle {
         implicitHeight: 44
-        color: control.IOS.theme === IOS.Dark ? control.palette.dark : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.dark : control.palette.base
         NinePatchImage {
             height: parent.height
             width: parent.width
-            source: control.IOS.url + (control.highlighted ? "itemdelegate-background-pressed" : "itemdelegate-background")
+            source: IOS.url + (control.highlighted ? "itemdelegate-background-pressed" : "itemdelegate-background")
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark}
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark}
                 ]
             }
         }
@@ -73,5 +73,40 @@ T.TreeViewDelegate {
         clip: false
         text: control.model.display
         elide: Text.ElideRight
+        visible: !control.editing
     }
+
+    // The edit delegate is a separate component, and doesn't need
+    // to follow the same strict rules that are applied to a control.
+    // qmllint disable attached-property-reuse
+    // qmllint disable controls-sanity
+    TableView.editDelegate: FocusScope {
+        width: parent.width
+        height: parent.height
+
+        readonly property int __role: {
+            let model = control.treeView.model
+            let index = control.treeView.index(row, column)
+            let editText = model.data(index, Qt.EditRole)
+            return editText !== undefined ? Qt.EditRole : Qt.DisplayRole
+        }
+
+        TextField {
+            id: textField
+            x: control.contentItem.x
+            y: (parent.height - height) / 2
+            width: control.contentItem.width
+            text: control.treeView.model.data(control.treeView.index(row, column), __role)
+            focus: true
+        }
+
+        TableView.onCommit: {
+            let index = TableView.view.index(row, column)
+            TableView.view.model.setData(index, textField.text, __role)
+        }
+
+        Component.onCompleted: textField.selectAll()
+    }
+    // qmllint enable attached-property-reuse
+    // qmllint enable controls-sanity
 }

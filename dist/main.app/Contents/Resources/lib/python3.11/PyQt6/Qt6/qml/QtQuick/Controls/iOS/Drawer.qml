@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.Drawer {
     id: control
@@ -29,11 +29,11 @@ T.Drawer {
 
     background: Item {
         NinePatchImage {
-            source: control.IOS.url + "drawer-background"
+            source: IOS.url + "drawer-background"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"modal": control.modal}
                 ]
             }

@@ -44,6 +44,9 @@ public:
         UnknownError,
     };
 
+%If (Qt_6_6_0 -)
+    QSystemSemaphore(const QNativeIpcKey &key, int initialValue = 0, QSystemSemaphore::AccessMode mode = QSystemSemaphore::Open);
+%End
     QSystemSemaphore(const QString &key, int initialValue = 0, QSystemSemaphore::AccessMode mode = QSystemSemaphore::Open);
     ~QSystemSemaphore();
     void setKey(const QString &key, int initialValue = 0, QSystemSemaphore::AccessMode mode = QSystemSemaphore::Open);
@@ -52,6 +55,24 @@ public:
     bool release(int n = 1);
     QSystemSemaphore::SystemSemaphoreError error() const;
     QString errorString() const;
+%If (Qt_6_6_0 -)
+    void setNativeKey(const QNativeIpcKey &key, int initialValue = 0, QSystemSemaphore::AccessMode mode = QSystemSemaphore::Open);
+%End
+%If (Qt_6_6_0 -)
+    void setNativeKey(const QString &key, int initialValue = 0, QSystemSemaphore::AccessMode mode = QSystemSemaphore::Open, QNativeIpcKey::Type type = QNativeIpcKey::legacyDefaultTypeForOs());
+%End
+%If (Qt_6_6_0 -)
+    QNativeIpcKey nativeIpcKey() const;
+%End
+%If (Qt_6_6_0 -)
+    static bool isKeyTypeSupported(QNativeIpcKey::Type type);
+%End
+%If (Qt_6_6_0 -)
+    static QNativeIpcKey platformSafeKey(const QString &key, QNativeIpcKey::Type type = QNativeIpcKey::DefaultTypeForOs);
+%End
+%If (Qt_6_6_0 -)
+    static QNativeIpcKey legacyNativeKey(const QString &key, QNativeIpcKey::Type type = QNativeIpcKey::legacyDefaultTypeForOs());
+%End
 
 private:
     QSystemSemaphore(const QSystemSemaphore &);

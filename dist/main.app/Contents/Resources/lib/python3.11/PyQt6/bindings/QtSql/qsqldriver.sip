@@ -149,6 +149,9 @@ public:
         SQLite,
         Interbase,
         DB2,
+%If (Qt_6_6_0 -)
+        MimerSQL,
+%End
     };
 
     QSqlDriver::DbmsType dbmsType() const;

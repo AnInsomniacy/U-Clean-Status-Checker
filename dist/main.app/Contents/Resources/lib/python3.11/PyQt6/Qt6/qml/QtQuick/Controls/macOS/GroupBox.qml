@@ -6,11 +6,13 @@ import QtQuick.NativeStyle as NativeStyle
 
 NativeStyle.DefaultGroupBox {
     id: control
-    font.pixelSize: background.styleFont(control).pixelSize
+
     label: Item {
         readonly property point labelPos : control.__nativeBackground
                                   ? background.labelPos
                                   : Qt.point(0,0)
+        readonly property bool __ignoreNotCustomizable: true
+
         x: labelPos.x + background.x
         y: labelPos.y + background.y - (control.__nativeBackground ? background.groupBoxPadding.top : 0)
         width: children[0].implicitWidth

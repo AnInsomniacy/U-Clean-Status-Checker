@@ -55,6 +55,9 @@ public:
     };
 
     QUuid();
+%If (Qt_6_6_0 -)
+    QUuid(QUuid::Id128Bytes id128, QSysInfo::Endian order = QSysInfo::BigEndian);
+%End
     QUuid(uint l, ushort w1, ushort w2, uchar b1 /PyInt/, uchar b2 /PyInt/, uchar b3 /PyInt/, uchar b4 /PyInt/, uchar b5 /PyInt/, uchar b6 /PyInt/, uchar b7 /PyInt/, uchar b8 /PyInt/);
 %If (Qt_6_4_0 -)
     explicit QUuid(QAnyStringView string);
@@ -108,6 +111,16 @@ public:
 %End
 %If (- Qt_6_4_0)
     static QUuid fromString(QStringView string);
+%End
+%If (Qt_6_6_0 -)
+
+    struct Id128Bytes
+    {
+%TypeHeaderCode
+#include <quuid.h>
+%End
+    };
+
 %End
 };
 

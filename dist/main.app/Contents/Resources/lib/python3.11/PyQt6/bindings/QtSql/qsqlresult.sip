@@ -63,7 +63,20 @@ protected:
     QSql::ParamType bindValueType(const QString &placeholder) const;
     QSql::ParamType bindValueType(int pos) const;
     int boundValueCount() const;
+%If (Qt_6_6_0 -)
+    QVariantList boundValues() const [QVariantList (Qt::Disambiguated_t = Qt::Disambiguated)];
+%MethodCode
+        #if defined(SIP_PROTECTED_IS_PUBLIC)
+            sipRes = new ::QVariantList(sipCpp->boundValues());
+        #else
+            sipRes = new ::QVariantList(sipCpp->sipProtect_boundValues(Qt::Disambiguated));
+        #endif
+%End
+
+%End
+%If (- Qt_6_6_0)
     QList<QVariant> &boundValues() const;
+%End
     QString executedQuery() const;
     QString boundValueName(int pos) const;
     void clear();
@@ -81,6 +94,9 @@ protected:
     virtual int numRowsAffected() = 0;
     virtual QSqlRecord record() const;
     virtual QVariant lastInsertId() const;
+%If (Qt_6_6_0 -)
+    QStringList boundValueNames() const;
+%End
 
 private:
     QSqlResult(const QSqlResult &);

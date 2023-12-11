@@ -31,6 +31,9 @@ public:
     ~QSemaphore();
     void acquire(int n = 1) /ReleaseGIL/;
     bool tryAcquire(int n = 1);
+%If (Qt_6_6_0 -)
+    bool tryAcquire(int n, QDeadlineTimer timeout) /ReleaseGIL/;
+%End
     bool tryAcquire(int n, int timeout) /ReleaseGIL/;
     void release(int n = 1);
     int available() const;

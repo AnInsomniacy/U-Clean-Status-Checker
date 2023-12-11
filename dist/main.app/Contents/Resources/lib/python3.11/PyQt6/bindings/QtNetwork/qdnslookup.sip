@@ -121,6 +121,9 @@ public:
         ServerFailureError,
         ServerRefusedError,
         NotFoundError,
+%If (Qt_6_6_0 -)
+        TimeoutError,
+%End
     };
 
     enum Type
@@ -139,6 +142,9 @@ public:
     explicit QDnsLookup(QObject *parent /TransferThis/ = 0);
     QDnsLookup(QDnsLookup::Type type, const QString &name, QObject *parent /TransferThis/ = 0);
     QDnsLookup(QDnsLookup::Type type, const QString &name, const QHostAddress &nameserver, QObject *parent /TransferThis/ = 0);
+%If (Qt_6_6_0 -)
+    QDnsLookup(QDnsLookup::Type type, const QString &name, const QHostAddress &nameserver, quint16 port, QObject *parent /TransferThis/ = 0);
+%End
     virtual ~QDnsLookup();
     QDnsLookup::Error error() const;
     QString errorString() const;
@@ -167,7 +173,23 @@ signals:
 public:
     QHostAddress nameserver() const;
     void setNameserver(const QHostAddress &nameserver);
+%If (Qt_6_6_0 -)
+    void setNameserver(const QHostAddress &nameserver, quint16 port);
+%End
 
 signals:
     void nameserverChanged(const QHostAddress &nameserver);
+
+public:
+%If (Qt_6_6_0 -)
+    quint16 nameserverPort() const;
+%End
+%If (Qt_6_6_0 -)
+    void setNameserverPort(quint16 port);
+%End
+
+signals:
+%If (Qt_6_6_0 -)
+    void nameserverPortChanged(quint16 port);
+%End
 };

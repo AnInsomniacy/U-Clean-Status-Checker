@@ -38,6 +38,13 @@ public:
     void clear();
     quint64 toUInt64() const;
     QString toString() const;
+%If (Qt_6_6_0 -)
+    Py_hash_t __hash__() const;
+%MethodCode
+        sipRes = qHash(*sipCpp);
+%End
+
+%End
 };
 
 %End

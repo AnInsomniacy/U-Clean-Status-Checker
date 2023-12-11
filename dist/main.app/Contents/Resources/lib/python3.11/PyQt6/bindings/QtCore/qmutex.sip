@@ -33,6 +33,9 @@ public:
 void lock() /ReleaseGIL/;
 bool tryLock() /ReleaseGIL/;
 void unlock() /ReleaseGIL/;
+%If (Qt_6_6_0 -)
+    bool tryLock(QDeadlineTimer timeout) /ReleaseGIL/;
+%End
     bool tryLock(int timeout) /ReleaseGIL/;
 
 private:
@@ -49,6 +52,9 @@ public:
     QRecursiveMutex();
     ~QRecursiveMutex();
     void lock() /ReleaseGIL/;
+%If (Qt_6_6_0 -)
+    bool tryLock(QDeadlineTimer) /ReleaseGIL/ [bool (QDeadlineTimer timer = {})];
+%End
     bool tryLock(int timeout = 0) /ReleaseGIL/;
     void unlock() /ReleaseGIL/;
 

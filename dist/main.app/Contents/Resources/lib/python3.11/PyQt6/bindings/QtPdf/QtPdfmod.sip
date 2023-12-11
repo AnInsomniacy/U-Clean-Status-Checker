@@ -50,6 +50,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qpdfdocument.sip
 %Include qpdfdocumentrenderoptions.sip
 %Include qpdflink.sip
+%Include qpdflinkmodel.sip
 %Include qpdfpagenavigator.sip
 %Include qpdfpagerenderer.sip
 %Include qpdfsearchmodel.sip

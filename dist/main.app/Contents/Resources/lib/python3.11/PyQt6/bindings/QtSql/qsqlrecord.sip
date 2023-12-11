@@ -58,4 +58,7 @@ public:
     void clearValues();
     int count() const /__len__/;
     QSqlRecord keyValues(const QSqlRecord &keyFields) const;
+%If (Qt_6_6_0 -)
+    void swap(QSqlRecord &other /Constrained/);
+%End
 };

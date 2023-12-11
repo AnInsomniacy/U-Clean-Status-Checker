@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 import QtQuick.Shapes
 
 T.Dial {
@@ -64,8 +64,8 @@ T.Dial {
                     centerY: control.background.children[0].height / 2
                     radiusX: control.background.children[0].width / 2 - 2
                     radiusY: radiusX
-                    startAngle: -230
-                    sweepAngle: 140 + control.angle
+                    startAngle: control.startAngle - 90
+                    sweepAngle: control.angle - control.startAngle
                 }
             }
         }
@@ -89,11 +89,11 @@ T.Dial {
             x: -leftInset
             y: -topInset
 
-            source: control.IOS.url + "slider-handle"
+            source: IOS.url + "slider-handle"
             NinePatchImageSelector on source {
                 states: [
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"disabled": !control.enabled}
                 ]
             }

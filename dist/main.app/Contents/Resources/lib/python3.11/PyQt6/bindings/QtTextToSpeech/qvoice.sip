@@ -53,6 +53,9 @@ public:
     static QString ageName(QVoice::Age age);
     void swap(QVoice &other);
     QLocale locale() const;
+%If (Qt_6_6_0 -)
+    QLocale::Language language() const;
+%End
 };
 
 bool operator==(const QVoice &lhs, const QVoice &rhs);

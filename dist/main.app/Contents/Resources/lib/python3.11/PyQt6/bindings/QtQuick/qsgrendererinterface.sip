@@ -41,6 +41,9 @@ public:
         Direct3D11,
         Vulkan,
         Metal,
+%If (Qt_6_6_0 -)
+        Direct3D12,
+%End
         Null,
     };
 
@@ -62,6 +65,12 @@ public:
         RhiRedirectRenderTarget,
 %If (Qt_6_4_0 -)
         RedirectPaintDevice,
+%End
+%If (Qt_6_6_0 -)
+        GraphicsQueueFamilyIndexResource,
+%End
+%If (Qt_6_6_0 -)
+        GraphicsQueueIndexResource,
 %End
     };
 

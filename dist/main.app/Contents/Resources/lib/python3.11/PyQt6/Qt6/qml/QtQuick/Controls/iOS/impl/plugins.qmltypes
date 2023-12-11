@@ -47,4 +47,23 @@ Module {
             Parameter { name: "running"; type: "bool" }
         }
     }
+    Component {
+        file: "qquickiosstyle_p.h"
+        name: "QQuickIOSStyle"
+        accessSemantics: "reference"
+        prototype: "QObject"
+        exports: ["QtQuick.Controls.iOS.impl/IOS 6.5"]
+        isCreatable: false
+        isSingleton: true
+        exportMetaObjectRevisions: [1541]
+        Property {
+            name: "url"
+            type: "QUrl"
+            read: "url"
+            index: 0
+            isReadonly: true
+            isFinal: true
+            isConstant: true
+        }
+    }
 }

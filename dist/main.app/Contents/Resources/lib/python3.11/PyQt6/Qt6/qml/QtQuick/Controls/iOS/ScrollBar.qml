@@ -3,7 +3,7 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 import QtQuick.Controls.impl
 
 T.ScrollBar {
@@ -21,11 +21,11 @@ T.ScrollBar {
         width: control.availableWidth
         height: control.availableHeight
 
-        source: control.IOS.url + "scrollindicator-handle"
+        source: IOS.url + "scrollindicator-handle"
         NinePatchImageSelector on source {
             states: [
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark},
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                 {"horizontal": control.horizontal},
                 {"vertical": control.vertical}
             ]

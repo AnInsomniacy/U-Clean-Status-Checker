@@ -41,6 +41,13 @@ public:
         bool operator!=(const QPixmapCache::Key &key) const;
         void swap(QPixmapCache::Key &other /Constrained/);
         bool isValid() const;
+%If (Qt_6_6_0 -)
+        Py_hash_t __hash__() const;
+%MethodCode
+            sipRes = qHash(*sipCpp);
+%End
+
+%End
     };
 
     static int cacheLimit();

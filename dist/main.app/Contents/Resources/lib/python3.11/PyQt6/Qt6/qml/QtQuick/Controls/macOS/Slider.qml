@@ -8,7 +8,6 @@ NativeStyle.DefaultSlider {
     id: control
     readonly property Item __focusFrameTarget: handle
     readonly property Item __focusFrameStyleItem: handle
-    font.pixelSize: background.styleFont(control).pixelSize
 
     background: NativeStyle.Slider {
         control: control
@@ -19,6 +18,8 @@ NativeStyle.DefaultSlider {
         // also use a different background color before, and
         // after, the handle.
         useNinePatchImage: false
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 
     handle: NativeStyle.Slider {
@@ -32,5 +33,7 @@ NativeStyle.DefaultSlider {
         x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
         y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
         useNinePatchImage: false
+
+        readonly property bool __ignoreNotCustomizable: true
     }
 }

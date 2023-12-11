@@ -232,6 +232,9 @@ public:
 %If (Qt_6_4_0 -)
         OldFontFamily,
 %End
+%If (Qt_6_6_0 -)
+        ListStart,
+%End
         UserProperty,
     };
 
@@ -496,6 +499,12 @@ public:
     QString numberSuffix() const;
     void setNumberPrefix(const QString &np);
     void setNumberSuffix(const QString &ns);
+%If (Qt_6_6_0 -)
+    void setStart(int indent);
+%End
+%If (Qt_6_6_0 -)
+    int start() const;
+%End
 };
 
 class QTextImageFormat : QTextCharFormat

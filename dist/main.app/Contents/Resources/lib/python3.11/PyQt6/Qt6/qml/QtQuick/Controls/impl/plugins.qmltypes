@@ -53,7 +53,48 @@ Module {
                 "InteractiveResizeAcrossScreens",
                 "ShowDirectoriesFirst",
                 "PreselectFirstFileInDirectory",
-                "ButtonPressKeys"
+                "ButtonPressKeys",
+                "SetFocusOnTouchRelease",
+                "FlickStartDistance",
+                "FlickMaximumVelocity",
+                "FlickDeceleration",
+                "MenuBarFocusOnAltPressRelease",
+                "MouseCursorTheme",
+                "MouseCursorSize",
+                "UnderlineShortcut"
+            ]
+        }
+        Enum {
+            name: "DialogType"
+            values: [
+                "FileDialog",
+                "ColorDialog",
+                "FontDialog",
+                "MessageDialog"
+            ]
+        }
+        Enum {
+            name: "Palette"
+            values: [
+                "SystemPalette",
+                "ToolTipPalette",
+                "ToolButtonPalette",
+                "ButtonPalette",
+                "CheckBoxPalette",
+                "RadioButtonPalette",
+                "HeaderPalette",
+                "ComboBoxPalette",
+                "ItemViewPalette",
+                "MessageBoxLabelPelette",
+                "MessageBoxLabelPalette",
+                "TabBarPalette",
+                "LabelPalette",
+                "GroupBoxPalette",
+                "MenuPalette",
+                "MenuBarPalette",
+                "TextEditPalette",
+                "TextLineEditPalette",
+                "NPalettes"
             ]
         }
         Enum {
@@ -87,6 +128,116 @@ Module {
                 "TabButtonFont",
                 "EditorFont",
                 "NFonts"
+            ]
+        }
+        Enum {
+            name: "StandardPixmap"
+            values: [
+                "TitleBarMenuButton",
+                "TitleBarMinButton",
+                "TitleBarMaxButton",
+                "TitleBarCloseButton",
+                "TitleBarNormalButton",
+                "TitleBarShadeButton",
+                "TitleBarUnshadeButton",
+                "TitleBarContextHelpButton",
+                "DockWidgetCloseButton",
+                "MessageBoxInformation",
+                "MessageBoxWarning",
+                "MessageBoxCritical",
+                "MessageBoxQuestion",
+                "DesktopIcon",
+                "TrashIcon",
+                "ComputerIcon",
+                "DriveFDIcon",
+                "DriveHDIcon",
+                "DriveCDIcon",
+                "DriveDVDIcon",
+                "DriveNetIcon",
+                "DirOpenIcon",
+                "DirClosedIcon",
+                "DirLinkIcon",
+                "DirLinkOpenIcon",
+                "FileIcon",
+                "FileLinkIcon",
+                "ToolBarHorizontalExtensionButton",
+                "ToolBarVerticalExtensionButton",
+                "FileDialogStart",
+                "FileDialogEnd",
+                "FileDialogToParent",
+                "FileDialogNewFolder",
+                "FileDialogDetailedView",
+                "FileDialogInfoView",
+                "FileDialogContentsView",
+                "FileDialogListView",
+                "FileDialogBack",
+                "DirIcon",
+                "DialogOkButton",
+                "DialogCancelButton",
+                "DialogHelpButton",
+                "DialogOpenButton",
+                "DialogSaveButton",
+                "DialogCloseButton",
+                "DialogApplyButton",
+                "DialogResetButton",
+                "DialogDiscardButton",
+                "DialogYesButton",
+                "DialogNoButton",
+                "ArrowUp",
+                "ArrowDown",
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowBack",
+                "ArrowForward",
+                "DirHomeIcon",
+                "CommandLink",
+                "VistaShield",
+                "BrowserReload",
+                "BrowserStop",
+                "MediaPlay",
+                "MediaStop",
+                "MediaPause",
+                "MediaSkipForward",
+                "MediaSkipBackward",
+                "MediaSeekForward",
+                "MediaSeekBackward",
+                "MediaVolume",
+                "MediaVolumeMuted",
+                "LineEditClearButton",
+                "DialogYesToAllButton",
+                "DialogNoToAllButton",
+                "DialogSaveAllButton",
+                "DialogAbortButton",
+                "DialogRetryButton",
+                "DialogIgnoreButton",
+                "RestoreDefaultsButton",
+                "TabCloseButton",
+                "NStandardPixmap",
+                "CustomBase"
+            ]
+        }
+        Enum {
+            name: "KeyboardSchemes"
+            values: [
+                "WindowsKeyboardScheme",
+                "MacKeyboardScheme",
+                "X11KeyboardScheme",
+                "KdeKeyboardScheme",
+                "GnomeKeyboardScheme",
+                "CdeKeyboardScheme"
+            ]
+        }
+        Enum {
+            name: "UiEffect"
+            values: [
+                "GeneralUiEffect",
+                "AnimateMenuUiEffect",
+                "FadeMenuUiEffect",
+                "AnimateComboUiEffect",
+                "AnimateTooltipUiEffect",
+                "FadeTooltipUiEffect",
+                "AnimateToolBoxUiEffect",
+                "HoverEffect"
             ]
         }
     }
@@ -241,6 +392,7 @@ Module {
             type: "QColor"
             read: "color"
             write: "setColor"
+            reset: "resetColor"
             notify: "colorChanged"
             index: 0
             isFinal: true
@@ -250,6 +402,7 @@ Module {
             type: "QColor"
             read: "defaultColor"
             write: "setDefaultColor"
+            reset: "resetDefaultColor"
             notify: "defaultColorChanged"
             index: 1
             isFinal: true
@@ -373,6 +526,7 @@ Module {
             type: "double"
             read: "topPadding"
             write: "setTopPadding"
+            reset: "resetTopPadding"
             index: 8
             isFinal: true
         }
@@ -381,6 +535,7 @@ Module {
             type: "double"
             read: "leftPadding"
             write: "setLeftPadding"
+            reset: "resetLeftPadding"
             index: 9
             isFinal: true
         }
@@ -389,6 +544,7 @@ Module {
             type: "double"
             read: "rightPadding"
             write: "setRightPadding"
+            reset: "resetRightPadding"
             index: 10
             isFinal: true
         }
@@ -397,6 +553,7 @@ Module {
             type: "double"
             read: "bottomPadding"
             write: "setBottomPadding"
+            reset: "resetBottomPadding"
             index: 11
             isFinal: true
         }
@@ -722,6 +879,7 @@ Module {
             type: "double"
             read: "padding"
             write: "setPadding"
+            reset: "resetPadding"
             notify: "paddingChanged"
             index: 0
             isFinal: true
@@ -731,6 +889,7 @@ Module {
             type: "double"
             read: "topPadding"
             write: "setTopPadding"
+            reset: "resetTopPadding"
             notify: "topPaddingChanged"
             index: 1
             isFinal: true
@@ -740,6 +899,7 @@ Module {
             type: "double"
             read: "leftPadding"
             write: "setLeftPadding"
+            reset: "resetLeftPadding"
             notify: "leftPaddingChanged"
             index: 2
             isFinal: true
@@ -749,6 +909,7 @@ Module {
             type: "double"
             read: "rightPadding"
             write: "setRightPadding"
+            reset: "resetRightPadding"
             notify: "rightPaddingChanged"
             index: 3
             isFinal: true
@@ -758,6 +919,7 @@ Module {
             type: "double"
             read: "bottomPadding"
             write: "setBottomPadding"
+            reset: "resetBottomPadding"
             notify: "bottomPaddingChanged"
             index: 4
             isFinal: true
@@ -943,6 +1105,7 @@ Module {
             write: "setColor"
             notify: "colorChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "linkColor"
@@ -951,6 +1114,7 @@ Module {
             write: "setLinkColor"
             notify: "linkColorChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "style"
@@ -959,6 +1123,7 @@ Module {
             write: "setStyle"
             notify: "styleChanged"
             index: 4
+            isFinal: true
         }
         Property {
             name: "styleColor"
@@ -967,14 +1132,17 @@ Module {
             write: "setStyleColor"
             notify: "styleColorChanged"
             index: 5
+            isFinal: true
         }
         Property {
             name: "horizontalAlignment"
             type: "HAlignment"
             read: "hAlign"
             write: "setHAlign"
+            reset: "resetHAlign"
             notify: "horizontalAlignmentChanged"
             index: 6
+            isFinal: true
         }
         Property {
             name: "effectiveHorizontalAlignment"
@@ -983,6 +1151,7 @@ Module {
             notify: "effectiveHorizontalAlignmentChanged"
             index: 7
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "verticalAlignment"
@@ -991,6 +1160,7 @@ Module {
             write: "setVAlign"
             notify: "verticalAlignmentChanged"
             index: 8
+            isFinal: true
         }
         Property {
             name: "wrapMode"
@@ -999,6 +1169,7 @@ Module {
             write: "setWrapMode"
             notify: "wrapModeChanged"
             index: 9
+            isFinal: true
         }
         Property {
             name: "lineCount"
@@ -1007,6 +1178,7 @@ Module {
             notify: "lineCountChanged"
             index: 10
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "truncated"
@@ -1015,14 +1187,17 @@ Module {
             notify: "truncatedChanged"
             index: 11
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "maximumLineCount"
             type: "int"
             read: "maximumLineCount"
             write: "setMaximumLineCount"
+            reset: "resetMaximumLineCount"
             notify: "maximumLineCountChanged"
             index: 12
+            isFinal: true
         }
         Property {
             name: "textFormat"
@@ -1031,6 +1206,7 @@ Module {
             write: "setTextFormat"
             notify: "textFormatChanged"
             index: 13
+            isFinal: true
         }
         Property {
             name: "elide"
@@ -1039,6 +1215,7 @@ Module {
             write: "setElideMode"
             notify: "elideModeChanged"
             index: 14
+            isFinal: true
         }
         Property {
             name: "contentWidth"
@@ -1047,6 +1224,7 @@ Module {
             notify: "contentWidthChanged"
             index: 15
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "contentHeight"
@@ -1055,6 +1233,7 @@ Module {
             notify: "contentHeightChanged"
             index: 16
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "paintedWidth"
@@ -1063,6 +1242,7 @@ Module {
             notify: "contentWidthChanged"
             index: 17
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "paintedHeight"
@@ -1071,6 +1251,7 @@ Module {
             notify: "contentHeightChanged"
             index: 18
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "lineHeight"
@@ -1079,6 +1260,7 @@ Module {
             write: "setLineHeight"
             notify: "lineHeightChanged"
             index: 19
+            isFinal: true
         }
         Property {
             name: "lineHeightMode"
@@ -1087,14 +1269,17 @@ Module {
             write: "setLineHeightMode"
             notify: "lineHeightModeChanged"
             index: 20
+            isFinal: true
         }
         Property {
             name: "baseUrl"
             type: "QUrl"
             read: "baseUrl"
             write: "setBaseUrl"
+            reset: "resetBaseUrl"
             notify: "baseUrlChanged"
             index: 21
+            isFinal: true
         }
         Property {
             name: "minimumPixelSize"
@@ -1103,6 +1288,7 @@ Module {
             write: "setMinimumPixelSize"
             notify: "minimumPixelSizeChanged"
             index: 22
+            isFinal: true
         }
         Property {
             name: "minimumPointSize"
@@ -1111,6 +1297,7 @@ Module {
             write: "setMinimumPointSize"
             notify: "minimumPointSizeChanged"
             index: 23
+            isFinal: true
         }
         Property {
             name: "fontSizeMode"
@@ -1119,6 +1306,7 @@ Module {
             write: "setFontSizeMode"
             notify: "fontSizeModeChanged"
             index: 24
+            isFinal: true
         }
         Property {
             name: "renderType"
@@ -1127,6 +1315,7 @@ Module {
             write: "setRenderType"
             notify: "renderTypeChanged"
             index: 25
+            isFinal: true
         }
         Property {
             name: "hoveredLink"
@@ -1136,6 +1325,7 @@ Module {
             notify: "linkHovered"
             index: 26
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "renderTypeQuality"
@@ -1145,6 +1335,7 @@ Module {
             write: "setRenderTypeQuality"
             notify: "renderTypeQualityChanged"
             index: 27
+            isFinal: true
         }
         Property {
             name: "padding"
@@ -1152,8 +1343,10 @@ Module {
             type: "double"
             read: "padding"
             write: "setPadding"
+            reset: "resetPadding"
             notify: "paddingChanged"
             index: 28
+            isFinal: true
         }
         Property {
             name: "topPadding"
@@ -1161,8 +1354,10 @@ Module {
             type: "double"
             read: "topPadding"
             write: "setTopPadding"
+            reset: "resetTopPadding"
             notify: "topPaddingChanged"
             index: 29
+            isFinal: true
         }
         Property {
             name: "leftPadding"
@@ -1170,8 +1365,10 @@ Module {
             type: "double"
             read: "leftPadding"
             write: "setLeftPadding"
+            reset: "resetLeftPadding"
             notify: "leftPaddingChanged"
             index: 30
+            isFinal: true
         }
         Property {
             name: "rightPadding"
@@ -1179,8 +1376,10 @@ Module {
             type: "double"
             read: "rightPadding"
             write: "setRightPadding"
+            reset: "resetRightPadding"
             notify: "rightPaddingChanged"
             index: 31
+            isFinal: true
         }
         Property {
             name: "bottomPadding"
@@ -1188,8 +1387,10 @@ Module {
             type: "double"
             read: "bottomPadding"
             write: "setBottomPadding"
+            reset: "resetBottomPadding"
             notify: "bottomPaddingChanged"
             index: 32
+            isFinal: true
         }
         Property {
             name: "fontInfo"
@@ -1199,6 +1400,7 @@ Module {
             notify: "fontInfoChanged"
             index: 33
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "advance"
@@ -1208,6 +1410,7 @@ Module {
             notify: "contentSizeChanged"
             index: 34
             isReadonly: true
+            isFinal: true
         }
         Signal {
             name: "textChanged"

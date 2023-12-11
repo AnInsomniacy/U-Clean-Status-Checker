@@ -27,11 +27,22 @@ class QDeadlineTimer
 %End
 
 public:
+%If (- Qt_6_6_0)
+
     enum ForeverConstant
     {
         Forever,
     };
 
+%End
+%If (Qt_6_6_0 -)
+
+    enum class ForeverConstant
+    {
+        Forever,
+    };
+
+%End
     QDeadlineTimer(Qt::TimerType type = Qt::CoarseTimer);
     QDeadlineTimer(QDeadlineTimer::ForeverConstant, Qt::TimerType type = Qt::CoarseTimer);
     QDeadlineTimer(qint64 msecs, Qt::TimerType type = Qt::CoarseTimer);

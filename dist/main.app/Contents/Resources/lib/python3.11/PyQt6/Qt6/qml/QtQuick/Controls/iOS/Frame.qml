@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls.iOS
 
 T.Frame {
     id: control
@@ -20,6 +19,6 @@ T.Frame {
 
     background: Rectangle {
         radius: 9
-        color: control.IOS.theme === IOS.Dark ? control.palette.light : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.light : control.palette.base
     }
 }

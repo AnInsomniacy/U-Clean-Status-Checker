@@ -67,4 +67,7 @@ public:
     QString tableName() const;
     QMetaType metaType() const;
     void setMetaType(QMetaType type);
+%If (Qt_6_6_0 -)
+    void swap(QSqlField &other /Constrained/);
+%End
 };

@@ -75,6 +75,9 @@ public:
     qint64 size(const QModelIndex &index) const;
     QString type(const QModelIndex &index) const;
     QDateTime lastModified(const QModelIndex &index) const;
+%If (Qt_6_6_0 -)
+    QDateTime lastModified(const QModelIndex &index, const QTimeZone &tz) const;
+%End
     QModelIndex mkdir(const QModelIndex &parent, const QString &name);
     QFileDevice::Permissions permissions(const QModelIndex &index) const;
     bool rmdir(const QModelIndex &index);

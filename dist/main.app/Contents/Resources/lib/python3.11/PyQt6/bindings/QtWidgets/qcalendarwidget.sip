@@ -116,4 +116,10 @@ public slots:
 public:
     QCalendar calendar() const;
     void setCalendar(QCalendar calendar);
+%If (Qt_6_6_0 -)
+    void clearMinimumDate();
+%End
+%If (Qt_6_6_0 -)
+    void clearMaximumDate();
+%End
 };

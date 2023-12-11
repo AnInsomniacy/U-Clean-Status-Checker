@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.PageIndicator {
     id: control
@@ -15,11 +15,11 @@ T.PageIndicator {
                              implicitContentHeight + topPadding + bottomPadding)
 
     delegate: Image {
-        source: control.IOS.url + "pageindicator-delegate"
+        source: IOS.url + "pageindicator-delegate"
         ImageSelector on source {
             states: [
-                {"light": control.IOS.theme === IOS.Light},
-                {"dark": control.IOS.theme === IOS.Dark},
+                {"light": Qt.styleHints.colorScheme === Qt.Light},
+                {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                 {"current": index === control.currentIndex},
             ]
         }

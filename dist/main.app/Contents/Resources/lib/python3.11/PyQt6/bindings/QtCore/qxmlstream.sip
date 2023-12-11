@@ -128,13 +128,27 @@ public:
 
     QXmlStreamReader();
     explicit QXmlStreamReader(QIODevice *device);
+%If (Qt_6_5_0 -)
+    explicit QXmlStreamReader(QAnyStringView data);
+%End
+%If (- Qt_6_5_0)
     explicit QXmlStreamReader(const QByteArray &data);
+%End
+%If (- Qt_6_5_0)
     explicit QXmlStreamReader(const QString &data);
+%End
     ~QXmlStreamReader();
     void setDevice(QIODevice *device);
     QIODevice *device() const;
+%If (Qt_6_5_0 -)
+    void addData(QAnyStringView data);
+%End
+%If (- Qt_6_5_0)
     void addData(const QByteArray &data);
+%End
+%If (- Qt_6_5_0)
     void addData(const QString &data);
+%End
     void clear();
     bool atEnd() const;
     QXmlStreamReader::TokenType readNext();
@@ -204,6 +218,9 @@ public:
     void skipCurrentElement();
     int entityExpansionLimit() const;
     void setEntityExpansionLimit(int limit);
+%If (Qt_6_6_0 -)
+    bool hasStandaloneDeclaration() const;
+%End
 
 private:
     QXmlStreamReader(const QXmlStreamReader &);
@@ -226,29 +243,119 @@ public:
     bool autoFormatting() const;
     void setAutoFormattingIndent(int spaces);
     int autoFormattingIndent() const;
+%If (Qt_6_5_0 -)
+    void writeAttribute(QAnyStringView namespaceUri, QAnyStringView name, QAnyStringView value);
+%End
+%If (Qt_6_5_0 -)
+    void writeAttribute(QAnyStringView qualifiedName, QAnyStringView value);
+%End
+%If (- Qt_6_5_0)
     void writeAttribute(const QString &qualifiedName, const QString &value);
+%End
+%If (- Qt_6_5_0)
     void writeAttribute(const QString &namespaceUri, const QString &name, const QString &value);
+%End
     void writeAttribute(const QXmlStreamAttribute &attribute);
     void writeAttributes(const QXmlStreamAttributes &attributes);
+%If (Qt_6_5_0 -)
+    void writeCDATA(QAnyStringView text);
+%End
+%If (- Qt_6_5_0)
     void writeCDATA(const QString &text);
+%End
+%If (Qt_6_5_0 -)
+    void writeCharacters(QAnyStringView text);
+%End
+%If (- Qt_6_5_0)
     void writeCharacters(const QString &text);
+%End
+%If (Qt_6_5_0 -)
+    void writeComment(QAnyStringView text);
+%End
+%If (- Qt_6_5_0)
     void writeComment(const QString &text);
+%End
+%If (Qt_6_5_0 -)
+    void writeDTD(QAnyStringView dtd);
+%End
+%If (- Qt_6_5_0)
     void writeDTD(const QString &dtd);
+%End
+%If (Qt_6_5_0 -)
+    void writeEmptyElement(QAnyStringView namespaceUri, QAnyStringView name);
+%End
+%If (Qt_6_5_0 -)
+    void writeEmptyElement(QAnyStringView qualifiedName);
+%End
+%If (- Qt_6_5_0)
     void writeEmptyElement(const QString &qualifiedName);
+%End
+%If (- Qt_6_5_0)
     void writeEmptyElement(const QString &namespaceUri, const QString &name);
+%End
+%If (Qt_6_5_0 -)
+    void writeTextElement(QAnyStringView namespaceUri, QAnyStringView name, QAnyStringView text);
+%End
+%If (Qt_6_5_0 -)
+    void writeTextElement(QAnyStringView qualifiedName, QAnyStringView text);
+%End
+%If (- Qt_6_5_0)
     void writeTextElement(const QString &qualifiedName, const QString &text);
+%End
+%If (- Qt_6_5_0)
     void writeTextElement(const QString &namespaceUri, const QString &name, const QString &text);
+%End
     void writeEndDocument();
     void writeEndElement();
+%If (Qt_6_5_0 -)
+    void writeEntityReference(QAnyStringView name);
+%End
+%If (- Qt_6_5_0)
     void writeEntityReference(const QString &name);
+%End
+%If (Qt_6_5_0 -)
+    void writeNamespace(QAnyStringView namespaceUri, QAnyStringView prefix = {});
+%End
+%If (- Qt_6_5_0)
     void writeNamespace(const QString &namespaceUri, const QString &prefix = QString());
+%End
+%If (Qt_6_5_0 -)
+    void writeDefaultNamespace(QAnyStringView namespaceUri);
+%End
+%If (- Qt_6_5_0)
     void writeDefaultNamespace(const QString &namespaceUri);
+%End
+%If (Qt_6_5_0 -)
+    void writeProcessingInstruction(QAnyStringView target, QAnyStringView data = {});
+%End
+%If (- Qt_6_5_0)
     void writeProcessingInstruction(const QString &target, const QString &data = QString());
+%End
+%If (Qt_6_5_0 -)
+    void writeStartDocument(QAnyStringView version, bool standalone);
+%End
+%If (Qt_6_5_0 -)
+    void writeStartDocument(QAnyStringView version);
+%End
     void writeStartDocument();
+%If (- Qt_6_5_0)
     void writeStartDocument(const QString &version);
+%End
+%If (- Qt_6_5_0)
     void writeStartDocument(const QString &version, bool standalone);
+%End
+%If (Qt_6_5_0 -)
+    void writeStartElement(QAnyStringView namespaceUri, QAnyStringView name);
+%End
+%If (Qt_6_5_0 -)
+    void writeStartElement(QAnyStringView qualifiedName);
+%End
+%If (- Qt_6_5_0)
     void writeStartElement(const QString &qualifiedName);
+%End
+%If (- Qt_6_5_0)
     void writeStartElement(const QString &namespaceUri, const QString &name);
+%End
     void writeCurrentToken(const QXmlStreamReader &reader);
     bool hasError() const;
 
@@ -264,12 +371,32 @@ class QXmlStreamAttributes
 
 public:
     QXmlStreamAttributes();
+%If (Qt_6_6_0 -)
+    QStringView value(QAnyStringView namespaceUri, QAnyStringView name) const;
+%End
+%If (- Qt_6_6_0)
     QStringView value(const QString &namespaceUri, const QString &name) const;
+%End
+%If (Qt_6_6_0 -)
+    QStringView value(QAnyStringView qualifiedName) const;
+%End
+%If (- Qt_6_6_0)
     QStringView value(const QString &qualifiedName) const;
+%End
     void append(const QString &namespaceUri, const QString &name, const QString &value);
     void append(const QString &qualifiedName, const QString &value);
+%If (Qt_6_6_0 -)
+    bool hasAttribute(QAnyStringView namespaceUri, QAnyStringView name) const;
+%End
+%If (- Qt_6_6_0)
     bool hasAttribute(const QString &namespaceUri, const QString &name) const;
+%End
+%If (Qt_6_6_0 -)
+    bool hasAttribute(QAnyStringView qualifiedName) const;
+%End
+%If (- Qt_6_6_0)
     bool hasAttribute(const QString &qualifiedName) const;
+%End
 // Methods inherited from QList<QXmlStreamAttribute> and Python special methods.
 // Keep in sync with QPolygon and QPolygonF.
 

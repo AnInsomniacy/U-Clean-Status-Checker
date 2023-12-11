@@ -47,6 +47,9 @@ public:
     };
 
     QSharedMemory(QObject *parent /TransferThis/ = 0);
+%If (Qt_6_6_0 -)
+    QSharedMemory(const QNativeIpcKey &key, QObject *parent /TransferThis/ = 0);
+%End
     QSharedMemory(const QString &key, QObject *parent /TransferThis/ = 0);
     virtual ~QSharedMemory();
     void setKey(const QString &key);
@@ -70,6 +73,26 @@ public:
     bool unlock();
     QSharedMemory::SharedMemoryError error() const;
     QString errorString() const;
+%If (Qt_6_6_0 -)
+    void setNativeKey(const QNativeIpcKey &key);
+%End
+%If (Qt_6_6_0 -)
+    void setNativeKey(const QString &key, QNativeIpcKey::Type type = QNativeIpcKey::legacyDefaultTypeForOs());
+%End
+%If (- Qt_6_6_0)
     void setNativeKey(const QString &key);
+%End
     QString nativeKey() const;
+%If (Qt_6_6_0 -)
+    QNativeIpcKey nativeIpcKey() const;
+%End
+%If (Qt_6_6_0 -)
+    static bool isKeyTypeSupported(QNativeIpcKey::Type type);
+%End
+%If (Qt_6_6_0 -)
+    static QNativeIpcKey platformSafeKey(const QString &key, QNativeIpcKey::Type type = QNativeIpcKey::DefaultTypeForOs);
+%End
+%If (Qt_6_6_0 -)
+    static QNativeIpcKey legacyNativeKey(const QString &key, QNativeIpcKey::Type type = QNativeIpcKey::legacyDefaultTypeForOs());
+%End
 };

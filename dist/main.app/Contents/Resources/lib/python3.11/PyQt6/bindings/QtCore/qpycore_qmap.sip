@@ -253,7 +253,7 @@ template<int, _TYPE_>
 
 template<_TYPE1_, _TYPE2_>
 %MappedType QMultiMap<_TYPE1_, _TYPE2_>
-        /TypeHintOut="Dict[_TYPE1_, List[_TYPE2_]]", TypeHintValue="{}"/
+        /TypeHintIn="Dict[_TYPE1_, Sequence[_TYPE2_]]", TypeHintOut="Dict[_TYPE1_, List[_TYPE2_]]", TypeHintValue="{}"/
 {
 %TypeHeaderCode
 #include <qmap.h>

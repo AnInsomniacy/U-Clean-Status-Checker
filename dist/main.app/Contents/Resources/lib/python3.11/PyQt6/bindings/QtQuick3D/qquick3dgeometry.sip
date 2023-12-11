@@ -129,4 +129,39 @@ public:
 %If (Qt_6_3_0 -)
     void addSubset(int offset, int count, const QVector3D &boundsMin, const QVector3D &boundsMax, const QString &name = {});
 %End
+%If (Qt_6_6_0 -)
+
+    struct TargetAttribute
+    {
+%TypeHeaderCode
+#include <qquick3dgeometry.h>
+%End
+
+        quint32 targetId;
+        QQuick3DGeometry::Attribute attr;
+        int stride;
+    };
+
+%End
+%If (Qt_6_6_0 -)
+    QByteArray targetData() const;
+%End
+%If (Qt_6_6_0 -)
+    void setTargetData(int offset, const QByteArray &data);
+%End
+%If (Qt_6_6_0 -)
+    void setTargetData(const QByteArray &data);
+%End
+%If (Qt_6_6_0 -)
+    QQuick3DGeometry::TargetAttribute targetAttribute(int index) const;
+%End
+%If (Qt_6_6_0 -)
+    int targetAttributeCount() const;
+%End
+%If (Qt_6_6_0 -)
+    void addTargetAttribute(const QQuick3DGeometry::TargetAttribute &att);
+%End
+%If (Qt_6_6_0 -)
+    void addTargetAttribute(quint32 targetId, QQuick3DGeometry::Attribute::Semantic semantic, int offset, int stride = 0);
+%End
 };

@@ -129,8 +129,8 @@ public:
     bool setDate(int year, int month, int date);
     void getDate(int *year, int *month, int *day) const;
     QDateTime startOfDay(Qt::TimeSpec spec = Qt::LocalTime, int offsetSeconds = 0) const;
-    QDateTime endOfDay(Qt::TimeSpec spec = Qt::LocalTime, int offsetSeconds = 0) const;
     QDateTime startOfDay(const QTimeZone &zone) const;
+    QDateTime endOfDay(Qt::TimeSpec spec = Qt::LocalTime, int offsetSeconds = 0) const;
     QDateTime endOfDay(const QTimeZone &zone) const;
     bool setDate(int year, int month, int day, QCalendar cal);
     QString toString(const QString &format, QCalendar cal = QCalendar()) const;
@@ -400,6 +400,9 @@ public:
     qint64 daysTo(const QDateTime &) const;
     qint64 secsTo(const QDateTime &) const;
     static QDateTime currentDateTime();
+%If (Qt_6_5_0 -)
+    static QDateTime currentDateTime(const QTimeZone &zone);
+%End
     static QDateTime fromString(const QString &string, Qt::DateFormat format = Qt::TextDate);
     qint64 toMSecsSinceEpoch() const;
     void setMSecsSinceEpoch(qint64 msecs);
@@ -433,6 +436,9 @@ public:
     void setTime(QTime time);
     QString toString(const QString &format, QCalendar cal = QCalendar()) const;
     static QDateTime fromString(const QString &string, const QString &format, QCalendar cal = QCalendar());
+%If (Qt_6_5_0 -)
+    QTimeZone timeRepresentation() const;
+%End
 };
 
 QDataStream &operator<<(QDataStream &, QDate) /ReleaseGIL/;

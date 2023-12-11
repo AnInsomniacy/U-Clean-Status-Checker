@@ -428,6 +428,9 @@ public:
         Middle,
         End,
         OnlyOneTab,
+%If (Qt_6_6_0 -)
+        Moving,
+%End
     };
 
     enum SelectedPosition

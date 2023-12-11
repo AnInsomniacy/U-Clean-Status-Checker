@@ -4,7 +4,7 @@
 import QtQuick
 import QtQuick.Templates as T
 import QtQuick.Controls.impl
-import QtQuick.Controls.iOS
+import QtQuick.Controls.iOS.impl
 
 T.MenuItem {
     id: control
@@ -16,17 +16,19 @@ T.MenuItem {
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
     leftPadding: 12
-    rightPadding: 18
+    rightPadding: 12
+    topPadding: 11
+    bottomPadding: 11
     spacing: 9
 
     icon.width: 19
     icon.height: 19
-    icon.color: control.palette.windowText
+    icon.color: control.palette.text
 
-    property bool isSingleItem: control.menu && control.menu.count === 1
-    property bool isFirstItem: !isSingleItem && control.menu && control.menu.itemAt(0) === control ? true : false
-    property bool isLastItem: !isSingleItem && control.menu && control.menu.itemAt(control.menu.count - 1) === control ? true : false
-    property real indicatorWidth: 12
+    readonly property bool isSingleItem: control.menu && control.menu.count === 1
+    readonly property bool isFirstItem: !isSingleItem && control.menu && control.menu.itemAt(0) === control ? true : false
+    readonly property bool isLastItem: !isSingleItem && control.menu && control.menu.itemAt(control.menu.count - 1) === control ? true : false
+    readonly property real indicatorWidth: 12
 
     contentItem: IconLabel {
         readonly property real padding: control.indicatorWidth + control.spacing
@@ -41,7 +43,7 @@ T.MenuItem {
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.palette.windowText
+        color: control.palette.text
     }
 
     arrow: ColorImage {
@@ -54,8 +56,8 @@ T.MenuItem {
         visible: control.subMenu
         opacity: control.enabled ? 1 : 0.5
         mirror: control.mirrored
-        color: control.palette.windowText
-        source: control.subMenu ? "qrc:/qt-project.org/imports/QtQuick/Controls/iOS/images/arrow-indicator-light.png" : ""
+        color: control.palette.text
+        source: control.subMenu ? IOS.url + "arrow-indicator-light.png" : ""
 
         Behavior on rotation { RotationAnimation { duration: 100 } }
     }
@@ -63,12 +65,11 @@ T.MenuItem {
     indicator: ColorImage {
         x: control.mirrored ? control.width - width - control.rightPadding : control.leftPadding
         y: control.topPadding + (control.availableHeight - height) / 2
-        width: control.indicatorWidth
-        height: control.indicatorWidth
+        scale: 0.8
 
         visible: control.checked
-        source: control.checkable ? "qrc:/qt-project.org/imports/QtQuick/Controls/iOS/images/radiodelegate-indicator-light.png" : ""
-        color: control.palette.windowText
+        source: control.checked ? IOS.url + "radiodelegate-indicator-light.png" : ""
+        color: control.palette.text
     }
 
     background: Item {
@@ -80,13 +81,13 @@ T.MenuItem {
             height: control.isLastItem ? parent.height + 1 : parent.height
             rotation: control.isLastItem ? 180 : 0
             visible: !(isSingleItem && !control.down)
-            source: control.IOS.url + "menuitem-background"
+            source: IOS.url + "menuitem-background"
             NinePatchImageSelector on source {
                 states: [
                     {"edge": control.isFirstItem || control.isLastItem},
                     {"single": control.isSingleItem},
-                    {"light": control.IOS.theme === IOS.Light},
-                    {"dark": control.IOS.theme === IOS.Dark},
+                    {"light": Qt.styleHints.colorScheme === Qt.Light},
+                    {"dark": Qt.styleHints.colorScheme === Qt.Dark},
                     {"pressed": control.down}
                 ]
             }

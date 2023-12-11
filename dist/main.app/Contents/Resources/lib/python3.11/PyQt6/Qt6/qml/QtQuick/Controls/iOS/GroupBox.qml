@@ -3,7 +3,6 @@
 
 import QtQuick
 import QtQuick.Templates as T
-import QtQuick.Controls.iOS
 
 T.GroupBox {
     id: control
@@ -37,6 +36,6 @@ T.GroupBox {
         width: parent.width
         height: parent.height - control.topPadding + control.bottomPadding
         radius: 9
-        color: control.IOS.theme === IOS.Dark ? control.palette.light : control.palette.base
+        color: Qt.styleHints.colorScheme === Qt.Dark ? control.palette.light : control.palette.base
     }
 }

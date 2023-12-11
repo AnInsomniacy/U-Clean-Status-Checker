@@ -78,4 +78,10 @@ public:
     void setFormat(QQuick3DTextureData::Format format);
     bool hasTransparency() const;
     void setHasTransparency(bool hasTransparency);
+%If (Qt_6_6_0 -)
+    int depth() const;
+%End
+%If (Qt_6_6_0 -)
+    void setDepth(int depth);
+%End
 };

@@ -61,6 +61,9 @@ public:
         Immediate,
         Word,
         Sentence,
+%If (Qt_6_6_0 -)
+        Utterance,
+%End
     };
 
     enum class ErrorReason
@@ -78,6 +81,9 @@ public:
         Speaking,
         Paused,
         Error,
+%If (Qt_6_6_0 -)
+        Synthesizing,
+%End
     };
 
     QTextToSpeech(const QString &engine, const QVariantMap &params, QObject *parent /TransferThis/ = 0);
@@ -118,4 +124,37 @@ signals:
     void voiceChanged(const QVoice &voice);
     void engineChanged(const QString &engine);
     void errorOccurred(QTextToSpeech::ErrorReason error, const QString &errorString);
+
+public:
+%If (Qt_6_6_0 -)
+
+    enum class Capability
+    {
+        None,
+        Speak,
+        PauseResume,
+        WordByWordProgress,
+        Synthesize,
+    };
+
+%End
+%If (Qt_6_6_0 -)
+    typedef QFlags<QTextToSpeech::Capability> Capabilities;
+%End
+%If (Qt_6_6_0 -)
+    QTextToSpeech::Capabilities engineCapabilities() const;
+%End
+
+public slots:
+%If (Qt_6_6_0 -)
+    qsizetype enqueue(const QString &text);
+%End
+
+signals:
+%If (Qt_6_6_0 -)
+    void sayingWord(const QString &word, qsizetype id, qsizetype start, qsizetype length);
+%End
+%If (Qt_6_6_0 -)
+    void aboutToSynthesize(qsizetype id);
+%End
 };

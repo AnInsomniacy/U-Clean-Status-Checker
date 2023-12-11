@@ -317,7 +317,12 @@ public:
     QBluetoothUuid(QBluetoothUuid::CharacteristicType uuid);
     QBluetoothUuid(QBluetoothUuid::DescriptorType uuid);
     explicit QBluetoothUuid(quint32 uuid);
+%If (Qt_6_6_0 -)
+    QBluetoothUuid(quint128 uuid, QSysInfo::Endian order = QSysInfo::BigEndian);
+%End
+%If (- Qt_6_6_0)
     explicit QBluetoothUuid(quint128 uuid);
+%End
     explicit QBluetoothUuid(const QString &uuid);
     QBluetoothUuid(const QBluetoothUuid &uuid);
     QBluetoothUuid(const QUuid &uuid);

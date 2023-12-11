@@ -208,6 +208,36 @@ public:
 
     QStringList families() const;
     void setFamilies(const QStringList &);
+%If (Qt_6_6_0 -)
+    void setFeature(quint32 tag, quint32 value);
+%End
+%If (Qt_6_6_0 -)
+    void setFeature(const char *feature /Encoding="None"/, quint32 value);
+%End
+%If (Qt_6_6_0 -)
+    void unsetFeature(const char *feature /Encoding="None"/);
+%End
+%If (Qt_6_6_0 -)
+    void unsetFeature(quint32 tag);
+%End
+%If (Qt_6_6_0 -)
+    quint32 featureValue(quint32 tag) const;
+%End
+%If (Qt_6_6_0 -)
+    bool isFeatureSet(quint32 tag) const;
+%End
+%If (Qt_6_6_0 -)
+    QList<unsigned int> featureTags() const;
+%End
+%If (Qt_6_6_0 -)
+    void clearFeatures();
+%End
+%If (Qt_6_6_0 -)
+    static QByteArray tagToString(quint32 tag);
+%End
+%If (Qt_6_6_0 -)
+    static quint32 stringToTag(const char *tagString /Encoding="None"/);
+%End
 };
 
 QDataStream &operator<<(QDataStream &, const QFont &) /ReleaseGIL/;

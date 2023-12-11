@@ -28,6 +28,7 @@ Module {
             write: "setLifeLeft"
             notify: "lifeLeftChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "advancePosition"
@@ -36,6 +37,7 @@ Module {
             write: "setAdvancePosition"
             notify: "advancePositionChanged"
             index: 1
+            isFinal: true
         }
         Signal {
             name: "lifeLeftChanged"
@@ -71,6 +73,7 @@ Module {
             write: "setAngle"
             notify: "angleChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "magnitude"
@@ -79,6 +82,7 @@ Module {
             write: "setMagnitude"
             notify: "magnitudeChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "angleVariation"
@@ -87,6 +91,7 @@ Module {
             write: "setAngleVariation"
             notify: "angleVariationChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "magnitudeVariation"
@@ -95,6 +100,7 @@ Module {
             write: "setMagnitudeVariation"
             notify: "magnitudeVariationChanged"
             index: 3
+            isFinal: true
         }
         Signal {
             name: "angleChanged"
@@ -165,6 +171,7 @@ Module {
             write: "setStrength"
             notify: "strengthChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "pointX"
@@ -173,6 +180,7 @@ Module {
             write: "setPointX"
             notify: "pointXChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "pointY"
@@ -181,6 +189,7 @@ Module {
             write: "setPointY"
             notify: "pointYChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "affectedParameter"
@@ -189,6 +198,7 @@ Module {
             write: "setAffectedParameter"
             notify: "affectedParameterChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "proportionalToDistance"
@@ -197,6 +207,7 @@ Module {
             write: "setProportionalToDistance"
             notify: "proportionalToDistanceChanged"
             index: 4
+            isFinal: true
         }
         Signal {
             name: "strengthChanged"
@@ -257,6 +268,7 @@ Module {
             read: "directions"
             index: 0
             isReadonly: true
+            isFinal: true
         }
     }
     Component {
@@ -281,6 +293,7 @@ Module {
             write: "setRelative"
             notify: "relativeChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "position"
@@ -288,8 +301,10 @@ Module {
             isPointer: true
             read: "position"
             write: "setPosition"
+            reset: "positionReset"
             notify: "positionChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "velocity"
@@ -297,8 +312,10 @@ Module {
             isPointer: true
             read: "velocity"
             write: "setVelocity"
+            reset: "velocityReset"
             notify: "velocityChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "acceleration"
@@ -306,8 +323,10 @@ Module {
             isPointer: true
             read: "acceleration"
             write: "setAcceleration"
+            reset: "accelerationReset"
             notify: "accelerationChanged"
             index: 3
+            isFinal: true
         }
         Signal {
             name: "affectParticles"
@@ -376,6 +395,7 @@ Module {
             write: "setFill"
             notify: "fillChanged"
             index: 0
+            isFinal: true
         }
         Signal {
             name: "fillChanged"
@@ -408,6 +428,7 @@ Module {
             write: "setFactor"
             notify: "factorChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "threshold"
@@ -416,6 +437,7 @@ Module {
             write: "setThreshold"
             notify: "thresholdChanged"
             index: 1
+            isFinal: true
         }
         Signal {
             name: "factorChanged"
@@ -456,6 +478,7 @@ Module {
             write: "setMagnitude"
             notify: "magnitudeChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "acceleration"
@@ -464,6 +487,7 @@ Module {
             write: "setAcceleration"
             notify: "magnitudeChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "angle"
@@ -472,6 +496,7 @@ Module {
             write: "setAngle"
             notify: "angleChanged"
             index: 2
+            isFinal: true
         }
         Signal {
             name: "magnitudeChanged"
@@ -516,6 +541,7 @@ Module {
             write: "setGoalState"
             notify: "goalStateChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "jump"
@@ -524,6 +550,7 @@ Module {
             write: "setJump"
             notify: "jumpChanged"
             index: 1
+            isFinal: true
         }
         Signal {
             name: "goalStateChanged"
@@ -572,6 +599,7 @@ Module {
             write: "setImage"
             notify: "imageChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "sprites"
@@ -580,6 +608,7 @@ Module {
             read: "sprites"
             index: 1
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "status"
@@ -588,6 +617,7 @@ Module {
             notify: "statusChanged"
             index: 2
             isReadonly: true
+            isFinal: true
         }
         Property {
             name: "colorTable"
@@ -596,6 +626,7 @@ Module {
             write: "setColortable"
             notify: "colortableChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "sizeTable"
@@ -604,6 +635,7 @@ Module {
             write: "setSizetable"
             notify: "sizetableChanged"
             index: 4
+            isFinal: true
         }
         Property {
             name: "opacityTable"
@@ -612,68 +644,84 @@ Module {
             write: "setOpacitytable"
             notify: "opacitytableChanged"
             index: 5
+            isFinal: true
         }
         Property {
             name: "color"
             type: "QColor"
             read: "color"
             write: "setColor"
+            reset: "resetColor"
             notify: "colorChanged"
             index: 6
+            isFinal: true
         }
         Property {
             name: "colorVariation"
             type: "double"
             read: "colorVariation"
             write: "setColorVariation"
+            reset: "resetColor"
             notify: "colorVariationChanged"
             index: 7
+            isFinal: true
         }
         Property {
             name: "redVariation"
             type: "double"
             read: "redVariation"
             write: "setRedVariation"
+            reset: "resetColor"
             notify: "redVariationChanged"
             index: 8
+            isFinal: true
         }
         Property {
             name: "greenVariation"
             type: "double"
             read: "greenVariation"
             write: "setGreenVariation"
+            reset: "resetColor"
             notify: "greenVariationChanged"
             index: 9
+            isFinal: true
         }
         Property {
             name: "blueVariation"
             type: "double"
             read: "blueVariation"
             write: "setBlueVariation"
+            reset: "resetColor"
             notify: "blueVariationChanged"
             index: 10
+            isFinal: true
         }
         Property {
             name: "alpha"
             type: "double"
             read: "alpha"
             write: "setAlpha"
+            reset: "resetColor"
             notify: "alphaChanged"
             index: 11
+            isFinal: true
         }
         Property {
             name: "alphaVariation"
             type: "double"
             read: "alphaVariation"
             write: "setAlphaVariation"
+            reset: "resetColor"
             notify: "alphaVariationChanged"
             index: 12
+            isFinal: true
         }
         Property {
             name: "rotation"
             type: "double"
             read: "rotation"
             write: "setRotation"
+            reset: "resetRotation"
             notify: "rotationChanged"
             index: 13
         }
@@ -682,32 +730,40 @@ Module {
             type: "double"
             read: "rotationVariation"
             write: "setRotationVariation"
+            reset: "resetRotation"
             notify: "rotationVariationChanged"
             index: 14
+            isFinal: true
         }
         Property {
             name: "rotationVelocity"
             type: "double"
             read: "rotationVelocity"
             write: "setRotationVelocity"
+            reset: "resetRotation"
             notify: "rotationVelocityChanged"
             index: 15
+            isFinal: true
         }
         Property {
             name: "rotationVelocityVariation"
             type: "double"
             read: "rotationVelocityVariation"
             write: "setRotationVelocityVariation"
+            reset: "resetRotation"
             notify: "rotationVelocityVariationChanged"
             index: 16
+            isFinal: true
         }
         Property {
             name: "autoRotation"
             type: "bool"
             read: "autoRotation"
             write: "setAutoRotation"
+            reset: "resetRotation"
             notify: "autoRotationChanged"
             index: 17
+            isFinal: true
         }
         Property {
             name: "xVector"
@@ -715,8 +771,10 @@ Module {
             isPointer: true
             read: "xVector"
             write: "setXVector"
+            reset: "resetDeformation"
             notify: "xVectorChanged"
             index: 18
+            isFinal: true
         }
         Property {
             name: "yVector"
@@ -724,8 +782,10 @@ Module {
             isPointer: true
             read: "yVector"
             write: "setYVector"
+            reset: "resetDeformation"
             notify: "yVectorChanged"
             index: 19
+            isFinal: true
         }
         Property {
             name: "spritesInterpolate"
@@ -734,6 +794,7 @@ Module {
             write: "setSpritesInterpolate"
             notify: "spritesInterpolateChanged"
             index: 20
+            isFinal: true
         }
         Property {
             name: "entryEffect"
@@ -742,6 +803,7 @@ Module {
             write: "setEntryEffect"
             notify: "entryEffectChanged"
             index: 21
+            isFinal: true
         }
         Signal { name: "imageChanged" }
         Signal { name: "colortableChanged" }
@@ -882,7 +944,7 @@ Module {
             name: "spritesUpdate"
             Parameter { name: "time"; type: "double" }
         }
-        Method { name: "spritesUpdate" }
+        Method { name: "spritesUpdate"; isCloned: true }
         Method { name: "mainThreadFetchImageData" }
         Method {
             name: "finishBuildParticleNodes"
@@ -913,6 +975,7 @@ Module {
             write: "setFade"
             notify: "fadeChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "delegate"
@@ -922,6 +985,7 @@ Module {
             write: "setDelegate"
             notify: "delegateChanged"
             index: 1
+            isFinal: true
         }
         Signal { name: "fadeChanged" }
         Signal {
@@ -943,6 +1007,7 @@ Module {
         }
         Method {
             name: "take"
+            isCloned: true
             Parameter { name: "item"; type: "QQuickItem"; isPointer: true }
         }
         Method {
@@ -970,6 +1035,8 @@ Module {
             read: "particle"
             index: 0
             isReadonly: true
+            isFinal: true
+            isConstant: true
         }
         Signal { name: "detached" }
         Signal { name: "attached" }
@@ -991,6 +1058,7 @@ Module {
             write: "setMirrored"
             notify: "mirroredChanged"
             index: 0
+            isFinal: true
         }
         Signal {
             name: "mirroredChanged"
@@ -1018,6 +1086,7 @@ Module {
             write: "setSource"
             notify: "sourceChanged"
             index: 0
+            isFinal: true
         }
         Signal {
             name: "sourceChanged"
@@ -1056,6 +1125,7 @@ Module {
             write: "setSystem"
             notify: "systemChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "groups"
@@ -1064,6 +1134,7 @@ Module {
             write: "setGroups"
             notify: "groupsChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "whenCollidingWith"
@@ -1072,6 +1143,7 @@ Module {
             write: "setWhenCollidingWith"
             notify: "whenCollidingWithChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "enabled"
@@ -1080,6 +1152,7 @@ Module {
             write: "setEnabled"
             notify: "enabledChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "once"
@@ -1088,6 +1161,7 @@ Module {
             write: "setOnceOff"
             notify: "onceChanged"
             index: 4
+            isFinal: true
         }
         Property {
             name: "shape"
@@ -1097,6 +1171,7 @@ Module {
             write: "setShape"
             notify: "shapeChanged"
             index: 5
+            isFinal: true
         }
         Signal {
             name: "systemChanged"
@@ -1182,6 +1257,7 @@ Module {
             write: "setSystem"
             notify: "systemChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "group"
@@ -1190,6 +1266,7 @@ Module {
             write: "setGroup"
             notify: "groupChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "shape"
@@ -1199,6 +1276,7 @@ Module {
             write: "setExtruder"
             notify: "extruderChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "enabled"
@@ -1207,6 +1285,7 @@ Module {
             write: "setEnabled"
             notify: "enabledChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "startTime"
@@ -1215,6 +1294,7 @@ Module {
             write: "setStartTime"
             notify: "startTimeChanged"
             index: 4
+            isFinal: true
         }
         Property {
             name: "emitRate"
@@ -1223,6 +1303,7 @@ Module {
             write: "setParticlesPerSecond"
             notify: "particlesPerSecondChanged"
             index: 5
+            isFinal: true
         }
         Property {
             name: "lifeSpan"
@@ -1231,6 +1312,7 @@ Module {
             write: "setParticleDuration"
             notify: "particleDurationChanged"
             index: 6
+            isFinal: true
         }
         Property {
             name: "lifeSpanVariation"
@@ -1239,6 +1321,7 @@ Module {
             write: "setParticleDurationVariation"
             notify: "particleDurationVariationChanged"
             index: 7
+            isFinal: true
         }
         Property {
             name: "maximumEmitted"
@@ -1247,6 +1330,7 @@ Module {
             write: "setMaxParticleCount"
             notify: "maximumEmittedChanged"
             index: 8
+            isFinal: true
         }
         Property {
             name: "size"
@@ -1255,6 +1339,7 @@ Module {
             write: "setParticleSize"
             notify: "particleSizeChanged"
             index: 9
+            isFinal: true
         }
         Property {
             name: "endSize"
@@ -1263,6 +1348,7 @@ Module {
             write: "setParticleEndSize"
             notify: "particleEndSizeChanged"
             index: 10
+            isFinal: true
         }
         Property {
             name: "sizeVariation"
@@ -1271,6 +1357,7 @@ Module {
             write: "setParticleSizeVariation"
             notify: "particleSizeVariationChanged"
             index: 11
+            isFinal: true
         }
         Property {
             name: "velocity"
@@ -1280,6 +1367,7 @@ Module {
             write: "setVelocity"
             notify: "velocityChanged"
             index: 12
+            isFinal: true
         }
         Property {
             name: "acceleration"
@@ -1289,6 +1377,7 @@ Module {
             write: "setAcceleration"
             notify: "accelerationChanged"
             index: 13
+            isFinal: true
         }
         Property {
             name: "velocityFromMovement"
@@ -1297,6 +1386,7 @@ Module {
             write: "setVelocityFromMovement"
             notify: "velocityFromMovementChanged"
             index: 14
+            isFinal: true
         }
         Signal {
             name: "emitParticles"
@@ -1464,6 +1554,7 @@ Module {
             write: "setSystem"
             notify: "systemChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "particleChildren"
@@ -1512,6 +1603,7 @@ Module {
             write: "setSystem"
             notify: "systemChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "groups"
@@ -1520,6 +1612,7 @@ Module {
             write: "setGroups"
             notify: "groupsChanged"
             index: 1
+            isFinal: true
         }
         Signal { name: "countChanged" }
         Signal {
@@ -1542,7 +1635,7 @@ Module {
             name: "calcSystemOffset"
             Parameter { name: "resetPending"; type: "bool" }
         }
-        Method { name: "calcSystemOffset" }
+        Method { name: "calcSystemOffset"; isCloned: true }
         Method { name: "sceneGraphInvalidated" }
     }
     Component {
@@ -1569,6 +1662,7 @@ Module {
             write: "setRunning"
             notify: "runningChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "paused"
@@ -1577,6 +1671,7 @@ Module {
             write: "setPaused"
             notify: "pausedChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "empty"
@@ -1585,6 +1680,7 @@ Module {
             notify: "emptyChanged"
             index: 2
             isReadonly: true
+            isFinal: true
         }
         Signal { name: "systemInitialized" }
         Signal {
@@ -1635,8 +1731,24 @@ Module {
             "QtQuick.Particles/PointDirection 6.0"
         ]
         exportMetaObjectRevisions: [512, 1536]
-        Property { name: "x"; type: "double"; read: "x"; write: "setX"; notify: "xChanged"; index: 0 }
-        Property { name: "y"; type: "double"; read: "y"; write: "setY"; notify: "yChanged"; index: 1 }
+        Property {
+            name: "x"
+            type: "double"
+            read: "x"
+            write: "setX"
+            notify: "xChanged"
+            index: 0
+            isFinal: true
+        }
+        Property {
+            name: "y"
+            type: "double"
+            read: "y"
+            write: "setY"
+            notify: "yChanged"
+            index: 1
+            isFinal: true
+        }
         Property {
             name: "xVariation"
             type: "double"
@@ -1644,6 +1756,7 @@ Module {
             write: "setXVariation"
             notify: "xVariationChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "yVariation"
@@ -1652,6 +1765,7 @@ Module {
             write: "setYVariation"
             notify: "yVariationChanged"
             index: 3
+            isFinal: true
         }
         Signal {
             name: "xChanged"
@@ -1703,6 +1817,7 @@ Module {
             write: "setFill"
             notify: "fillChanged"
             index: 0
+            isFinal: true
         }
         Signal {
             name: "fillChanged"
@@ -1735,6 +1850,7 @@ Module {
             write: "setGoalState"
             notify: "goalStateChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "jump"
@@ -1743,6 +1859,7 @@ Module {
             write: "setJump"
             notify: "jumpChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "systemStates"
@@ -1751,6 +1868,7 @@ Module {
             write: "setSystemStates"
             notify: "systemStatesChanged"
             index: 2
+            isFinal: true
         }
         Signal {
             name: "goalStateChanged"
@@ -1789,6 +1907,7 @@ Module {
             write: "setDuration"
             notify: "durationChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "durationVariation"
@@ -1797,6 +1916,7 @@ Module {
             write: "setDurationVariation"
             notify: "durationVariationChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "randomStart"
@@ -1805,6 +1925,7 @@ Module {
             write: "setRandomStart"
             notify: "randomStartChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "to"
@@ -1813,6 +1934,7 @@ Module {
             write: "setTo"
             notify: "toChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "name"
@@ -1821,6 +1943,7 @@ Module {
             write: "setName"
             notify: "nameChanged"
             index: 4
+            isFinal: true
         }
         Signal {
             name: "durationChanged"
@@ -1881,6 +2004,7 @@ Module {
             write: "setTargetX"
             notify: "targetXChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "targetY"
@@ -1889,6 +2013,7 @@ Module {
             write: "setTargetY"
             notify: "targetYChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "targetItem"
@@ -1898,6 +2023,7 @@ Module {
             write: "setTargetItem"
             notify: "targetItemChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "targetVariation"
@@ -1906,6 +2032,7 @@ Module {
             write: "setTargetVariation"
             notify: "targetVariationChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "proportionalMagnitude"
@@ -1914,6 +2041,7 @@ Module {
             write: "setProportionalMagnitude"
             notify: "proprotionalMagnitudeChanged"
             index: 4
+            isFinal: true
         }
         Property {
             name: "magnitude"
@@ -1922,6 +2050,7 @@ Module {
             write: "setMagnitude"
             notify: "magnitudeChanged"
             index: 5
+            isFinal: true
         }
         Property {
             name: "magnitudeVariation"
@@ -1930,6 +2059,7 @@ Module {
             write: "setMagnitudeVariation"
             notify: "magnitudeVariationChanged"
             index: 6
+            isFinal: true
         }
         Signal {
             name: "targetXChanged"
@@ -2014,6 +2144,7 @@ Module {
             write: "setFollow"
             notify: "followChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "emitRatePerParticle"
@@ -2022,6 +2153,7 @@ Module {
             write: "setParticlesPerParticlePerSecond"
             notify: "particlesPerParticlePerSecondChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "emitShape"
@@ -2031,6 +2163,7 @@ Module {
             write: "setEmissionShape"
             notify: "emissionShapeChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "emitHeight"
@@ -2039,6 +2172,7 @@ Module {
             write: "setEmitterYVariation"
             notify: "emitterYVariationChanged"
             index: 3
+            isFinal: true
         }
         Property {
             name: "emitWidth"
@@ -2047,6 +2181,7 @@ Module {
             write: "setEmitterXVariation"
             notify: "emitterXVariationChanged"
             index: 4
+            isFinal: true
         }
         Signal {
             name: "emitFollowParticles"
@@ -2117,6 +2252,7 @@ Module {
             write: "setStrength"
             notify: "strengthChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "noiseSource"
@@ -2125,6 +2261,7 @@ Module {
             write: "setNoiseSource"
             notify: "noiseSourceChanged"
             index: 1
+            isFinal: true
         }
         Signal {
             name: "strengthChanged"
@@ -2169,6 +2306,7 @@ Module {
             write: "setPace"
             notify: "paceChanged"
             index: 0
+            isFinal: true
         }
         Property {
             name: "xVariance"
@@ -2177,6 +2315,7 @@ Module {
             write: "setXVariance"
             notify: "xVarianceChanged"
             index: 1
+            isFinal: true
         }
         Property {
             name: "yVariance"
@@ -2185,6 +2324,7 @@ Module {
             write: "setYVariance"
             notify: "yVarianceChanged"
             index: 2
+            isFinal: true
         }
         Property {
             name: "affectedParameter"
@@ -2193,6 +2333,7 @@ Module {
             write: "setAffectedParameter"
             notify: "affectedParameterChanged"
             index: 3
+            isFinal: true
         }
         Signal {
             name: "xVarianceChanged"

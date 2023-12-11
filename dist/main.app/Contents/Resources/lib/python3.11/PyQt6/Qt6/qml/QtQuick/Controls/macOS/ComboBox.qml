@@ -8,7 +8,6 @@ import QtQuick.NativeStyle as NativeStyle
 NativeStyle.DefaultComboBox {
     id: control
     readonly property Item __focusFrameTarget: control
-    font.pixelSize: background.styleFont(control).pixelSize
 
     contentItem: T.TextField {
         implicitWidth: contentWidth
@@ -28,5 +27,6 @@ NativeStyle.DefaultComboBox {
         verticalAlignment: Text.AlignVCenter
 
         readonly property Item __focusFrameControl: control
+        readonly property bool __ignoreNotCustomizable: true
     }
 }

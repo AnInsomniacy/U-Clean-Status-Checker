@@ -159,4 +159,27 @@ public:
     Qt::TextInteractionFlags textInteractionFlags() const;
     void setCheckBox(QCheckBox *cb);
     QCheckBox *checkBox() const;
+%If (Qt_6_6_0 -)
+
+    enum class Option
+    {
+        DontUseNativeDialog,
+    };
+
+%End
+%If (Qt_6_6_0 -)
+    typedef QFlags<QMessageBox::Option> Options;
+%End
+%If (Qt_6_6_0 -)
+    void setOption(QMessageBox::Option option, bool on = true);
+%End
+%If (Qt_6_6_0 -)
+    bool testOption(QMessageBox::Option option) const;
+%End
+%If (Qt_6_6_0 -)
+    void setOptions(QMessageBox::Options options);
+%End
+%If (Qt_6_6_0 -)
+    QMessageBox::Options options() const;
+%End
 };
